@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends World
+public class MyWorld extends BaseWorld
 {
 
     /**
@@ -16,7 +16,7 @@ public class MyWorld extends World
     public MyWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(800, 600, 1); 
+        super(); 
         prepare();
     }
 
@@ -41,5 +41,8 @@ public class MyWorld extends World
         goblin.setLocation(24,60);
         goblin.setLocation(14,66);
         goblin4.setLocation(19,519);
+       
+        Man man = new Man();
+        addObject(man,287,355);
     }
 }
