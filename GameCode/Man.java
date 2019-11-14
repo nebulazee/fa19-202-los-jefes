@@ -163,30 +163,40 @@ public class Man extends Subject
     }
     public void movement()
     {
-            if(this.isTouching(Monster.class))
-            {
-                move(0);
-            }
-            
+            int x = getX();
+            int y = getY();
+                        
             if(Greenfoot.isKeyDown("up") )
             {
                 setImage(img);
-                setLocation(getX(),getY()-2) ;
+                setLocation( x , y - 2 ) ;
+                if( hitTavern() || hitGoblin() || hitMonster() ){
+                setLocation( x  , y + 2 );
+                }
             }
             if(Greenfoot.isKeyDown("down") )
              {  
                  setImage(imgB);
-                 setLocation(getX(),getY()+2);
+                 setLocation(x , y + 2);
+                 if( hitTavern() || hitGoblin() || hitMonster() ){
+                setLocation( x  , y - 2 );
+                }
              }
             if(Greenfoot.isKeyDown("right") )
             {
                 setImage(imgR);
-                setLocation(getX()+2,getY());
+                setLocation(x + 2 , y );
+                if( hitTavern() || hitGoblin() || hitMonster() ){
+                setLocation( x - 2 , y + 2 );
+                }
             }
             if(Greenfoot.isKeyDown("left"))
             {
                 setImage(imgL);
-                setLocation(getX()-2,getY());
+                setLocation(x - 2 , y);
+                if( hitTavern() || hitGoblin() || hitMonster() ){
+                setLocation( x + 2  , y );
+                }
             }
             
     }
@@ -209,4 +219,40 @@ public class Man extends Subject
                  WorldManager.signal("south");
             }
         }
+        
+     public boolean hitTavern()
+    {
+        if( isTouching(Tavern.class) )
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+    public boolean hitGoblin()
+    {
+        if( isTouching(Goblin.class) )
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+    public boolean hitMonster()
+    {
+        if( isTouching(Monster.class) )
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
 }
+
+

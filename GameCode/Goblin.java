@@ -46,7 +46,7 @@ public class Goblin extends Actor
     }
 public boolean hitknight()
     {
-        if( isTouching(knight.class) )
+        if( isTouching( Man.class) )
         {
             return true;
         }

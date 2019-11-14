@@ -1,6 +1,6 @@
 #BlueJ class context
 comment0.target=Man
-comment0.text=\r\n\ Write\ a\ description\ of\ class\ Man\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
+comment0.text=\n\ Write\ a\ description\ of\ class\ Man\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
 comment1.params=
 comment1.target=Man()
 comment10.params=
@@ -9,6 +9,12 @@ comment11.params=
 comment11.target=void\ movement()
 comment12.params=
 comment12.target=void\ checkScreenChange()
+comment13.params=
+comment13.target=boolean\ hitTavern()
+comment14.params=
+comment14.target=boolean\ hitGoblin()
+comment15.params=
+comment15.target=boolean\ hitMonster()
 comment2.params=s
 comment2.target=void\ updateDamage(ISubject)
 comment3.params=s
@@ -25,4 +31,4 @@ comment8.params=
 comment8.target=void\ attack()
 comment9.params=img
 comment9.target=void\ animateAttack(Man.MotionRenderer)
-numComments=13
+numComments=16
