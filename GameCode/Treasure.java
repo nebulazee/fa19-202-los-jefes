@@ -1,0 +1,25 @@
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+/**
+ * Write a description of class Treasure here.
+ * 
+ * @author (your name) 
+ * @version (a version number or a date)
+ */
+public class Treasure extends Actor
+{
+    /**
+     * Act - do whatever the Treasure wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public Treasure()
+    {
+        setImage(new GreenfootImage("treasure1.png"));
+    }
+    
+    
+    public void act() 
+    {
+        
+    }    
+}
