@@ -16,10 +16,11 @@ public class Axe extends Actor
     public Axe()
     {
         setImage(new GreenfootImage("axe1.png"));
-        damage= 5;
+        this.damage= 5;
     }
     public void act() 
     {
         // Add your action code here.
+        
     }    
 }

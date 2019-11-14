@@ -80,7 +80,7 @@ public class WorldManager extends Actor
                             worldMap[i][j] = new MyWorld();
                             break;
                         case "treasure":
-                            worldMap[i][j] = new MonsterWorld();
+                            worldMap[i][j] = new TreasureWorld();
                             break;
                         default:
                             break;
