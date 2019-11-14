@@ -17,6 +17,7 @@ public class Man extends Subject
     int animationCounter=0;
     int timer=1;
     boolean trackMovement=false;
+    Textbox textbox =  null;
     class MotionRenderer {
         String file;
         GreenfootImage image;
@@ -228,6 +229,8 @@ public class Man extends Subject
     {
         if( isTouching(Tavern.class) )
         {
+            textbox = Textbox.getInstance();
+            textbox.setMsg("Touch tavern");
             return true;
         }
         else 
