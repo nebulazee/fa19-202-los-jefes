@@ -72,7 +72,7 @@ public class WorldManager extends Actor
                 
                 if (i == 3 && j == 2)
                 {
-                    World world = new MyWorld(); 
+                    World world = new TavernWorld(); 
                     worldMap[i][j] = world;
                     currentWorld = world;
                     Greenfoot.setWorld(world);
@@ -87,10 +87,10 @@ public class WorldManager extends Actor
                             monsters--;
                             break;
                         case "animal":
-                            worldMap[i][j] = new MyWorld();
+                            worldMap[i][j] = new AnimalWorld();
                             break;
                         case "treasure":
-                            worldMap[i][j] = new MyWorld();
+                            worldMap[i][j] = new AnimalWorld();
                             treasures--;
                             break;
                         default:

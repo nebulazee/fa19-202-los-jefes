@@ -6,14 +6,14 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends BaseWorld
+public class AnimalWorld extends BaseWorld
 {
 
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld()
+    public AnimalWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(); 
@@ -28,8 +28,7 @@ public class MyWorld extends BaseWorld
      */
     private void prepare()
     {
-        Tavern tavern = new Tavern();
-        addObject(tavern, getWidth()/2, getHeight()/2);
+        
         Goblin goblin = new Goblin();
         addObject(goblin,23,137);
         
