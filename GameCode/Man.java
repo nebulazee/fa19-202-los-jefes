@@ -16,6 +16,7 @@ public class Man extends Subject
     int health = 1000000;
     int animationCounter=0;
     int timer=1;
+    private int level;
     boolean trackMovement=false;
     class MotionRenderer {
         String file;
@@ -45,7 +46,7 @@ public class Man extends Subject
         imgB=new MotionRenderer("warrior-back.png");
         imgL=new MotionRenderer("warrior-left.png");
         img.image.scale(60,60);
-        
+        level=1;
         
         
         //gif = new GifImage("skeleton-club.gif");
@@ -107,7 +108,7 @@ public class Man extends Subject
          checktouching();
          attack();
          animationCounter++;
-         
+
          checkScreenChange();
         // Add your action code here.
     }
@@ -203,21 +204,34 @@ public class Man extends Subject
     
     private void checkScreenChange()
     {
-            if(Greenfoot.isKeyDown("j")){
-                 WorldManager.signal("west");
-
-            }
-            if(Greenfoot.isKeyDown("l")) {
-                 WorldManager.signal("east");
-                              
-            }
-            if(Greenfoot.isKeyDown("i")) {
-                 WorldManager.signal("north");
+               if(isTouching(Portal.class)){
+                   Portal p = (Portal) getOneIntersectingObject(Portal.class);
+                   
+                   switch(p.getFlag())
+                   {
+                    case 'E' : 
+                    WorldManager.signal("east");
+                    break;
                                 
-            }
-            if(Greenfoot.isKeyDown("k")) {
-                 WorldManager.signal("south");
-            }
+                    case 'N' : 
+                    WorldManager.signal("north");
+                    break;
+                    
+                    case 'S' : 
+                    WorldManager.signal("south");
+                    break;
+                    
+                    case 'W' : 
+                    WorldManager.signal("west");
+                    break;
+                       
+                       
+                    }   
+                   
+                   
+                }
+    
+                    
         }
         
      public boolean hitTavern()
@@ -253,6 +267,7 @@ public class Man extends Subject
             return false;
         }
     }
+    
 }
 
 
