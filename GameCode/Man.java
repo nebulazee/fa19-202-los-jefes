@@ -136,8 +136,8 @@ public class Man extends Subject
                animateAttack(imgS);
                 
             }
-        if(getObjectsInRange(50, Monster.class).size()>0) {
-            monster = getObjectsInRange(50, Monster.class).get(0);
+        if(getObjectsInRange(80, Monster.class).size()>0) {
+            monster = getObjectsInRange(80, Monster.class).get(0);
             if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
              monster.updateDamage(this);
         }

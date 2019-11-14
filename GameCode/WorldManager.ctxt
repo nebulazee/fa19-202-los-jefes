@@ -1,9 +1,9 @@
 #BlueJ class context
 comment0.target=WorldManager
-comment0.text=\n\ Write\ a\ description\ of\ class\ WorldManager\ here.\n\ \n\ @author\ (your\ name)\ \n\ @version\ (a\ version\ number\ or\ a\ date)\n
+comment0.text=\r\n\ Write\ a\ description\ of\ class\ WorldManager\ here.\r\n\ \r\n\ @author\ (your\ name)\ \r\n\ @version\ (a\ version\ number\ or\ a\ date)\r\n
 comment1.params=
 comment1.target=WorldManager()
-comment1.text=\n\ Constructor\ for\ objects\ of\ class\ WorldManager\n
+comment1.text=\r\n\ Constructor\ for\ objects\ of\ class\ WorldManager\r\n
 comment2.params=
 comment2.target=WorldManager\ getInstance()
 comment3.params=
@@ -14,7 +14,7 @@ comment5.params=
 comment5.target=void\ constructWorlds()
 comment6.params=signal
 comment6.target=void\ signal(java.lang.String)
-comment6.text=\n\ Receives\ Signal\ From\ World\n\ \n\ @param\ \ signal\ \ north,\ south,\ west,\ or\ east\n\ @return\ void\n
+comment6.text=\r\n\ Receives\ Signal\ From\ World\r\n\ \r\n\ @param\ \ signal\ \ north,\ south,\ west,\ or\ east\r\n\ @return\ void\r\n
 comment7.params=direction
 comment7.target=void\ switchWorlds(java.lang.String)
 comment8.params=x\ y
