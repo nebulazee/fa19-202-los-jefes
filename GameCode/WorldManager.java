@@ -54,13 +54,22 @@ public class WorldManager extends Actor
 
     private void constructWorlds()
     {
-        String[] worldTypes = {"monster", "animal", "treasure"};
+        List<String> worldTypes = new ArrayList<>();
+        worldTypes.add("monster");
+        worldTypes.add("animal");
+        worldTypes.add("treasure");
         Random rand = new Random(); 
+        
+        int monsters = 3;
+        int treasures = 2;
         
         for(int i=0; i<worldHeight; i++)
         {
             for(int j=0; j<worldWidth; j++)
             {
+                if (monsters == 0) { worldTypes.remove("monster"); }
+                if (treasures == 0) { worldTypes.remove("treasure"); }
+                
                 if (i == 3 && j == 2)
                 {
                     World world = new MyWorld(); 
@@ -70,17 +79,19 @@ public class WorldManager extends Actor
                 }
                 else
                 {
-                    String type = worldTypes[rand.nextInt(worldTypes.length)];
+                    String type = worldTypes.get(rand.nextInt(worldTypes.size()));
                     switch(type)
                     {
                         case "monster":
                             worldMap[i][j] = new MonsterWorld();
+                            monsters--;
                             break;
                         case "animal":
                             worldMap[i][j] = new MyWorld();
                             break;
                         case "treasure":
-                            worldMap[i][j] = new MonsterWorld();
+                            worldMap[i][j] = new MyWorld();
+                            treasures--;
                             break;
                         default:
                             break;
@@ -98,7 +109,6 @@ public class WorldManager extends Actor
      */
     public static void signal(String signal)
     {
-        // put your code here
         switch(signal)
         {
             case "west": instance.switchWorlds("left"); break;
@@ -107,6 +117,7 @@ public class WorldManager extends Actor
             case "south": instance.switchWorlds("down"); break;
             default: break;
         }
+        System.out.println(displayWorldMap());
     }
     
     private void switchWorlds(String direction)
@@ -158,5 +169,43 @@ public class WorldManager extends Actor
     {
         int id = (y*3) + (x+1);
         return id;
+    }
+    
+    public static String displayWorldMap()
+    {
+        StringBuffer display = new StringBuffer();
+        display.append("  - - -  \n");
+        
+        for (World[] wList: instance.worldMap)
+        {
+            display.append("| ");
+            for (World w: wList)
+            {
+                display.append(getCode(w) + " ");
+            }
+            display.append("|\n");
+        }
+        display.append("  - - -  \n");
+
+        return display.toString();
+        
+    }
+    
+    private static char getCode(World w)
+    {
+        char code;
+        switch(w.getClass().getName())
+        {
+            case "MonsterWorld": code = 'M'; break;
+            case "AnimalWorld": code = ' '; break;
+            case "TreasureWorld": code = 'T'; break;
+            case "TavernWorld": code = 'H'; break;
+            default: code = ' '; break;
+        }
+        if (instance.currentWorld.equals(w) == true)
+        {
+            code = '*';
+        }
+        return code;
     }
 }
