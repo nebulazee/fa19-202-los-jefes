@@ -52,8 +52,8 @@ public class Monster extends Subject
         int c=0;
         
         {
-            if(getObjectsInRange(50, Man.class).size()>0)
-            man =getObjectsInRange(50, Man.class).get(0);
+            if(getObjectsInRange(100, Man.class).size()>0)
+            man =getObjectsInRange(100, Man.class).get(0);
             else 
             man=null;
             if(null==man) {

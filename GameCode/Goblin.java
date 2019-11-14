@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Goblin extends Actor
+public class Goblin extends Subject
 {
     /**
      * Act - do whatever the Goblin wants to do. This method is called whenever
@@ -19,10 +19,13 @@ public class Goblin extends Actor
     {
         
     }
-    
+    public void updateDamage(ISubject s) {
+        
+    }
     public void act() 
     {
         moveBackandForth();
+       // updateDa
         // Add your action code here.
     }    
     
@@ -46,8 +49,11 @@ public class Goblin extends Actor
     }
 public boolean hitknight()
     {
-        if( isTouching(knight.class) )
-        {
+        if( isTouching( Man.class) )
+        {Man man = null;
+            if(getObjectsInRange(100, Man.class).size()>0)
+            man =getObjectsInRange(100, Man.class).get(0);
+            man.updateDamage(this);
             return true;
         }
         else 
