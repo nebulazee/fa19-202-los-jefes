@@ -107,6 +107,8 @@ public class Man extends Subject
          checktouching();
          attack();
          animationCounter++;
+         
+         checkScreenChange();
         // Add your action code here.
     }
     private void attack(){
@@ -156,8 +158,8 @@ public class Man extends Subject
     }
     private void checkLocation() {
         System.out.println(getX()+"  , "+getY());
-        if(getX() == 599)
-            Greenfoot.setWorld(new MonsterWorld());
+        //if(getX() == 599)
+            //Greenfoot.setWorld(new MonsterWorld());
     }
     public void movement()
     {
@@ -188,4 +190,23 @@ public class Man extends Subject
             }
             
     }
+    
+    private void checkScreenChange()
+    {
+            if(Greenfoot.isKeyDown("j")){
+                 WorldManager.signal("west");
+
+            }
+            if(Greenfoot.isKeyDown("l")) {
+                 WorldManager.signal("east");
+                              
+            }
+            if(Greenfoot.isKeyDown("i")) {
+                 WorldManager.signal("north");
+                                
+            }
+            if(Greenfoot.isKeyDown("k")) {
+                 WorldManager.signal("south");
+            }
+        }
 }
