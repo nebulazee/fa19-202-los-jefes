@@ -198,23 +198,10 @@ public class Man extends Subject
             {
                 setImage(imgR);
                 setLocation(x + 2 , y );
-<<<<<<< HEAD
-<<<<<<< HEAD
-                if( hitTavern() || hitGoblin() || hitMonster() ){
-                setLocation( x - 2 , y  );
-=======
-<<<<<<< HEAD
+                
                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
-                setLocation( x - 2 , y + 2 );
-=======
-                if( hitTavern() || hitGoblin() || hitMonster() ){
-                setLocation( x - 2 , y  );
->>>>>>> origin/master
->>>>>>> master
-=======
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
-                setLocation( x - 2 , y + 2 );
->>>>>>> master
+                setLocation( x - 2 , y );
+
                 }
             }
             if(Greenfoot.isKeyDown("left"))
@@ -225,26 +212,36 @@ public class Man extends Subject
                 setLocation( x + 2  , y );
                 }
             }
-            
+        
     }
     
     private void checkScreenChange()
     {
-            if(Greenfoot.isKeyDown("j")){
-                 WorldManager.signal("west");
-
+            Portal p = (Portal) getOneIntersectingObject(Portal.class);
+            if( p != null) 
+            {
+                switch(p.getFlag())
+                {
+                    case 'N' : 
+                        WorldManager.signal("north");
+                        break;
+                    case 'S' : 
+                        WorldManager.signal("south");
+                        break;
+                    case 'E' : 
+                        WorldManager.signal("east");
+                        break;
+                    case 'W' : 
+                        WorldManager.signal("west");
+                        break;
+                    default:
+                        break;
+                    
+                }            
+            
             }
-            if(Greenfoot.isKeyDown("l")) {
-                 WorldManager.signal("east");
-                              
-            }
-            if(Greenfoot.isKeyDown("i")) {
-                 WorldManager.signal("north");
-                                
-            }
-            if(Greenfoot.isKeyDown("k")) {
-                 WorldManager.signal("south");
-            }
+                
+    
         }
         
      public boolean hitTavern()
