@@ -30,7 +30,7 @@ public class TreasureWorld extends BaseWorld
         addObject(treasure1, 150, 179);
         treasure1.setLocation(150,179);
         
-        Man man = new Man();
+        man = new Man();
         addObject(man,287,355);
     }
 }

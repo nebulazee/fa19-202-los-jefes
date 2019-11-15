@@ -210,7 +210,6 @@ public class Man extends Subject
                 
                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
                 setLocation( x - 2 , y );
-
                 }
             }
             if(Greenfoot.isKeyDown("left"))

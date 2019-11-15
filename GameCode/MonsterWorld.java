@@ -33,8 +33,8 @@ public class MonsterWorld extends BaseWorld
         Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         // System.out.println("Added scoreboard");
         //addObject(scoreboard,300,130);
-        Man man = new Man();
-
+        
+        man = new Man();
         addObject(man,287,355);
 
         Monster monster = new Monster();
