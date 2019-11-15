@@ -72,7 +72,7 @@ public class WorldManager extends Actor
                 
                 if (i == 3 && j == 2)
                 {
-                    World world = new TavernWorld(); 
+                    World world = new TavernWorld(constructConfigurationCode(i, j)); 
                     worldMap[i][j] = world;
                     currentWorld = world;
                     Greenfoot.setWorld(world);
@@ -83,14 +83,14 @@ public class WorldManager extends Actor
                     switch(type)
                     {
                         case "monster":
-                            worldMap[i][j] = new MonsterWorld();
+                            worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j));
                             monsters--;
                             break;
                         case "animal":
-                            worldMap[i][j] = new AnimalWorld();
+                            worldMap[i][j] = new AnimalWorld(constructConfigurationCode(i, j));
                             break;
                         case "treasure":
-                            worldMap[i][j] = new AnimalWorld();
+                            worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j));
                             treasures--;
                             break;
                         default:
@@ -99,6 +99,18 @@ public class WorldManager extends Actor
                 }
             }
         }
+    }
+
+    private String constructConfigurationCode(int i, int j)
+    {
+        StringBuffer buf = new StringBuffer();
+        if (i > 0) { buf.append("N,"); }
+        if (i < worldHeight - 1) { buf.append("S,"); }
+        if (j > 0) { buf.append("W,"); }
+        if (j < worldWidth - 1) { buf.append("E,"); }
+
+        System.out.println(Integer.valueOf(i) + ", " + Integer.valueOf(j) + ": " + buf.toString());
+        return buf.toString();
     }
     
     /**
