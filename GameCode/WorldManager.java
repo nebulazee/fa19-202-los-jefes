@@ -90,12 +90,8 @@ public class WorldManager extends Actor
                             worldMap[i][j] = new AnimalWorld();
                             break;
                         case "treasure":
-<<<<<<< HEAD
                             worldMap[i][j] = new TreasureWorld();
-=======
-                            worldMap[i][j] = new AnimalWorld();
                             treasures--;
->>>>>>> origin/master
                             break;
                         default:
                             break;
