@@ -200,7 +200,7 @@ public class Man extends Subject
                 setImage(imgR);
                 setLocation(x + 2 , y );
                 if( hitTavern() || hitGoblin() || hitMonster() ){
-                setLocation( x - 2 , y + 2 );
+                setLocation( x - 2 , y );
                 }
             }
             if(Greenfoot.isKeyDown("left"))
