@@ -27,6 +27,7 @@ public class Man extends Subject
         }
     }
     Monster monster=null;
+    Treasure treasure=null;
     private MotionRenderer img,imgW,imgA,imgS,imgD,imgR,imgB,imgL;
     public Man()
     {
@@ -147,6 +148,13 @@ public class Man extends Subject
              monster.updateDamage(this);
              
         }
+<<<<<<< HEAD
+        if(getObjectsInRange(80, Treasure.class).size()>0) {
+            treasure = getObjectsInRange(80, Treasure.class).get(0);
+            if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
+             treasure.updateDamage(this);
+        }
+=======
         //change to tresure in sync with vaarshit
        /* if(getObjectsInRange(80, Monster.class).size()>0) {
             treasure = getObjectsInRange(80,Monster.class).get(0);
@@ -154,6 +162,7 @@ public class Man extends Subject
              treasure.updateDamage(this);
         }
         */
+>>>>>>> origin/master
     }
     public void animateAttack(MotionRenderer img)
     {
@@ -183,7 +192,7 @@ public class Man extends Subject
             {
                 setImage(img);
                 setLocation( x , y - 2 ) ;
-                if( hitTavern() || hitGoblin() || hitMonster() ){
+                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
                 setLocation( x  , y + 2 );
                 }
             }
@@ -191,7 +200,7 @@ public class Man extends Subject
              {  
                  setImage(imgB);
                  setLocation(x , y + 2);
-                 if( hitTavern() || hitGoblin() || hitMonster() ){
+                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
                 setLocation( x  , y - 2 );
                 }
              }
@@ -199,15 +208,20 @@ public class Man extends Subject
             {
                 setImage(imgR);
                 setLocation(x + 2 , y );
+<<<<<<< HEAD
+                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                setLocation( x - 2 , y + 2 );
+=======
                 if( hitTavern() || hitGoblin() || hitMonster() ){
                 setLocation( x - 2 , y  );
+>>>>>>> origin/master
                 }
             }
             if(Greenfoot.isKeyDown("left"))
             {
                 setImage(imgL);
                 setLocation(x - 2 , y);
-                if( hitTavern() || hitGoblin() || hitMonster() ){
+                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
                 setLocation( x + 2  , y );
                 }
             }
@@ -260,6 +274,17 @@ public class Man extends Subject
     public boolean hitMonster()
     {
         if( isTouching(Monster.class) )
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+    public boolean hitTreasure()
+    {
+        if( isTouching(Treasure.class) )
         {
             return true;
         }
