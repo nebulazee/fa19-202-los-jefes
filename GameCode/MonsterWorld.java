@@ -26,7 +26,7 @@ public class MonsterWorld extends BaseWorld
      */
     private void prepare()
     {
-        bear bear = new bear();
+        Goblin bear = new Goblin();
         addObject(bear,114,144);
         banana banana = new banana();
         addObject(banana,493,152);

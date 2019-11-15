@@ -17,6 +17,7 @@ public class Man extends Subject
     int animationCounter=0;
     int timer=1;
     boolean trackMovement=false;
+    Textbox textbox =  null;
     class MotionRenderer {
         String file;
         GreenfootImage image;
@@ -145,12 +146,23 @@ public class Man extends Subject
             monster = getObjectsInRange(80, Monster.class).get(0);
             if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
              monster.updateDamage(this);
+             
         }
+<<<<<<< HEAD
         if(getObjectsInRange(80, Treasure.class).size()>0) {
             treasure = getObjectsInRange(80, Treasure.class).get(0);
             if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
              treasure.updateDamage(this);
         }
+=======
+        //change to tresure in sync with vaarshit
+       /* if(getObjectsInRange(80, Monster.class).size()>0) {
+            treasure = getObjectsInRange(80,Monster.class).get(0);
+            if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
+             treasure.updateDamage(this);
+        }
+        */
+>>>>>>> origin/master
     }
     public void animateAttack(MotionRenderer img)
     {
@@ -196,8 +208,13 @@ public class Man extends Subject
             {
                 setImage(imgR);
                 setLocation(x + 2 , y );
+<<<<<<< HEAD
                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
                 setLocation( x - 2 , y + 2 );
+=======
+                if( hitTavern() || hitGoblin() || hitMonster() ){
+                setLocation( x - 2 , y  );
+>>>>>>> origin/master
                 }
             }
             if(Greenfoot.isKeyDown("left"))
@@ -234,6 +251,8 @@ public class Man extends Subject
     {
         if( isTouching(Tavern.class) )
         {
+            textbox = Textbox.getInstance();
+            textbox.setMsg("Touch tavern");
             return true;
         }
         else 
