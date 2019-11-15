@@ -13,8 +13,10 @@ public class Monster extends Subject
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     Man man=null;
-    int health=10000;
+    int health=1000;
     ISubject scoreBoardObs;
+    boolean monsterDead=false;
+    int c=1;
     class MotionRenderer {
         String file;
         GreenfootImage image;
@@ -26,16 +28,23 @@ public class Monster extends Subject
     }
     MotionRenderer im1,im2;
     Monster() {
-        GreenfootImage img = new GreenfootImage("ogre10.png");
+        GreenfootImage img = new GreenfootImage("0.png");
         
         img.scale(60,60);
         this.setImage(img);
     }
       public void updateDamage(ISubject s){
           if(s instanceof Man){
-              this.health = this.health-1;
-            notifyObservers(s);
-            System.out.println(this.health);
+              if(this.health<=0) {
+                monsterDead = true;
+                //this.getWorld().removeObject(this);
+                //this.getWorld(). (new Gold(),300,100);
+                }
+                else {
+                this.health = this.health-1;
+                notifyObservers(s);
+                System.out.println(this.health);
+              }
             }
     }
     public void notifyObservers(ISubject s){
@@ -47,23 +56,43 @@ public class Monster extends Subject
      public void addObservers(ISubject s){
         scoreBoardObs = s;
     }
+    public void animasi()
+    {
+         if (c == 1)
+            {
+            setImage(new MotionRenderer("0.png").image);
+            c = 2;
+            }
+         else if (c == 2)
+            {
+            setImage(new MotionRenderer("1.png").image);
+            c = 1;
+            }
+         
+           
+    }
+    
     public void act() 
     {
-        int c=0;
-        
+        //int c=0;
+          
         {
             if(getObjectsInRange(60, Man.class).size()>0)
             man =getObjectsInRange(60, Man.class).get(0);
             else 
             man=null;
+            
+            
             if(null==man) {
-                this.setImage(new MotionRenderer("ogre10.png").image);
-                c=1;
+                //this.setImage(new MotionRenderer("0.png").image);
+               
             }
             else {
-                this.setImage(new MotionRenderer("ogre2.png").image);
+                animasi();
+                
                 man.updateDamage(this);
-                c=0;
+              
+                System.out.println(c);
                 
             }
         }
