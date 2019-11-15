@@ -51,9 +51,5 @@ public class MonsterWorld extends BaseWorld
         scoreboard.setLocation(53,6);
         bear.setLocation(57,200);
         scoreboard.setLocation(81,28);
-        Portal portal = new Portal('E');
-        addObject(portal,792,316);
-        portal.setLocation(771,351);
-        
     }
 }

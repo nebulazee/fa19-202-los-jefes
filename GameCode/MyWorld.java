@@ -41,24 +41,8 @@ public class MyWorld extends BaseWorld
         goblin.setLocation(24,60);
         goblin.setLocation(14,66);
         goblin4.setLocation(19,519);
-
+       
         Man man = new Man();
         addObject(man,287,355);
-
-        
-        Portal portal = new Portal('E');
-        addObject(portal,792,316);
-        portal.setLocation(771,351);
-        Portal portal2 = new Portal('S');
-        addObject(portal2,426,572);
-        portal2.setLocation(415,586);
-        Portal portal3 = new Portal('N');
-        addObject(portal3,422,24);
-        portal3.setLocation(408,12);
-        portal3.setLocation(402,9);
-        Portal portal4 = new Portal('W');
-        addObject(portal4,34,282);
-        portal4.setLocation(8,288);
-
     }
 }
