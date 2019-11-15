@@ -37,7 +37,8 @@ public class Monster extends Subject
           if(s instanceof Man){
               if(this.health<=0) {
                 monsterDead = true;
-                //this.getWorld().removeObject(this);
+                this.getWorld().removeObject(this);
+                ((Actor)s).getWorld().addObject(new Gold(),300 ,100);
                 //this.getWorld(). (new Gold(),300,100);
                 }
                 else {
