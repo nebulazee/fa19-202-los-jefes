@@ -11,7 +11,7 @@ public class WorldManager extends Actor
 {
     // instance variables - replace the example below with your own
     World[][] worldMap;
-    World currentWorld;
+    public World currentWorld;
     
     static WorldManager instance;
     

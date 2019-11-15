@@ -30,7 +30,9 @@ public class MonsterWorld extends BaseWorld
         addObject(bear,114,144);
         banana banana = new banana();
         addObject(banana,493,152);
-
+        Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
+        System.out.println("Added scoreboard");
+        //addObject(scoreboard,300,130);
         Man man = new Man();
 
         addObject(man,287,355);
@@ -42,14 +44,18 @@ public class MonsterWorld extends BaseWorld
 
         banana.setLocation(496,102);
         banana.setLocation(532,97);
-        Scoreboard scoreboard = new Scoreboard();
-        addObject(scoreboard,34,13);
+        //Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
+        //addObject(scoreboard,34,13);
         man.addObservers(scoreboard);
-        scoreboard.setLocation(75,9);
+        //scoreboard.setLocation(75,9);
         monster.addObservers(scoreboard);
-        scoreboard.setLocation(37,5);
-        scoreboard.setLocation(53,6);
+        //scoreboard.setLocation(37,5);
+        //scoreboard.setLocation(53,6);
         bear.setLocation(57,200);
-        scoreboard.setLocation(81,28);
+        //scoreboard.setLocation(81,28);
+        monster.setLocation(382,86);
+        monster.setLocation(382,89);
+        banana.setLocation(702,141);
+        bear.setLocation(60,230);
     }
 }

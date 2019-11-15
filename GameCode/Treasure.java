@@ -16,7 +16,7 @@ public class Treasure extends Subject
     public Treasure()
     {
         setImage(new GreenfootImage("treasure1a.png"));
-        this.strength = 300;
+        this.strength = 30;
     }
     class MotionRenderer {
         String file;
@@ -32,7 +32,7 @@ public class Treasure extends Subject
     public void updateDamage(ISubject s)
     {
         if(s instanceof Man){
-              this.strength = this.strength-5;
+              this.strength = this.strength-10;
             
             System.out.println(this.strength);
             }
@@ -44,7 +44,7 @@ public class Treasure extends Subject
     {
         if(this.strength <= 0)
         {
-            this.setImage(new MotionRenderer("treasure2.png").image);
+            this.setImage(new MotionRenderer("sword1.png").image);
         }
         
     }  

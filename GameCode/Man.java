@@ -69,6 +69,10 @@ public class Man extends Subject
             this.health = this.health-50;
             notifyObservers(s);
         }
+        if(s instanceof Goblin) {
+            this.health = this.health-50;
+            notifyObservers(s);
+        }
     }
     public void notifyObservers(ISubject s){
         //man shud update score board observer
