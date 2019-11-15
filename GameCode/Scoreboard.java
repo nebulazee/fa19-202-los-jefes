@@ -14,7 +14,7 @@ public class Scoreboard extends Subject
      */
      GreenfootImage img;
      GreenfootImage imgM;
-     int monsterVal=10000;
+     int monsterVal=1000;
      int manVal=1000000;
      private static Scoreboard scoreboard;
      private Scoreboard(){
@@ -26,6 +26,7 @@ public class Scoreboard extends Subject
         setImage(img);
         //setImage(imgM);
         }
+       
         public static Scoreboard getScoreboardInstance(){
         if(scoreboard == null) {
            scoreboard=new Scoreboard();

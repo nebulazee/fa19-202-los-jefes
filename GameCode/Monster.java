@@ -32,13 +32,15 @@ public class Monster extends Subject
         
         img.scale(60,60);
         this.setImage(img);
+        if(scoreBoardObs!=null)
+        ((Scoreboard)scoreBoardObs).setMonsterHealth(health);
     }
       public void updateDamage(ISubject s){
           if(s instanceof Man){
               if(this.health<=0) {
                 monsterDead = true;
                 this.getWorld().removeObject(this);
-                ((Actor)s).getWorld().addObject(new Gold(),300 ,100);
+                ((Actor)s).getWorld().addObject(new Gold(), Greenfoot.getRandomNumber (300) , Greenfoot.getRandomNumber (300));
                 //this.getWorld(). (new Gold(),300,100);
                 }
                 else {
@@ -76,7 +78,8 @@ public class Monster extends Subject
     public void act() 
     {
         //int c=0;
-          
+         if(scoreBoardObs!=null)
+        ((Scoreboard)scoreBoardObs).setMonsterHealth(health); 
         {
             if(getObjectsInRange(60, Man.class).size()>0)
             man =getObjectsInRange(60, Man.class).get(0);
