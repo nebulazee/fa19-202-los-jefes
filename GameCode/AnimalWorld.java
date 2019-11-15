@@ -6,18 +6,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MyWorld extends BaseWorld
+public class AnimalWorld extends BaseWorld
 {
 
     /**
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MyWorld()
+    public AnimalWorld()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(); 
         prepare();
+        
+        
     }
 
     /**
@@ -26,10 +28,12 @@ public class MyWorld extends BaseWorld
      */
     private void prepare()
     {
-        Tavern tavern = new Tavern();
-        addObject(tavern, getWidth()/2, getHeight()/2);
+        
         Goblin goblin = new Goblin();
         addObject(goblin,23,137);
+        
+      
+        
         goblin.setLocation(23,60);
         Goblin goblin2 = new Goblin();
         addObject(goblin2,20,179);
@@ -41,8 +45,21 @@ public class MyWorld extends BaseWorld
         goblin.setLocation(24,60);
         goblin.setLocation(14,66);
         goblin4.setLocation(19,519);
-       
+
+        Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
+        System.out.println("Added scoreboard");
+        //addObject(scoreboard,300,130);
+        
         Man man = new Man();
         addObject(man,287,355);
+        
+        man.addObservers(scoreboard);
+        goblin.addObservers(scoreboard);
+        goblin2.addObservers(scoreboard);
+        goblin3.addObservers(scoreboard);
+        goblin4.addObservers(scoreboard);
+        
+        
+       
     }
 }

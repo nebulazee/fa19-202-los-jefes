@@ -17,6 +17,7 @@ public class Man extends Subject
     int animationCounter=0;
     int timer=1;
     boolean trackMovement=false;
+    Textbox textbox =  null;
     class MotionRenderer {
         String file;
         GreenfootImage image;
@@ -65,6 +66,10 @@ public class Man extends Subject
             notifyObservers(s);
         }
         if(s instanceof bear) {
+            this.health = this.health-50;
+            notifyObservers(s);
+        }
+        if(s instanceof Goblin) {
             this.health = this.health-50;
             notifyObservers(s);
         }
@@ -140,7 +145,15 @@ public class Man extends Subject
             monster = getObjectsInRange(80, Monster.class).get(0);
             if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
              monster.updateDamage(this);
+             
         }
+        //change to tresure in sync with vaarshit
+       /* if(getObjectsInRange(80, Monster.class).size()>0) {
+            treasure = getObjectsInRange(80,Monster.class).get(0);
+            if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
+             treasure.updateDamage(this);
+        }
+        */
     }
     public void animateAttack(MotionRenderer img)
     {
@@ -224,6 +237,8 @@ public class Man extends Subject
     {
         if( isTouching(Tavern.class) )
         {
+            textbox = Textbox.getInstance();
+            textbox.setMsg("Touch tavern");
             return true;
         }
         else 

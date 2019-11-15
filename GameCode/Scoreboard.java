@@ -16,7 +16,8 @@ public class Scoreboard extends Subject
      GreenfootImage imgM;
      int monsterVal=10000;
      int manVal=1000000;
-     Scoreboard(){
+     private static Scoreboard scoreboard;
+     private Scoreboard(){
        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
 //       imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
@@ -24,6 +25,12 @@ public class Scoreboard extends Subject
         this.setLocation(100,100);
         setImage(img);
         //setImage(imgM);
+        }
+        public static Scoreboard getScoreboardInstance(){
+        if(scoreboard == null) {
+           scoreboard=new Scoreboard();
+        }
+            return scoreboard;
         }
     public void act() 
     {
@@ -35,6 +42,7 @@ public class Scoreboard extends Subject
         manVal=val;
         img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
+                      
         setImage(img);
     }
     public void setMonsterHealth(int val){
