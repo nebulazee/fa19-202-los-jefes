@@ -29,7 +29,7 @@ public class TavernWorld extends BaseWorld
         // System.out.println("Added scoreboard");
         //addObject(scoreboard,300,130);
         
-        Man man = new Man();
+        man = new Man();
         addObject(man,287,355);
         
         man.addObservers(scoreboard);

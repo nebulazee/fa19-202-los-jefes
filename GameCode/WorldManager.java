@@ -109,7 +109,6 @@ public class WorldManager extends Actor
         if (j > 0) { buf.append("W,"); }
         if (j < worldWidth - 1) { buf.append("E,"); }
 
-        System.out.println(Integer.valueOf(i) + ", " + Integer.valueOf(j) + ": " + buf.toString());
         return buf.toString();
     }
     
@@ -129,13 +128,14 @@ public class WorldManager extends Actor
             case "south": instance.switchWorlds("down"); break;
             default: break;
         }
-        System.out.println(displayWorldMap());
+        // System.out.println(displayWorldMap());
     }
     
     private void switchWorlds(String direction)
     {
         int hor = 0;
         int ver = 0;
+        char playerSpot;
         
         for(int i=0; i<worldHeight; i++)
         {
@@ -154,17 +154,22 @@ public class WorldManager extends Actor
         {
             case "left":
                 if (hor-1 >=0) { new_hor = hor - 1; }
+                playerSpot = 'R';
                 break;
             case "right":
                 if (hor+1 < worldWidth) { new_hor = hor + 1; }
+                playerSpot = 'L';
                 break;
             case "up":
                 if (ver-1 >=0) { new_ver = ver - 1; }
+                playerSpot = 'B';
                 break;
             case "down":
                 if (ver+1 < worldHeight) { new_ver = ver + 1; }
+                playerSpot = 'T';
                 break;
             default:
+                playerSpot = 'X';
                 break;
         }
         
@@ -172,6 +177,7 @@ public class WorldManager extends Actor
         
         worldMap[ver][hor] = currentWorld;
         currentWorld = worldMap[new_ver][new_hor];
+        ((BaseWorld)currentWorld).setPlayerSpot(playerSpot);
         Greenfoot.setWorld(currentWorld);
         Greenfoot.start();
 
