@@ -199,6 +199,7 @@ public class Man extends Subject
                 setImage(imgR);
                 setLocation(x + 2 , y );
 <<<<<<< HEAD
+<<<<<<< HEAD
                 if( hitTavern() || hitGoblin() || hitMonster() ){
                 setLocation( x - 2 , y  );
 =======
@@ -209,6 +210,10 @@ public class Man extends Subject
                 if( hitTavern() || hitGoblin() || hitMonster() ){
                 setLocation( x - 2 , y  );
 >>>>>>> origin/master
+>>>>>>> master
+=======
+                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                setLocation( x - 2 , y + 2 );
 >>>>>>> master
                 }
             }

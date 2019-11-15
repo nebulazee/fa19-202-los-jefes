@@ -13,12 +13,11 @@ public class AnimalWorld extends BaseWorld
      * Constructor for objects of class MyWorld.
      * 
      */
-    public AnimalWorld()
+    public AnimalWorld(String config)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(); 
+        super(config); 
         prepare();
-        
         
     }
 
@@ -47,7 +46,7 @@ public class AnimalWorld extends BaseWorld
         goblin4.setLocation(19,519);
 
         Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
-        System.out.println("Added scoreboard");
+        // System.out.println("Added scoreboard");
         //addObject(scoreboard,300,130);
         
         Man man = new Man();

@@ -13,10 +13,10 @@ public class TreasureWorld extends BaseWorld
      * Constructor for objects of class TreasureWorld.
      * 
      */
-    public TreasureWorld()
+    public TreasureWorld(String config)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(); 
+        super(config); 
         prepare();
     }
 
