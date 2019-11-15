@@ -36,7 +36,7 @@ public class Scoreboardmain extends Subject
          img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Monster :"+sc.monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
           }
-          else if(WorldManager.getInstance().currentWorld instanceof MyWorld) {
+          else if(WorldManager.getInstance().currentWorld instanceof AnimalWorld) {
          img = new GreenfootImage("    Health : "+sc.manVal, 20, 
                                      Color.WHITE, Color.BLACK);
             
