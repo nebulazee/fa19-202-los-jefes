@@ -32,7 +32,7 @@ public class Textboxmain extends Actor
          img = new GreenfootImage( tb.message , 20, 
                                      Color.WHITE, Color.BLACK);
           }
-          else if(WorldManager.getInstance().currentWorld instanceof MyWorld) {
+          else if(WorldManager.getInstance().currentWorld instanceof TavernWorld) {
          img = new GreenfootImage( tb.message , 20, 
                                      Color.WHITE, Color.BLACK);
             
