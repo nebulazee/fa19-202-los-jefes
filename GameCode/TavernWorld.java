@@ -14,20 +14,19 @@ public class TavernWorld extends BaseWorld
      * 
      */
     
-    public TavernWorld()
+    public TavernWorld(String config)
     {
-         super(); 
+        super(config); 
         prepare();
     }
     private void prepare()
     {
         
-      
         Tavern tavern = new Tavern();
         addObject(tavern, getWidth()/2, getHeight()/2);
         
         Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
-        System.out.println("Added scoreboard");
+        // System.out.println("Added scoreboard");
         //addObject(scoreboard,300,130);
         
         Man man = new Man();

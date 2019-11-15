@@ -19,22 +19,22 @@ public class Portal extends Subject
         if(flag == 'E')
         {
             setImage("portal-east.png");
-            getImage().scale(80,80);
+            getImage().scale(50,80);
         }
         if(flag == 'W')
         {
             setImage("portal-west.png");
-            getImage().scale(80,80);
+            getImage().scale(50,80);
         }
         if(flag == 'S')
         {
             setImage("portal-south.png");
-            getImage().scale(80,80);
+            getImage().scale(80,50);
         }
         if(flag == 'N')
         {
             setImage("portal-north.png");
-            getImage().scale(80,80);
+            getImage().scale(80,50);
         }   
 
     }

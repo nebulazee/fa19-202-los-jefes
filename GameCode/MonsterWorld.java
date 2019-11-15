@@ -13,10 +13,10 @@ public class MonsterWorld extends BaseWorld
      * Constructor for objects of class MyWorld.
      * 
      */
-    public MonsterWorld()
+    public MonsterWorld(String config)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
-        super(); 
+        super(config); 
         prepare();
     }
 
@@ -31,7 +31,7 @@ public class MonsterWorld extends BaseWorld
         banana banana = new banana();
         addObject(banana,493,152);
         Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
-        System.out.println("Added scoreboard");
+        // System.out.println("Added scoreboard");
         //addObject(scoreboard,300,130);
         Man man = new Man();
 
