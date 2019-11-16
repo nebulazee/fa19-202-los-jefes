@@ -4,7 +4,6 @@ class.Monster.image=giphy.gif
 class.MonsterWorld.image=space.jpg
 class.Ogre.image=output-onlinepngtools.png
 class.banana.image=bananas.png
-class.bear.image=polar-bear.png
 dependency1.from=BaseWorld
 dependency1.to=Scoreboardmain
 dependency1.type=UsesDependency
@@ -41,336 +40,6 @@ dependency19.type=UsesDependency
 dependency2.from=BaseWorld
 dependency2.to=Textboxmain
 dependency2.type=UsesDependency
-<<<<<<< HEAD
-dependency20.from=Textboxmain
-dependency20.to=WorldManager
-dependency20.type=UsesDependency
-dependency21.from=Subject
-dependency21.to=ISubject
-dependency21.type=UsesDependency
-dependency22.from=banana
-dependency22.to=ISubject
-dependency22.type=UsesDependency
-dependency23.from=Goblin
-dependency23.to=ISubject
-dependency23.type=UsesDependency
-dependency24.from=Goblin
-dependency24.to=Man
-dependency24.type=UsesDependency
-dependency25.from=Ogre
-dependency25.to=ISubject
-dependency25.type=UsesDependency
-dependency26.from=Scoreboardmain
-dependency26.to=ISubject
-dependency26.type=UsesDependency
-dependency27.from=Scoreboardmain
-dependency27.to=Scoreboard
-dependency27.type=UsesDependency
-dependency28.from=Scoreboardmain
-dependency28.to=MonsterWorld
-dependency28.type=UsesDependency
-dependency29.from=Scoreboardmain
-dependency29.to=AnimalWorld
-dependency29.type=UsesDependency
-dependency3.from=TavernWorld
-dependency3.to=Tavern
-dependency3.type=UsesDependency
-dependency30.from=Scoreboardmain
-dependency30.to=WorldManager
-dependency30.type=UsesDependency
-dependency31.from=Scoreboard
-dependency31.to=ISubject
-dependency31.type=UsesDependency
-dependency32.from=Monster
-dependency32.to=Man
-dependency32.type=UsesDependency
-dependency33.from=Monster
-dependency33.to=ISubject
-dependency33.type=UsesDependency
-dependency34.from=Monster
-dependency34.to=Scoreboard
-dependency34.type=UsesDependency
-dependency35.from=Portal
-dependency35.to=ISubject
-dependency35.type=UsesDependency
-dependency36.from=bear
-dependency36.to=ISubject
-dependency36.type=UsesDependency
-dependency37.from=bear
-dependency37.to=banana
-dependency37.type=UsesDependency
-dependency38.from=Man
-dependency38.to=ISubject
-dependency38.type=UsesDependency
-dependency39.from=Man
-dependency39.to=Textbox
-dependency39.type=UsesDependency
-<<<<<<< HEAD
-dependency4.from=TavernWorld
-dependency4.to=Scoreboard
-=======
-dependency4.from=MonsterWorld
-dependency4.to=banana
-=======
-dependency10.from=WorldManager
-dependency10.to=MonsterWorld
-dependency10.type=UsesDependency
-dependency11.from=WorldManager
-dependency11.to=AnimalWorld
->>>>>>> master
->>>>>>> origin/master
-dependency11.type=UsesDependency
-dependency12.from=WorldManager
-dependency12.to=MyWorld
-dependency12.type=UsesDependency
-dependency13.from=WorldManager
-dependency13.to=MonsterWorld
-dependency13.type=UsesDependency
-<<<<<<< HEAD
-dependency14.from=WorldManager
-dependency14.to=TreasureWorld
-dependency14.type=UsesDependency
-dependency15.from=Subject
-dependency15.to=ISubject
-=======
-<<<<<<< HEAD
-dependency14.from=Subject
-dependency14.to=ISubject
-dependency14.type=UsesDependency
-dependency15.from=banana
-dependency15.to=ISubject
-=======
-dependency14.from=Goblin
-dependency14.to=ISubject
-dependency14.type=UsesDependency
-dependency15.from=Goblin
-dependency15.to=Man
->>>>>>> master
->>>>>>> origin/master
-dependency15.type=UsesDependency
-dependency16.from=banana
-dependency16.to=ISubject
-dependency16.type=UsesDependency
-<<<<<<< HEAD
-dependency17.from=Treasure
-=======
-<<<<<<< HEAD
-dependency17.from=Scoreboard
->>>>>>> origin/master
-dependency17.to=ISubject
-dependency17.type=UsesDependency
-dependency18.from=Treasure
-dependency18.to=Man
-dependency18.type=UsesDependency
-dependency19.from=Ogre
-dependency19.to=ISubject
-=======
-dependency17.from=Scoreboardmain
-dependency17.to=ISubject
-dependency17.type=UsesDependency
-dependency18.from=Scoreboardmain
-dependency18.to=Scoreboard
-dependency18.type=UsesDependency
-dependency19.from=Scoreboardmain
-dependency19.to=MonsterWorld
->>>>>>> master
-dependency19.type=UsesDependency
-<<<<<<< HEAD
-dependency2.from=TreasureWorld
-dependency2.to=Man
-dependency2.type=UsesDependency
-dependency20.from=Scoreboard
-dependency20.to=ISubject
-dependency20.type=UsesDependency
-dependency21.from=Monster
-dependency21.to=Man
-dependency21.type=UsesDependency
-dependency22.from=Monster
-dependency22.to=ISubject
-dependency22.type=UsesDependency
-dependency23.from=Monster
-dependency23.to=Scoreboard
-dependency23.type=UsesDependency
-dependency24.from=bear
-dependency24.to=ISubject
-dependency24.type=UsesDependency
-dependency25.from=bear
-dependency25.to=banana
-dependency25.type=UsesDependency
-dependency26.from=Man
-dependency26.to=ISubject
-dependency26.type=UsesDependency
-dependency27.from=Man
-dependency27.to=Monster
-=======
-dependency2.from=AnimalWorld
-dependency2.to=Goblin
-dependency2.type=UsesDependency
-<<<<<<< HEAD
-dependency20.from=Monster
-dependency20.to=Scoreboard
-dependency20.type=UsesDependency
-dependency21.from=Portal
-dependency21.to=ISubject
-dependency21.type=UsesDependency
-dependency22.from=bear
-dependency22.to=ISubject
-dependency22.type=UsesDependency
-dependency23.from=bear
-dependency23.to=banana
-dependency23.type=UsesDependency
-dependency24.from=Man
-dependency24.to=ISubject
-dependency24.type=UsesDependency
-dependency25.from=Man
-dependency25.to=Monster
-dependency25.type=UsesDependency
-dependency26.from=Man
-dependency26.to=banana
-dependency26.type=UsesDependency
-dependency27.from=Man
-dependency27.to=bear
->>>>>>> origin/master
-dependency27.type=UsesDependency
-dependency28.from=Man
-dependency28.to=banana
-dependency28.type=UsesDependency
-dependency29.from=Man
-<<<<<<< HEAD
-dependency29.to=bear
-dependency29.type=UsesDependency
-dependency3.from=MonsterWorld
-dependency3.to=bear
-dependency3.type=UsesDependency
-dependency30.from=Man
-dependency30.to=Scoreboard
-dependency30.type=UsesDependency
-dependency31.from=Man
-dependency31.to=Treasure
-dependency31.type=UsesDependency
-dependency32.from=Man
-dependency32.to=WorldManager
-dependency32.type=UsesDependency
-dependency33.from=Man
-dependency33.to=Tavern
-dependency33.type=UsesDependency
-dependency34.from=Man
-dependency34.to=Goblin
-dependency34.type=UsesDependency
-dependency4.from=MonsterWorld
-dependency4.to=banana
-=======
-dependency29.to=Portal
-=======
-dependency20.from=Scoreboardmain
-dependency20.to=AnimalWorld
-dependency20.type=UsesDependency
-dependency21.from=Scoreboardmain
-dependency21.to=WorldManager
-dependency21.type=UsesDependency
-dependency22.from=Scoreboard
-dependency22.to=ISubject
-dependency22.type=UsesDependency
-dependency23.from=Monster
-dependency23.to=Man
-dependency23.type=UsesDependency
-dependency24.from=Monster
-dependency24.to=ISubject
-dependency24.type=UsesDependency
-dependency25.from=Monster
-dependency25.to=Scoreboard
-dependency25.type=UsesDependency
-dependency26.from=bear
-dependency26.to=ISubject
-dependency26.type=UsesDependency
-dependency27.from=bear
-dependency27.to=banana
-dependency27.type=UsesDependency
-dependency28.from=Man
-dependency28.to=ISubject
-dependency28.type=UsesDependency
-dependency29.from=Man
-dependency29.to=Monster
->>>>>>> master
-dependency29.type=UsesDependency
-dependency3.from=AnimalWorld
-dependency3.to=Scoreboard
-dependency3.type=UsesDependency
-dependency30.from=Man
-<<<<<<< HEAD
-dependency30.to=WorldManager
-dependency30.type=UsesDependency
-dependency31.from=Man
-dependency31.to=Tavern
-=======
-dependency30.to=banana
-dependency30.type=UsesDependency
-dependency31.from=Man
-dependency31.to=bear
->>>>>>> master
-dependency31.type=UsesDependency
-dependency32.from=Man
-dependency32.to=Goblin
-dependency32.type=UsesDependency
-<<<<<<< HEAD
-dependency4.from=MonsterWorld
-dependency4.to=Monster
-=======
-dependency33.from=Man
-dependency33.to=Scoreboard
-dependency33.type=UsesDependency
-dependency34.from=Man
-dependency34.to=WorldManager
-dependency34.type=UsesDependency
-dependency35.from=Man
-dependency35.to=Tavern
-dependency35.type=UsesDependency
-dependency4.from=AnimalWorld
-dependency4.to=Man
->>>>>>> aishwarya_dev
->>>>>>> master
->>>>>>> origin/master
->>>>>>> master
-dependency4.type=UsesDependency
-dependency40.from=Man
-dependency40.to=Monster
-dependency40.type=UsesDependency
-dependency41.from=Man
-dependency41.to=banana
-dependency41.type=UsesDependency
-dependency42.from=Man
-dependency42.to=bear
-dependency42.type=UsesDependency
-<<<<<<< HEAD
-dependency43.from=Man
-dependency43.to=Goblin
-dependency43.type=UsesDependency
-dependency44.from=Man
-dependency44.to=Scoreboard
-dependency44.type=UsesDependency
-dependency45.from=Man
-dependency45.to=WorldManager
-dependency45.type=UsesDependency
-dependency46.from=Man
-dependency46.to=Tavern
-dependency46.type=UsesDependency
-dependency5.from=TavernWorld
-dependency5.to=Man
-=======
-dependency5.from=MonsterWorld
-<<<<<<< HEAD
-dependency5.to=Man
-dependency5.type=UsesDependency
-dependency6.from=MonsterWorld
-dependency6.to=Monster
-dependency6.type=UsesDependency
-dependency7.from=MonsterWorld
-dependency7.to=Scoreboard
-dependency7.type=UsesDependency
-dependency8.from=MyWorld
-=======
-<<<<<<< HEAD
-=======
 dependency20.from=WorldManager
 dependency20.to=TreasureWorld
 dependency20.type=UsesDependency
@@ -389,14 +58,14 @@ dependency24.type=UsesDependency
 dependency25.from=Subject
 dependency25.to=ISubject
 dependency25.type=UsesDependency
-dependency26.from=Treasure
+dependency26.from=banana
 dependency26.to=ISubject
 dependency26.type=UsesDependency
 dependency27.from=Treasure
-dependency27.to=Man
+dependency27.to=ISubject
 dependency27.type=UsesDependency
-dependency28.from=banana
-dependency28.to=ISubject
+dependency28.from=Treasure
+dependency28.to=Man
 dependency28.type=UsesDependency
 dependency29.from=Goblin
 dependency29.to=ISubject
@@ -443,75 +112,40 @@ dependency40.type=UsesDependency
 dependency41.from=Portal
 dependency41.to=ISubject
 dependency41.type=UsesDependency
-dependency42.from=bear
+dependency42.from=Man
 dependency42.to=ISubject
 dependency42.type=UsesDependency
-dependency43.from=bear
-dependency43.to=banana
+dependency43.from=Man
+dependency43.to=Textbox
 dependency43.type=UsesDependency
 dependency44.from=Man
-dependency44.to=ISubject
+dependency44.to=Monster
 dependency44.type=UsesDependency
 dependency45.from=Man
-dependency45.to=Textbox
+dependency45.to=Treasure
 dependency45.type=UsesDependency
 dependency46.from=Man
-dependency46.to=Monster
+dependency46.to=banana
 dependency46.type=UsesDependency
 dependency47.from=Man
-dependency47.to=Treasure
+dependency47.to=Goblin
 dependency47.type=UsesDependency
 dependency48.from=Man
-dependency48.to=banana
+dependency48.to=Scoreboard
 dependency48.type=UsesDependency
 dependency49.from=Man
-dependency49.to=bear
+dependency49.to=Portal
 dependency49.type=UsesDependency
 dependency5.from=TavernWorld
->>>>>>> master
 dependency5.to=Scoreboard
->>>>>>> master
 dependency5.type=UsesDependency
-<<<<<<< HEAD
-dependency6.from=AnimalWorld
-dependency6.to=Goblin
-dependency6.type=UsesDependency
-dependency7.from=AnimalWorld
-dependency7.to=Scoreboard
-dependency7.type=UsesDependency
-dependency8.from=AnimalWorld
-dependency8.to=Man
-dependency8.type=UsesDependency
-dependency9.from=MonsterWorld
-dependency9.to=Goblin
-dependency9.type=UsesDependency
-editor.fx.0.height=0
-editor.fx.0.width=0
-editor.fx.0.x=0
-editor.fx.0.y=0
-height=838
-<<<<<<< HEAD
-package.numDependencies=46
-package.numTargets=19
-=======
-package.numDependencies=32
-package.numTargets=15
-=======
-=======
 dependency50.from=Man
-dependency50.to=Goblin
+dependency50.to=WorldManager
 dependency50.type=UsesDependency
 dependency51.from=Man
-dependency51.to=Scoreboard
+dependency51.to=Tavern
 dependency51.type=UsesDependency
-dependency52.from=Man
-dependency52.to=WorldManager
-dependency52.type=UsesDependency
-dependency53.from=Man
-dependency53.to=Tavern
-dependency53.type=UsesDependency
 dependency6.from=TavernWorld
->>>>>>> master
 dependency6.to=Man
 dependency6.type=UsesDependency
 dependency7.from=AnimalWorld
@@ -523,27 +157,13 @@ dependency8.type=UsesDependency
 dependency9.from=AnimalWorld
 dependency9.to=Man
 dependency9.type=UsesDependency
-<<<<<<< HEAD
-editor.fx.0.height=694
-editor.fx.0.width=1294
-editor.fx.0.x=-7
-editor.fx.0.y=-7
-height=694
-package.numDependencies=35
-package.numTargets=16
->>>>>>> aishwarya_dev
->>>>>>> master
->>>>>>> origin/master
->>>>>>> master
-=======
-editor.fx.0.height=738
-editor.fx.0.width=816
-editor.fx.0.x=275
-editor.fx.0.y=-3
-height=27
-package.numDependencies=53
-package.numTargets=24
->>>>>>> master
+editor.fx.0.height=1053
+editor.fx.0.width=927
+editor.fx.0.x=993
+editor.fx.0.y=27
+height=1053
+package.numDependencies=51
+package.numTargets=23
 project.charset=UTF-8
 publish.hasSource=false
 publish.locked=true
@@ -559,446 +179,168 @@ readme.x=10
 readme.y=10
 simulation.speed=57
 target1.height=50
-target1.name=TavernWorld
+target1.name=banana
 target1.showInterface=false
 target1.type=ClassTarget
-target1.width=90
+target1.width=80
 target1.x=0
 target1.y=0
 target10.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target10.name=MonsterWorld
-=======
-<<<<<<< HEAD
-target10.name=Sword
-=======
-<<<<<<< HEAD
-target10.name=bear
-=======
-target10.name=Scoreboard
->>>>>>> master
->>>>>>> origin/master
->>>>>>> master
-=======
-target10.name=Monster
->>>>>>> master
+target10.name=Ogre
 target10.showInterface=false
 target10.type=ClassTarget
-target10.width=100
+target10.width=80
 target10.x=0
 target10.y=0
 target11.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target11.name=Scoreboardmain
-=======
-<<<<<<< HEAD
-target11.name=Scoreboard
-=======
-<<<<<<< HEAD
-target11.name=BaseWorld
-=======
-target11.name=Monster
->>>>>>> master
->>>>>>> origin/master
->>>>>>> master
-=======
-target11.name=Portal
->>>>>>> master
+target11.name=Subject
 target11.showInterface=false
-target11.type=ClassTarget
-target11.width=130
+target11.type=AbstractTarget
+target11.width=80
 target11.x=0
 target11.y=0
 target12.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target12.name=Scoreboard
-=======
-<<<<<<< HEAD
-target12.name=Monster
-=======
-<<<<<<< HEAD
-target12.name=ISubject
-=======
-target12.name=bear
->>>>>>> master
->>>>>>> origin/master
->>>>>>> master
-=======
-target12.name=bear
->>>>>>> master
+target12.name=Axe
 target12.showInterface=false
 target12.type=ClassTarget
 target12.width=80
 target12.x=0
 target12.y=0
 target13.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target13.name=Monster
-=======
-<<<<<<< HEAD
-target13.name=bear
-=======
-<<<<<<< HEAD
-target13.name=Man
-=======
-target13.name=BaseWorld
->>>>>>> master
->>>>>>> origin/master
->>>>>>> master
-=======
-target13.name=BaseWorld
->>>>>>> master
+target13.name=MonsterWorld
 target13.showInterface=false
 target13.type=ClassTarget
-target13.width=80
+target13.width=100
 target13.x=0
 target13.y=0
 target14.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target14.name=Portal
-=======
-<<<<<<< HEAD
-target14.name=BaseWorld
-=======
-<<<<<<< HEAD
-target14.name=Tavern
-=======
-target14.name=ISubject
->>>>>>> master
->>>>>>> origin/master
->>>>>>> master
-=======
-target14.name=Tavern
->>>>>>> master
+target14.name=Scoreboardmain
 target14.showInterface=false
 target14.type=ClassTarget
-target14.width=80
+target14.width=130
 target14.x=0
 target14.y=0
 target15.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target15.name=bear
-=======
-<<<<<<< HEAD
-target15.name=ISubject
-target15.showInterface=false
-target15.type=InterfaceTarget
-target15.width=80
-target15.x=0
-target15.y=0
-target16.height=50
-target16.name=Man
-=======
-<<<<<<< HEAD
-target15.name=MyWorld
-=======
-target15.name=Man
->>>>>>> master
->>>>>>> master
-=======
-target15.name=banana
->>>>>>> master
+target15.name=Sword
 target15.showInterface=false
 target15.type=ClassTarget
 target15.width=80
 target15.x=0
 target15.y=0
 target16.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target16.name=BaseWorld
-=======
-target16.name=Tavern
->>>>>>> origin/master
->>>>>>> master
-=======
-target16.name=Textbox
->>>>>>> master
+target16.name=Scoreboard
 target16.showInterface=false
 target16.type=ClassTarget
 target16.width=80
 target16.x=0
 target16.y=0
-<<<<<<< HEAD
 target17.height=50
-<<<<<<< HEAD
-target17.name=ISubject
-=======
-target17.name=Tavern
-=======
-<<<<<<< HEAD
-target17.height=50
-target17.name=MyWorld
->>>>>>> origin/master
->>>>>>> master
-target17.showInterface=false
-target17.type=InterfaceTarget
-target17.width=80
-=======
-target17.height=50
-target17.name=Textboxmain
+target17.name=Monster
 target17.showInterface=false
 target17.type=ClassTarget
-target17.width=90
->>>>>>> master
+target17.width=100
 target17.x=0
 target17.y=0
 target18.height=50
-<<<<<<< HEAD
-target18.name=Man
-=======
-<<<<<<< HEAD
-target18.height=50
-target18.name=MyWorld
->>>>>>> master
-=======
-target18.name=Subject
->>>>>>> master
+target18.name=Portal
 target18.showInterface=false
-target18.type=AbstractTarget
-target18.width=80
+target18.type=ClassTarget
+target18.width=130
 target18.x=0
 target18.y=0
 target19.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target19.name=Tavern
-=======
-target19.name=Spear
->>>>>>> master
-=======
-target19.name=TreasureWorld
->>>>>>> master
+target19.name=BaseWorld
 target19.showInterface=false
 target19.type=ClassTarget
-target19.width=100
+target19.width=80
 target19.x=0
 target19.y=0
-<<<<<<< HEAD
-=======
 target2.height=50
 target2.name=Treasure
-<<<<<<< HEAD
-=======
-=======
->>>>>>> aishwarya_dev
->>>>>>> master
->>>>>>> master
-target2.height=50
-target2.name=TavernWorld
->>>>>>> origin/master
-=======
->>>>>>> master
 target2.showInterface=false
 target2.type=ClassTarget
 target2.width=80
 target2.x=0
 target2.y=0
 target20.height=50
-target20.name=Axe
+target20.name=ISubject
 target20.showInterface=false
-target20.type=ClassTarget
+target20.type=InterfaceTarget
 target20.width=80
 target20.x=0
 target20.y=0
 target21.height=50
-target21.name=MonsterWorld
+target21.name=Man
 target21.showInterface=false
 target21.type=ClassTarget
-target21.width=100
+target21.width=80
 target21.x=0
 target21.y=0
 target22.height=50
-target22.name=ISubject
+target22.name=Tavern
 target22.showInterface=false
-target22.type=InterfaceTarget
+target22.type=ClassTarget
 target22.width=80
 target22.x=0
 target22.y=0
 target23.height=50
-target23.name=Man
+target23.name=Spear
 target23.showInterface=false
 target23.type=ClassTarget
 target23.width=80
 target23.x=0
 target23.y=0
-target24.height=50
-target24.name=Spear
-target24.showInterface=false
-target24.type=ClassTarget
-target24.width=80
-target24.x=0
-target24.y=0
 target3.height=50
-target3.name=AnimalWorld
+target3.name=TavernWorld
 target3.showInterface=false
 target3.type=ClassTarget
-target3.width=90
+target3.width=80
 target3.x=0
 target3.y=0
 target4.height=50
-target4.name=Goblin
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> aishwarya_dev
->>>>>>> origin/master
->>>>>>> master
-=======
->>>>>>> master
+target4.name=AnimalWorld
 target4.showInterface=false
 target4.type=ClassTarget
-target4.width=100
+target4.width=90
 target4.x=0
 target4.y=0
 target5.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target5.name=Textbox
-=======
-<<<<<<< HEAD
-target5.name=Ogre
+target5.name=Goblin
 target5.showInterface=false
 target5.type=ClassTarget
-target5.width=80
-target5.x=0
-target5.y=0
-target6.height=50
-target6.name=Subject
-target6.showInterface=false
-target6.type=AbstractTarget
-=======
-<<<<<<< HEAD
-target5.name=Textboxmain
-target5.showInterface=false
-target5.type=ClassTarget
-target5.width=110
-=======
-=======
->>>>>>> master
-target5.name=WorldManager
->>>>>>> master
-target5.showInterface=false
-target5.type=ClassTarget
-<<<<<<< HEAD
-target5.width=80
-=======
 target5.width=100
->>>>>>> master
 target5.x=0
 target5.y=0
 target6.height=50
 target6.name=WorldManager
 target6.showInterface=false
 target6.type=ClassTarget
-<<<<<<< HEAD
-<<<<<<< HEAD
-target6.width=100
-target6.x=0
-target6.y=0
-target7.height=50
-target7.name=Textboxmain
-=======
->>>>>>> origin/master
-=======
->>>>>>> master
 target6.width=80
 target6.x=0
 target6.y=0
 target7.height=50
-target7.name=Scoreboardmain
+target7.name=Textbox
 target7.showInterface=false
 target7.type=ClassTarget
-target7.width=110
+target7.width=80
 target7.x=0
 target7.y=0
 target8.height=50
-<<<<<<< HEAD
-target8.name=Axe
-=======
-<<<<<<< HEAD
-target7.name=Scoreboard
-=======
-target7.name=Subject
->>>>>>> master
->>>>>>> master
-target7.showInterface=false
-target7.type=ClassTarget
-target7.width=110
-target7.x=0
-target7.y=0
-target8.height=50
-<<<<<<< HEAD
-target8.name=Ogre
-=======
-<<<<<<< HEAD
-target8.name=Monster
-=======
-target8.name=MonsterWorld
->>>>>>> master
->>>>>>> origin/master
->>>>>>> master
-=======
-target8.name=Sword
->>>>>>> master
+target8.name=Textboxmain
 target8.showInterface=false
 target8.type=ClassTarget
-target8.width=80
+target8.width=90
 target8.x=0
 target8.y=0
 target9.height=50
-<<<<<<< HEAD
-<<<<<<< HEAD
-target9.name=Subject
-target9.showInterface=false
-target9.type=AbstractTarget
-target9.width=80
-=======
-<<<<<<< HEAD
-target9.name=MonsterWorld
+target9.name=TreasureWorld
 target9.showInterface=false
 target9.type=ClassTarget
 target9.width=100
-=======
-<<<<<<< HEAD
-target9.name=Portal
-=======
-target9.name=Scoreboardmain
->>>>>>> master
-target9.showInterface=false
-target9.type=ClassTarget
-<<<<<<< HEAD
-target9.width=130
-=======
-target9.width=110
->>>>>>> aishwarya_dev
->>>>>>> origin/master
->>>>>>> master
-=======
-target9.name=Scoreboard
-target9.showInterface=false
-target9.type=ClassTarget
-target9.width=80
->>>>>>> master
 target9.x=0
 target9.y=0
 version=3.0.0
-width=160
+width=1853
 world.lastInstantiated=BaseWorld
-<<<<<<< HEAD
-=======
-<<<<<<< HEAD
-world.lastInstantiated=BaseWorld
-=======
->>>>>>> origin/master
->>>>>>> master
-=======
->>>>>>> master
-xPosition=0
-yPosition=0
+xPosition=67
+yPosition=27

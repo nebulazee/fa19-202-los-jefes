@@ -15,20 +15,23 @@ public class BaseWorld extends World
      */
     Scoreboardmain scoreboardmain;
     Textboxmain textboxmain;
+    //BottomText bottomtext;
 
     final int width;
     final int height;
 
     public BaseWorld(String config)
     {
-        super(800, 600, 1); 
+        super(800, 800, 1); 
         width = 800;
-        height = 600;
+        height = 800;
 
         scoreboardmain=new Scoreboardmain();
         addObject(scoreboardmain,300,130);
         textboxmain = new Textboxmain();
-        addObject(textboxmain,400,580);
+        addObject(textboxmain,400,700);
+        //bottomtext = new BottomText();
+        //addObject(bottomtext,400,680);
         /*scoreboard = Scoreboard.getScoreboardInstance();
         System.out.println("Added scoreboard");
         addObject(scoreboard,300,130);

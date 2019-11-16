@@ -65,11 +65,7 @@ public class Man extends Subject
         if(s instanceof banana) {
             this.health = this.health+5;
             notifyObservers(s);
-        }
-        if(s instanceof bear) {
-            this.health = this.health-50;
-            notifyObservers(s);
-        }
+        }      
         if(s instanceof Goblin) {
             this.health = this.health-50;
             notifyObservers(s);
@@ -89,10 +85,6 @@ public class Man extends Subject
             removeTouching(banana.class);
             this.updateDamage(new banana());
             //notifyObservers() i.e scoreboard 
-        }
-        if(isTouching(bear.class)){
-            //removeTouching(bear.class);
-            this.updateDamage(((ISubject)this.getOneIntersectingObject(bear.class)));
         }
     }
     public void setImage(MotionRenderer img){
@@ -254,6 +246,8 @@ public class Man extends Subject
         }
         else 
         {
+            textbox = Textbox.getInstance();
+            textbox.setMsg(" ");
             return false;
         }
     }
