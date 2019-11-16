@@ -16,12 +16,12 @@ public class Scoreboardmain extends Subject
         
     }
     Scoreboard sc=null;
-     int monsterVal=10000;
+     int monsterVal=1000;
      int manVal=1000000;
     GreenfootImage img;
     public  Scoreboardmain(){
         sc=Scoreboard.getScoreboardInstance();
-       img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Monster :"+sc.monsterVal, 20, 
+       img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Monster :"+1000, 20, 
                                      Color.WHITE, Color.BLACK);
 //       imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
        
@@ -29,17 +29,31 @@ public class Scoreboardmain extends Subject
         setImage(img);
         //setImage(imgM);
         }
+    public void setMonsterHealth(int val) {
+    this.monsterVal = val;
+    }
     public void act() 
     {
          sc=Scoreboard.getScoreboardInstance();
-         if(WorldManager.getInstance().currentWorld instanceof MonsterWorld) {
-         img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Monster :"+sc.monsterVal, 20, 
-                                     Color.WHITE, Color.BLACK);
-          }
+          if(WorldManager.getInstance().currentWorld instanceof MonsterWorld) {
+              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Monster :"+sc.monsterVal+"\n"+"    Gold Count :"
+                                        +sc.goldCount, 20, Color.WHITE, Color.BLACK);
+            }
           else if(WorldManager.getInstance().currentWorld instanceof AnimalWorld) {
-         img = new GreenfootImage("    Health : "+sc.manVal, 20, 
+              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Gold Count :"
+                                        +sc.goldCount, 20, 
                                      Color.WHITE, Color.BLACK);
             
+            }
+          else if(WorldManager.getInstance().currentWorld instanceof TreasureWorld) {
+              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Gold Count :"
+                                        +sc.goldCount, 20, 
+                                     Color.WHITE, Color.BLACK);
+            }    
+          else if(WorldManager.getInstance().currentWorld instanceof TavernWorld) {
+              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Gold Count :"
+                                        +sc.goldCount, 20, 
+                                     Color.WHITE, Color.BLACK);
             }
 
        

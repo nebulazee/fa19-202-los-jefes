@@ -14,32 +14,40 @@ public class Textboxmain extends Actor
      */
     Textbox tb =null;
     GreenfootImage img;
-    
+    GreenfootImage textDec;
+    Color n = new Color(255,232,213);
      public  Textboxmain(){
+        
+          textDec= new GreenfootImage("txtbox.png");
+        textDec.scale( textDec.getWidth()-400 , textDec.getHeight()-50);
+         setImage(textDec);  
         tb=Textbox.getInstance();
        img = new GreenfootImage(" csjna ", 20, 
-                                     Color.WHITE, Color.BLACK);
+                                     Color.BLACK, n);
        
-        this.setLocation(100,100);
-        setImage(img);
+        //this.setLocation(100,100);
+        //setImage(img);
+        textDec.drawImage(img, textDec.getWidth()/2, textDec.getHeight()/2);
+        this.setLocation(400,700);
         //setImage(imgM);
         }
     public void act() 
     {
         // Add your action code here.
+         setImage(textDec);
          tb=Textbox.getInstance();
          if(WorldManager.getInstance().currentWorld instanceof MonsterWorld) {
          img = new GreenfootImage( tb.message , 20, 
-                                     Color.WHITE, Color.BLACK);
+                                     Color.BLACK , n );
           }
           else if(WorldManager.getInstance().currentWorld instanceof TavernWorld) {
          img = new GreenfootImage( tb.message , 20, 
-                                     Color.WHITE, Color.BLACK);
+                                     Color.BLACK , n);
             
             }
 
-       
-        this.setLocation(400,580);
-        setImage(img);
+        textDec.drawImage(img, textDec.getWidth()/2, textDec.getHeight()/2);
+        this.setLocation(400,700);
+        //setImage(img);
     }    
 }
