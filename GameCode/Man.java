@@ -184,34 +184,48 @@ public class Man extends Subject
             {
                 setImage(img);
                 setLocation( x , y - 2 ) ;
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                if( hitTavern() || hitGoblin()  || hitTreasure()){
                 setLocation( x  , y + 2 );
                 }
+                 /*if(hitMonster()) {
+                  setLocation( x, y );  
+                }*/
             }
             if(Greenfoot.isKeyDown("down") )
              {  
                  setImage(imgB);
                  setLocation(x , y + 2);
-                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                 if( hitTavern() || hitGoblin()  || hitTreasure()){
                 setLocation( x  , y - 2 );
                 }
+                 /*if(hitMonster()) {
+                  setLocation( x, y );  
+                }*/
              }
             if(Greenfoot.isKeyDown("right") )
             {
                 setImage(imgR);
                 setLocation(x + 2 , y );
                 
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                if( hitTavern() || hitGoblin() ||  hitTreasure()){
                 setLocation( x - 2 , y );
                 }
+                /*if(hitMonster()) {
+                  setLocation( x, y );  
+                }
+                */
             }
             if(Greenfoot.isKeyDown("left"))
             {
                 setImage(imgL);
                 setLocation(x - 2 , y);
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                if( hitTavern() || hitGoblin() || hitTreasure()){
                 setLocation( x + 2  , y );
                 }
+                /*if(hitMonster()){
+                  setLocation( x, y );  
+                }
+                */
             }
         
     }
