@@ -8,6 +8,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class BaseWorld extends World
 {
+    protected Man man;
 
     /**
      * Constructor for objects of class BaseWorld.
@@ -17,14 +18,24 @@ public class BaseWorld extends World
     Textboxmain textboxmain;
     //BottomText bottomtext;
 
-    final int width;
-    final int height;
+    final int max_width, min_width;
+    final int max_height, min_height;
+    int portalOffset = 30;
 
     public BaseWorld(String config)
     {
+<<<<<<< HEAD
         super(800, 800, 1); 
         width = 800;
         height = 800;
+=======
+        super(800, 600, 1); 
+
+        max_width = 800; // right of screen
+        max_height = 600; // bottom of screen (smaller values go towards top)
+        min_width = 0; // left of screen
+        min_height = 0; // top of screen (larger values go towards bottom)
+>>>>>>> d7857b54df442ab7ec068c9087e2611755ea29c7
 
         scoreboardmain=new Scoreboardmain();
         addObject(scoreboardmain,300,130);
@@ -43,7 +54,6 @@ public class BaseWorld extends World
     private void populatePortals(String config)
     {
         String orientations[] = config.split(",");
-        int offset = 30;
         for (String o: orientations)
         {
             switch(o)
@@ -51,30 +61,52 @@ public class BaseWorld extends World
                 case "N": 
                 {
                     Portal p = new Portal('N');
-                    addObject(p, width/2, 0 + offset);
+                    addObject(p, max_width/2, min_height + portalOffset);
                     break;
                 }
                 case "S": 
                 {
                     Portal p = new Portal('S');
-                    addObject(p, width/2, height - offset);
+                    addObject(p, max_width/2, max_height - portalOffset);
                     break;
                 }
                 case "W":
                 {
                     Portal p = new Portal('W');
-                    addObject(p, 0 + offset, height/2);
+                    addObject(p, min_width + portalOffset, min_height + (max_height - min_height)/2);
                     break;
                 }
                 case "E":
                 {
                     Portal p = new Portal('E');
-                    addObject(p, width - offset, height/2);
+                    addObject(p, max_width - portalOffset, min_height + (max_height - min_height)/2);
                     break;
                 }
                 default: break;
             }
         }
+    }
+    
+    public void setPlayerSpot(char location)
+    {
+        int playerOffset = 60 + portalOffset;
+        switch(location)
+        {
+            case 'L': // Left
+                man.setLocation(min_width + playerOffset, min_height + (max_height - min_height)/2);
+                break;
+            case 'R': // Right
+                man.setLocation(max_width - playerOffset, min_height + (max_height - min_height)/2);
+                break;
+            case 'T': // Top
+                man.setLocation(max_width/2, min_height + playerOffset);
+                break;
+            case 'B': // Bottom
+                man.setLocation(max_width/2, max_height - playerOffset);
+                break;
 
-    } 
+            default:
+                break;
+        }
+    }
 }

@@ -44,7 +44,7 @@ public class Goblin extends Subject
         } 
         if( !hitknight() )
         {
-        move(direction);
+        move(direction-1);
         }
     }
 public boolean hitknight()

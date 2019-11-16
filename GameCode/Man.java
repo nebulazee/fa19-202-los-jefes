@@ -16,6 +16,7 @@ public class Man extends Subject
     int health = 1000000;
     int animationCounter=0;
     int timer=1;
+    boolean manDead=false;
     boolean trackMovement=false;
     Textbox textbox =  null;
     class MotionRenderer {
@@ -91,10 +92,17 @@ public class Man extends Subject
     //System.err.println("Man image is set to "+img.fileName);
     super.setImage(img.image);
     }
+    private void checkGold() {
+        if(this.getOneIntersectingObject(Gold.class)!=null){
+            ((Scoreboard)scoreBoardObs).increaseGoldCount();
+            this.removeTouching(Gold.class);
+        }
+    }
     public void act() 
     {
         
          movement();
+         checkGold();
          trackMovement = Greenfoot.isKeyDown("up")||Greenfoot.isKeyDown("right")||Greenfoot.isKeyDown("left")||Greenfoot.isKeyDown("down");
          if(trackMovement==false){
          timer=1;
@@ -137,7 +145,9 @@ public class Man extends Subject
         if(getObjectsInRange(80, Monster.class).size()>0) {
             monster = getObjectsInRange(80, Monster.class).get(0);
             if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
-             monster.updateDamage(this);
+            {if(null!=monster) 
+            monster.updateDamage(this);
+            }
              
         }
         if(getObjectsInRange(80, Treasure.class).size()>0) {
@@ -193,7 +203,6 @@ public class Man extends Subject
                 
                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
                 setLocation( x - 2 , y );
-
                 }
             }
             if(Greenfoot.isKeyDown("left"))
