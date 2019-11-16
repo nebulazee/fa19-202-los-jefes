@@ -21,24 +21,19 @@ public class BaseWorld extends World
     final int max_width, min_width;
     final int max_height, min_height;
     int portalOffset = 30;
-
+    
+    
     public BaseWorld(String config)
     {
-<<<<<<< HEAD
         super(800, 800, 1); 
-        width = 800;
-        height = 800;
-=======
-        super(800, 600, 1); 
-
-        max_width = 800; // right of screen
-        max_height = 600; // bottom of screen (smaller values go towards top)
-        min_width = 0; // left of screen
-        min_height = 0; // top of screen (larger values go towards bottom)
->>>>>>> d7857b54df442ab7ec068c9087e2611755ea29c7
+        
+        max_width=800;
+        max_height=600;
+        min_width=0;
+        min_height=95;
 
         scoreboardmain=new Scoreboardmain();
-        addObject(scoreboardmain,300,130);
+        addObject(scoreboardmain,400,50);
         textboxmain = new Textboxmain();
         addObject(textboxmain,400,700);
         //bottomtext = new BottomText();
