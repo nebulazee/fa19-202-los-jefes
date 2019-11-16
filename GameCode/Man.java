@@ -102,6 +102,7 @@ public class Man extends Subject
     }
     private void checkGold() {
         if(this.getOneIntersectingObject(Gold.class)!=null){
+            ((Scoreboard)scoreBoardObs).increaseGoldCount();
             this.removeTouching(Gold.class);
         }
     }

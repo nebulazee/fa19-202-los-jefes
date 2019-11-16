@@ -35,14 +35,25 @@ public class Scoreboardmain extends Subject
     public void act() 
     {
          sc=Scoreboard.getScoreboardInstance();
-         if(WorldManager.getInstance().currentWorld instanceof MonsterWorld) {
-              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Monster :"+sc.monsterVal, 20, 
-                                     Color.WHITE, Color.BLACK);
-          }
+          if(WorldManager.getInstance().currentWorld instanceof MonsterWorld) {
+              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Monster :"+sc.monsterVal+"\n"+"    Gold Count :"
+                                        +sc.goldCount, 20, Color.WHITE, Color.BLACK);
+            }
           else if(WorldManager.getInstance().currentWorld instanceof AnimalWorld) {
-              img = new GreenfootImage("    Health : "+sc.manVal, 20, 
+              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Gold Count :"
+                                        +sc.goldCount, 20, 
                                      Color.WHITE, Color.BLACK);
             
+            }
+          else if(WorldManager.getInstance().currentWorld instanceof TreasureWorld) {
+              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Gold Count :"
+                                        +sc.goldCount, 20, 
+                                     Color.WHITE, Color.BLACK);
+            }    
+          else if(WorldManager.getInstance().currentWorld instanceof TavernWorld) {
+              img = new GreenfootImage("    Health : "+sc.manVal+"\n"+"    Gold Count :"
+                                        +sc.goldCount, 20, 
+                                     Color.WHITE, Color.BLACK);
             }
 
        

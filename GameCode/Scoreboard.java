@@ -16,12 +16,13 @@ public class Scoreboard extends Subject
      GreenfootImage imgM;
      int monsterVal=1000;
      int manVal=1000000;
+     int goldCount=0;
      private static Scoreboard scoreboard;
      private Scoreboard(){
        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
 //       imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
-       
+        goldCount = 0;
         this.setLocation(100,100);
         setImage(img);
         //setImage(imgM);
@@ -38,6 +39,10 @@ public class Scoreboard extends Subject
         // Add your action code here.
     }   
     public void updateDamage(ISubject s){}
+    public void increaseGoldCount() {
+        this.goldCount++;
+    }
+    
     public void setValue(int val)
     {
         manVal=val;
