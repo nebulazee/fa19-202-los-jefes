@@ -41,7 +41,7 @@ public class MonsterWorld extends BaseWorld
         Monster monster = new Monster();
         addObject(monster,294,99);
         monster.setLocation(278,37);
-        monster.setLocation(278,37);
+        
 
         banana.setLocation(496,102);
         banana.setLocation(532,97);

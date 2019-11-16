@@ -29,8 +29,7 @@ public class AnimalWorld extends BaseWorld
     {
         
         Goblin goblin = new Goblin();
-        addObject(goblin,23,137);
-        
+        addObject(goblin,23,137);     
       
         
         goblin.setLocation(23,60);
@@ -41,9 +40,6 @@ public class AnimalWorld extends BaseWorld
         addObject(goblin3,25,427);
         Goblin goblin4 = new Goblin();
         addObject(goblin4,25,542);
-        goblin.setLocation(24,60);
-        goblin.setLocation(14,66);
-        goblin4.setLocation(19,519);
 
         Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         // System.out.println("Added scoreboard");
