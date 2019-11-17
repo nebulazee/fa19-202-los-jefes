@@ -22,11 +22,11 @@ public class BaseWorld extends World
     final int max_height, min_height;
     int portalOffset = 30;
     
-    
+    MonsterGenerator mg;
     public BaseWorld(String config)
     {
         super(800, 800, 1); 
-        
+        mg = new MonsterGenerator();
         max_width=800;
         max_height=600;
         min_width=0;
