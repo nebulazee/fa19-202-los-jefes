@@ -184,7 +184,7 @@ public class Man extends Subject
             {
                 setImage(img);
                 setLocation( x , y - 2 ) ;
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x  , y + 2 );
                 }
             }
@@ -192,7 +192,7 @@ public class Man extends Subject
              {  
                  setImage(imgB);
                  setLocation(x , y + 2);
-                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x  , y - 2 );
                 }
              }
@@ -201,7 +201,7 @@ public class Man extends Subject
                 setImage(imgR);
                 setLocation(x + 2 , y );
                 
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x - 2 , y );
                 }
             }
@@ -209,7 +209,7 @@ public class Man extends Subject
             {
                 setImage(imgL);
                 setLocation(x - 2 , y);
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure()){
+                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x + 2  , y );
                 }
             }
@@ -285,6 +285,28 @@ public class Man extends Subject
     public boolean hitTreasure()
     {
         if( isTouching(Treasure.class) )
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+     public boolean hitScoreboard()
+    {
+        if( isTouching(Scoreboardmain.class) )
+        {
+            return true;
+        }
+        else 
+        {
+            return false;
+        }
+    }
+    public boolean hitTextbox()
+    {
+        if( isTouching(Textboxmain.class) )
         {
             return true;
         }
