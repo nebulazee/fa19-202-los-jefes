@@ -14,6 +14,7 @@ public class Textboxmain extends Actor
      */
     Textbox tb =null;
     GreenfootImage img;
+    GreenfootImage map;
     GreenfootImage textDec;
     Color n = new Color(255,232,213);
      public  Textboxmain(){
@@ -45,7 +46,10 @@ public class Textboxmain extends Actor
                                      Color.BLACK , n);
             
             }
-
+        map = new GreenfootImage( WorldManager.displayWorldMap() , 27, 
+                                     Color.BLACK , n);   
+                                     
+        textDec.drawImage(map, 30, 30);
         textDec.drawImage(img, textDec.getWidth()/2, textDec.getHeight()/2);
         this.setLocation(400,700);
         //setImage(img);

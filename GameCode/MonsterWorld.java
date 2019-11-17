@@ -26,10 +26,10 @@ public class MonsterWorld extends BaseWorld
      */
     private void prepare()
     {
-        Goblin bear = new Goblin();
-        addObject(bear,114,144);
+        Goblin goblin = new Goblin();
+        addObject( goblin ,20,225);
         banana banana = new banana();
-        addObject(banana,493,152);
+        addObject(banana,50,550);
         Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         
         // System.out.println("Added scoreboard");
@@ -39,12 +39,12 @@ public class MonsterWorld extends BaseWorld
         addObject(man,287,355);
 
         Monster monster = new Monster();
-        addObject(monster,294,99);
-        monster.setLocation(278,37);
-        monster.setLocation(278,37);
+        addObject(monster,400,350);
+        //monster.setLocation(278,37);
+        
 
-        banana.setLocation(496,102);
-        banana.setLocation(532,97);
+        //banana.setLocation(496,102);
+        //banana.setLocation(532,97);
         //Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         //addObject(scoreboard,34,13);
         man.addObservers(scoreboard);
@@ -52,11 +52,11 @@ public class MonsterWorld extends BaseWorld
         monster.addObservers(scoreboard);
         //scoreboard.setLocation(37,5);
         //scoreboard.setLocation(53,6);
-        bear.setLocation(57,200);
+        //bear.setLocation(57,200);
         //scoreboard.setLocation(81,28);
-        monster.setLocation(382,86);
-        monster.setLocation(382,89);
-        banana.setLocation(702,141);
-        bear.setLocation(60,230);
+        //monster.setLocation(382,86);
+        //monster.setLocation(382,89);
+        //banana.setLocation(702,141);
+        //bear.setLocation(60,230);
     }
 }

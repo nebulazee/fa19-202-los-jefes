@@ -29,21 +29,18 @@ public class AnimalWorld extends BaseWorld
     {
         
         Goblin goblin = new Goblin();
-        addObject(goblin,23,137);
-        
+          
       
         
-        goblin.setLocation(23,60);
+        //goblin.setLocation(23,60);
+        addObject(goblin,20,225);   
         Goblin goblin2 = new Goblin();
-        addObject(goblin2,20,179);
-        goblin2.setLocation(21,173);
-        Goblin goblin3 = new Goblin();
-        addObject(goblin3,25,427);
-        Goblin goblin4 = new Goblin();
-        addObject(goblin4,25,542);
-        goblin.setLocation(24,60);
-        goblin.setLocation(14,66);
-        goblin4.setLocation(19,519);
+        addObject(goblin2,20,450);
+        //goblin2.setLocation(21,173);
+        //Goblin goblin3 = new Goblin();
+        //addObject(goblin3,25,427);
+        //Goblin goblin4 = new Goblin();
+        //addObject(goblin4,25,542);
 
         Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         // System.out.println("Added scoreboard");
@@ -55,8 +52,8 @@ public class AnimalWorld extends BaseWorld
         man.addObservers(scoreboard);
         goblin.addObservers(scoreboard);
         goblin2.addObservers(scoreboard);
-        goblin3.addObservers(scoreboard);
-        goblin4.addObservers(scoreboard);
+        //goblin3.addObservers(scoreboard);
+        //goblin4.addObservers(scoreboard);
         
         
        
