@@ -16,20 +16,23 @@ public class Scoreboard extends Subject
      GreenfootImage imgM;
      int monsterVal=1000;
      int manVal=1000000;
-     int goldCount=0;
+     static int goldCount;
      private static Scoreboard scoreboard;
      private Scoreboard(){
        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
 //       imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
-        goldCount = 0;
+        this.goldCount = 0;
         this.setLocation(100,100);
         setImage(img);
         //setImage(imgM);
         }
-       
-        public static Scoreboard getScoreboardInstance(){
+       public int getGoldCount(){
+           return this.goldCount;
+        }
+        public static synchronized  Scoreboard getScoreboardInstance(){
         if(scoreboard == null) {
+            goldCount=0;
            scoreboard=new Scoreboard();
         }
             return scoreboard;

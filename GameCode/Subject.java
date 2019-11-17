@@ -12,6 +12,10 @@ public abstract class Subject extends Actor implements ISubject
      * Act - do whatever the Subject wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+   /* MonsterGenerator mg;
+    Subject(){
+    mg = new MonsterGenerator();
+    }*/
     public void act() 
     {
         // Add your action code here.

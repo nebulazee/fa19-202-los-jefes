@@ -187,6 +187,9 @@ public class Man extends Subject
                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x  , y + 2 );
                 }
+                 /*if(hitMonster()) {
+                  setLocation( x, y );  
+                }*/
             }
             if(Greenfoot.isKeyDown("down") )
              {  
@@ -195,6 +198,9 @@ public class Man extends Subject
                  if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x  , y - 2 );
                 }
+                 /*if(hitMonster()) {
+                  setLocation( x, y );  
+                }*/
              }
             if(Greenfoot.isKeyDown("right") )
             {
@@ -204,6 +210,10 @@ public class Man extends Subject
                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x - 2 , y );
                 }
+                /*if(hitMonster()) {
+                  setLocation( x, y );  
+                }
+                */
             }
             if(Greenfoot.isKeyDown("left"))
             {
@@ -212,6 +222,10 @@ public class Man extends Subject
                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x + 2  , y );
                 }
+                /*if(hitMonster()){
+                  setLocation( x, y );  
+                }
+                */
             }
         
     }
