@@ -27,8 +27,9 @@ public class TreasureWorld extends BaseWorld
     private void prepare()
     {
         Treasure treasure1 = new Treasure();
+        treasure1.setLocation(400,400);
         addObject(treasure1, 150, 179);
-        treasure1.setLocation(150,179);
+        
         
         man = new Man();
         addObject(man,287,355);
