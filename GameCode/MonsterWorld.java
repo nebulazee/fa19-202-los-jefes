@@ -27,9 +27,9 @@ public class MonsterWorld extends BaseWorld
     private void prepare()
     {
         Goblin goblin = new Goblin();
-        addObject( goblin ,20,300);
+        addObject( goblin ,20,225);
         banana banana = new banana();
-        addObject(banana,493,152);
+        addObject(banana,50,550);
         Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         
         // System.out.println("Added scoreboard");
@@ -39,7 +39,7 @@ public class MonsterWorld extends BaseWorld
         addObject(man,287,355);
 
         Monster monster = new Monster();
-        addObject(monster,400,400);
+        addObject(monster,400,350);
         //monster.setLocation(278,37);
         
 
