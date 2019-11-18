@@ -154,6 +154,8 @@ public class Man extends Subject
             treasure = getObjectsInRange(80, Treasure.class).get(0);
             if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
              treasure.updateDamage(this);
+            else if(Greenfoot.isKeyDown("g"))
+             treasure.pickWeapon(this);
         }
     }
     public void animateAttack(MotionRenderer img)
