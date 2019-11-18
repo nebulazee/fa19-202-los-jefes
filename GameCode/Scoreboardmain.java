@@ -8,24 +8,22 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Scoreboardmain extends Subject
 {
-    /**
-     * Act - do whatever the Scoreboardmain wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public void updateDamage(ISubject s) {
-        
-    }
     Scoreboard sc=null;
-     int monsterVal=1000;
-     int manVal=1000000;
+    int monsterVal=1000;
+    int manVal=1000000;
     GreenfootImage img;
     GreenfootImage scoreboard;
     Color n = new Color(255,232,213);
+    
+    public void updateDamage(ISubject s) {
+        
+    }    
+    
     public  Scoreboardmain(){
         sc=Scoreboard.getScoreboardInstance();
         scoreboard = new GreenfootImage("upper_textbox.png");
         scoreboard.scale(scoreboard.getWidth()-400  ,scoreboard.getHeight()- 150 );
-       img = new GreenfootImage("    Health : "+sc.manVal+""+"    Monster :"+1000, 20, 
+        img = new GreenfootImage("    Health : "+sc.manVal+""+"    Monster :"+1000, 20, 
                                     Color.BLACK, n);
 //       imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
        
@@ -35,12 +33,18 @@ public class Scoreboardmain extends Subject
         setImage(scoreboard);
         //setImage(imgM);
         }
-    public void setMonsterHealth(int val) {
-    this.monsterVal = val;
+    
+        public void setMonsterHealth(int val) {
+        this.monsterVal = val;
     }
+    
+    /**
+     * Act - do whatever the Scoreboardmain wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */    
     public void act() 
     {
-         sc=Scoreboard.getScoreboardInstance();
+          sc=Scoreboard.getScoreboardInstance();
           scoreboard = new GreenfootImage("upper_textbox.png");
           scoreboard.scale(scoreboard.getWidth()-400  ,scoreboard.getHeight()- 150 );
           if(WorldManager.getInstance().currentWorld instanceof MonsterWorld) {

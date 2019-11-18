@@ -18,9 +18,9 @@ public class BaseWorld extends World
     Textboxmain textboxmain;
     //BottomText bottomtext;
 
-    final int max_width, min_width;
-    final int max_height, min_height;
-    int portalOffset = 30;
+    final protected int max_width, min_width;
+    final protected int max_height, min_height;
+    protected int portalOffset = 30;
     
     
     public BaseWorld(String config)
