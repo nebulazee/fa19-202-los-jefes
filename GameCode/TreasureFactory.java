@@ -29,7 +29,7 @@ public class TreasureFactory
        int randomNumber = Greenfoot.getRandomNumber(3); 
        if(randomNumber == 0)
        {
-            return new BlueTreasure(); 
+           return new BlueTreasure(); 
        }
        else if(randomNumber == 1)
        {
@@ -38,7 +38,7 @@ public class TreasureFactory
        else
        {
            return new GoldenTreasure();
-        }
+       }
     }
     
     

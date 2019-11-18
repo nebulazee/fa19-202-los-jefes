@@ -18,7 +18,10 @@ public class GoldenTreasure extends Treasure
     private Weapon associated_weapon;
     public GoldenTreasure()
     {
-        setImage(new GreenfootImage("treasure-closed-golden.png"));
+        GreenfootImage goldenTreasureClosedImage = new GreenfootImage("treasure-closed-golden.png");
+        goldenTreasureClosedImage.scale(50,50);
+        setImage(goldenTreasureClosedImage);
+        //setImage(new GreenfootImage("treasure-closed-golden.png"));
         this.strength = 30;
         this.openDelay = 0;
         this.pickedGoldenSword = false;
@@ -66,9 +69,18 @@ public class GoldenTreasure extends Treasure
         {
             this.openDelay++;
             if(this.openDelay == 60)
-                this.setImage(new MotionRenderer("treasure-open-golden.png").image);
+            {
+                GreenfootImage goldenTreasureOpenImage = new GreenfootImage("treasure-open-golden.png");
+                goldenTreasureOpenImage.scale(50,50);
+                setImage(goldenTreasureOpenImage);
+                //this.setImage(new MotionRenderer("treasure-open-golden.png").image);
+            }
             else if(this.openDelay == 120)
-                this.setImage(new MotionRenderer("golden-sword.png").image);
+            {
+                GreenfootImage goldenSwordImage = new GreenfootImage("golden-sword.png");
+                setImage(goldenSwordImage);
+                //this.setImage(new MotionRenderer("golden-sword.png").image);
+            }
         }
         
     }  

@@ -18,7 +18,10 @@ public class BlueTreasure extends Treasure
     private Weapon associated_weapon;
     public BlueTreasure()
     {
-        setImage(new GreenfootImage("treasure-closed-blue.png"));
+        GreenfootImage blueTreasureClosedImage = new GreenfootImage("treasure-closed-blue.png");
+        blueTreasureClosedImage.scale(50,50);
+        setImage(blueTreasureClosedImage);
+        //setImage(new GreenfootImage("treasure-closed-blue.png"));
         this.strength = 30;
         this.openDelay = 0;
         this.pickedBlueSword = false;
@@ -67,9 +70,18 @@ public class BlueTreasure extends Treasure
         {
             this.openDelay++;
             if(this.openDelay == 60)
-                this.setImage(new MotionRenderer("treasure-open-blue.png").image);
+            {
+                GreenfootImage blueTreasureOpenImage = new GreenfootImage("treasure-open-blue.png");
+                blueTreasureOpenImage.scale(50,50);
+                setImage(blueTreasureOpenImage);
+                //this.setImage(new MotionRenderer("treasure-open-blue.png").image);
+            }
             else if(this.openDelay == 120)
-                this.setImage(new MotionRenderer("blue-sword.png").image);
+            {
+                GreenfootImage blueSwordImage = new GreenfootImage("blue-sword.png");
+                setImage(blueSwordImage);
+                //this.setImage(new MotionRenderer("blue-sword.png").image);
+            }
         }
         
     }  
