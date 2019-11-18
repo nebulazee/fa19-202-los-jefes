@@ -26,7 +26,9 @@ public class TreasureWorld extends BaseWorld
      */
     private void prepare()
     {
-        Treasure treasure1 = new Treasure();
+        
+        TreasureFactory tf = new TreasureFactory();
+        Treasure treasure1 = tf.getTreasure(2);
         //treasure1.setLocation(400,400);
         addObject(treasure1, 400, 350);
         
