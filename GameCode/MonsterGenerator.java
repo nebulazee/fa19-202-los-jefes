@@ -24,8 +24,8 @@ public class MonsterGenerator extends Actor
             case "monster": 
                return new Monster(); 
 
-            case "ogre" :
-               return new Monster();
+            case "demon" :
+               return new Demon();
                 
              default : break;
            
