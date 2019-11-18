@@ -46,7 +46,7 @@ public class BlueTreasure extends Treasure
     
     public void pickWeapon(ISubject s)
     {
-        if(s instanceof Man){
+        if(s instanceof Man && this.strength <= 0){
               this.pickedBlueSword = true;
               
               this.getWorld().removeObject(this);
