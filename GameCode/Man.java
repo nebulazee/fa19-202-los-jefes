@@ -27,7 +27,7 @@ public class Man extends Subject
             this.image= new GreenfootImage(file);
         }
     }
-    Monster monster=null;
+    IMonsterFactory monster=null;
     Treasure treasure=null;
     private MotionRenderer img,imgW,imgA,imgS,imgD,imgR,imgB,imgL;
     public Man()
@@ -59,6 +59,11 @@ public class Man extends Subject
     }
     public void updateDamage(ISubject s) {
         if(s instanceof Monster) {
+            this.health = this.health-1;
+            notifyObservers(s);
+            System.out.println(this.health);
+        }
+        if(s instanceof Demon) {
             this.health = this.health-1;
             notifyObservers(s);
             System.out.println(this.health);
@@ -146,7 +151,15 @@ public class Man extends Subject
             monster = getObjectsInRange(80, Monster.class).get(0);
             if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
             {if(null!=monster) 
-            monster.updateDamage(this);
+            ((Monster)monster).updateDamage(this);
+            }
+             
+        }
+        if(getObjectsInRange(80, Demon.class).size()>0) {
+            monster = getObjectsInRange(80, Demon.class).get(0);
+            if(Greenfoot.isKeyDown("a")||Greenfoot.isKeyDown("d")||Greenfoot.isKeyDown("w")||Greenfoot.isKeyDown("s"))
+            {if(null!=monster) 
+            ((Demon)monster).updateDamage(this);
             }
              
         }
@@ -184,7 +197,7 @@ public class Man extends Subject
             {
                 setImage(img);
                 setLocation( x , y - 2 ) ;
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
+                if( hitTavern() || hitGoblin() ||  hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x  , y + 2 );
                 }
                  /*if(hitMonster()) {
@@ -195,7 +208,7 @@ public class Man extends Subject
              {  
                  setImage(imgB);
                  setLocation(x , y + 2);
-                 if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
+                 if( hitTavern() || hitGoblin() ||  hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x  , y - 2 );
                 }
                  /*if(hitMonster()) {
@@ -207,7 +220,7 @@ public class Man extends Subject
                 setImage(imgR);
                 setLocation(x + 2 , y );
                 
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
+                if( hitTavern() || hitGoblin()  || hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x - 2 , y );
                 }
                 /*if(hitMonster()) {
@@ -219,7 +232,7 @@ public class Man extends Subject
             {
                 setImage(imgL);
                 setLocation(x - 2 , y);
-                if( hitTavern() || hitGoblin() || hitMonster() || hitTreasure() || hitScoreboard() || hitTextbox() ){
+                if( hitTavern() || hitGoblin() ||  hitTreasure() || hitScoreboard() || hitTextbox() ){
                 setLocation( x + 2  , y );
                 }
                 /*if(hitMonster()){

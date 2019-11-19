@@ -41,9 +41,23 @@ public class MonsterWorld extends BaseWorld
         //Monster monster = new Monster();
         int monsterCode = Greenfoot.getRandomNumber(3);
         IMonsterFactory monster = null;
+        
+        if(monsterCode == 1){
         monster = (Monster)mg.spawnMonster("monster");
         addObject(((Monster)monster),400,350);
         ((Monster)monster).addObservers(scoreboard);
+        //monster.setLocation(278,37);
+        }
+        else if(monsterCode == 2){
+        monster = (Demon)mg.spawnMonster("demon");
+        addObject(((Demon)monster),400,350);
+        ((Demon)monster).addObservers(scoreboard);
+        }
+        else {
+        monster = (Monster)mg.spawnMonster("monster");
+        addObject(((Monster)monster),400,350);
+        ((Monster)monster).addObservers(scoreboard);
+        }
 
         //banana.setLocation(496,102);
         //banana.setLocation(532,97);
