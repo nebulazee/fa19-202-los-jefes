@@ -12,8 +12,10 @@ public class Ogre extends Subject
      * Act - do whatever the Ogre wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    Ogre(){
-    getImage().scale(70,70);
+    Ogre()
+    {
+        super();
+        getImage().scale(70,70);
     }
     public void updateDamage(ISubject s){}
     public void act() 

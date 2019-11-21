@@ -17,7 +17,7 @@ public class Goblin extends Subject
     private GreenfootImage left = new GreenfootImage("bullWL1.png");
     public Goblin()
     {
-        
+        super();
     }
     public void updateDamage(ISubject s) {
         
@@ -50,10 +50,14 @@ public class Goblin extends Subject
 public boolean hitknight()
     {
         if( isTouching( Man.class) )
-        {Man man = null;
-            if(getObjectsInRange(100, Man.class).size()>0)
-            man =getObjectsInRange(100, Man.class).get(0);
-            man.updateDamage(this);
+        {
+            // if(getObjectsInRange(100, Man.class).size()>0)
+            // man =getObjectsInRange(100, Man.class).get(0);
+            Man man = (Man) getOneIntersectingObject(Man.class);
+            if (man != null)
+            {
+                man.updateDamage(this);
+            }
             return true;
         }
         else 

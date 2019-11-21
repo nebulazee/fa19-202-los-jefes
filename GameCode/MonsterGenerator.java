@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MonsterGenerator extends Actor
+public class MonsterGenerator extends GameActor
 {
     /**
      * Act - do whatever the MonsterGenerator wants to do. This method is called whenever

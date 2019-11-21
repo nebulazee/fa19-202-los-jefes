@@ -6,15 +6,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Gold extends Actor
+public class Gold extends Subject
 {
     /**
      * Act - do whatever the Gold wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    Gold(){
-    GreenfootImage img = new GreenfootImage("gold.png");
-        
+    Gold()
+    {
+        super();
+        GreenfootImage img = new GreenfootImage("gold.png");    
         img.scale(60,60);
         this.setImage(img);
     }
@@ -22,4 +23,16 @@ public class Gold extends Actor
     {
         // Add your action code here.
     }    
+    
+    public void notifyObservers(ISubject s){}
+    
+    public void addObservers(ISubject s){}
+     
+    public void die(ISubject s){}
+    
+    public void causeDamage(ISubject a){}
+      
+    public void updateDamage(ISubject s){}
+
+    public void createCommandBindings(){}
 }
