@@ -22,13 +22,13 @@ public class Scoreboard extends Subject
        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
 //       imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
-        this.goldCount = 0;
+        goldCount = 0;
         this.setLocation(100,100);
         setImage(img);
         //setImage(imgM);
         }
        public int getGoldCount(){
-           return this.goldCount;
+           return goldCount;
         }
         public static synchronized  Scoreboard getScoreboardInstance(){
         if(scoreboard == null) {
@@ -42,8 +42,8 @@ public class Scoreboard extends Subject
         // Add your action code here.
     }   
     public void updateDamage(ISubject s){}
-    public void increaseGoldCount() {
-        this.goldCount++;
+    public void setGoldCount(int gold) {
+        goldCount = gold;
     }
     
     public void setValue(int val)

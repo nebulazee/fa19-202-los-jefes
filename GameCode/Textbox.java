@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Textbox extends Actor
+public class Textbox extends GameActor
 {
     /**
      * Act - do whatever the Textbox wants to do. This method is called whenever
@@ -18,11 +18,11 @@ public class Textbox extends Actor
     //private static String message = "";
     //private GreenfootImage text = new GreenfootImage("msg"+message, 20, Color.WHITE, Color.BLACK);
     private static Textbox textbox = null;
-    public String message = "";
+    private String message = "";
     GreenfootImage img;
     
      public Textbox(){       
-         img = new GreenfootImage(" vhgvjh ", 20, 
+         img = new GreenfootImage("", 20, 
                                      Color.WHITE, Color.BLACK);
          setImage(img); 
          this.setLocation(100,100);
@@ -32,12 +32,12 @@ public class Textbox extends Actor
         // Add your action code here.        
     }
     
-    /*public String getMsg()
+    public String getMsg()
     {
         return message;
-    }*/
+    }
     
-     public void setMsg(String msg)
+    public void setMsg(String msg)
     {
         message = msg;
         img = new GreenfootImage(msg , 20,Color.WHITE, Color.BLACK);

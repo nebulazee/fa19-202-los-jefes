@@ -1,23 +1,24 @@
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 
 /**
- * Write a description of class Sword here.
+ * Write a description of class Weapon here.
  * 
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Sword extends GameActor
+public class Weapon extends GameActor
 {
+    Weapon()
+    {
+        super();
+    }
+    
     /**
-     * Act - do whatever the Sword wants to do. This method is called whenever
+     * Act - do whatever the Weapon wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int damage;
-    public Sword()
-    {
-        setImage(new GreenfootImage("sword1.png"));
-        damage= 15;
-    }
+    //public int damage_capability;
+    
     public void act() 
     {
         // Add your action code here.
