@@ -54,9 +54,9 @@ public class MonsterWorld extends BaseWorld
         ((Demon)monster).addObservers(scoreboard);
         }
         else {
-        monster = (Monster)mg.spawnMonster("monster");
-        addObject(((Monster)monster),400,350);
-        ((Monster)monster).addObservers(scoreboard);
+        monster = (Demon)mg.spawnMonster("demon");
+        addObject(((Demon)monster),400,350);
+        ((Demon)monster).addObservers(scoreboard);
         }
 
         //banana.setLocation(496,102);
