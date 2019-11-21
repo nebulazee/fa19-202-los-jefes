@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public abstract class Subject extends Actor implements ISubject
+public abstract class Subject extends GameActor implements ISubject
 {
     /**
      * Act - do whatever the Subject wants to do. This method is called whenever
@@ -16,15 +16,20 @@ public abstract class Subject extends Actor implements ISubject
     Subject(){
     mg = new MonsterGenerator();
     }*/
+    Subject()
+    {
+        super();
+    }
+    
     public void act() 
     {
         // Add your action code here.
     } 
-   public void notifyObservers(ISubject s){}
-  
-  public void addObservers(ISubject s){}
-     
-  public void die(ISubject s){}
+    public void notifyObservers(ISubject s){}
     
-  public void causeDamage(ISubject a){}
+    public void addObservers(ISubject s){}
+     
+    public void die(ISubject s){}
+    
+    public void causeDamage(ISubject a){}
 }

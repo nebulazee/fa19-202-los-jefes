@@ -27,7 +27,9 @@ public class Monster extends Subject implements IMonsterFactory
         }
     }
     MotionRenderer im1,im2;
-    Monster() {
+    Monster() 
+    {
+        super();
         GreenfootImage img = new GreenfootImage("0.png");
         
         img.scale(60,60);
@@ -46,7 +48,7 @@ public class Monster extends Subject implements IMonsterFactory
                 else {
                 this.health = this.health-1;
                 notifyObservers(s);
-                System.out.println(this.health);
+                // System.out.println(this.health);
               }
             }
     }

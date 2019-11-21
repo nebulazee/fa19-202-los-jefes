@@ -8,6 +8,10 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public abstract class Treasure extends Subject
 {
+    Treasure()
+    {
+        super();
+    }
     /**
      * Act - do whatever the Treasure wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.

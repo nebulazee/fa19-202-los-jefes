@@ -17,7 +17,7 @@ public class Goblin extends Subject
     private GreenfootImage left = new GreenfootImage("bullWL1.png");
     public Goblin()
     {
-        
+        super();
     }
     public void updateDamage(ISubject s) {
         

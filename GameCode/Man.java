@@ -61,12 +61,12 @@ public class Man extends Subject
         if(s instanceof Monster) {
             this.health = this.health-1;
             notifyObservers(s);
-            System.out.println(this.health);
+            // System.out.println(this.health);
         }
         if(s instanceof Demon) {
             this.health = this.health-1;
             notifyObservers(s);
-            System.out.println(this.health);
+            // System.out.println(this.health);
         }
         if(s instanceof banana) {
             this.health = this.health+5;

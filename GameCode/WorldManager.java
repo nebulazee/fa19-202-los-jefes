@@ -7,7 +7,7 @@ import java.util.*;
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class WorldManager extends Actor
+public class WorldManager extends GameActor
 {
     // instance variables - replace the example below with your own
     World[][] worldMap;
@@ -173,7 +173,7 @@ public class WorldManager extends Actor
                 break;
         }
         
-        System.out.println("Switching screens from " + Integer.valueOf(getWorldId(hor, ver)) + " to " + Integer.valueOf(getWorldId(new_hor, new_ver)));
+        // System.out.println("Switching screens from " + Integer.valueOf(getWorldId(hor, ver)) + " to " + Integer.valueOf(getWorldId(new_hor, new_ver)));
         
         worldMap[ver][hor] = currentWorld;
         currentWorld = worldMap[new_ver][new_hor];

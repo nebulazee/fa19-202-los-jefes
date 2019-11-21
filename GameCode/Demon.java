@@ -28,6 +28,8 @@ public class Demon extends Subject implements IMonsterFactory
     }
     MotionRenderer im1,im2;
     Demon() {
+    
+        super();
         GreenfootImage img = new GreenfootImage("Demon1.png");
         
         img.scale(60,60);
@@ -46,7 +48,7 @@ public class Demon extends Subject implements IMonsterFactory
                 else {
                 this.health = this.health-1;
                 notifyObservers(s);
-                System.out.println(this.health);
+                // System.out.println(this.health);
               }
             }
     }

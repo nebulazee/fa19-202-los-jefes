@@ -34,7 +34,7 @@ public class PlayerCommand implements IPlayerCommand
      * 
      * @param  msg   The command tooltip message
      */
-    void setCommandTooltip(String msg)
+    public void setCommandTooltip(String msg)
     {
         tooltip = msg;
     }
@@ -44,7 +44,7 @@ public class PlayerCommand implements IPlayerCommand
      * 
      * @return  The command tooltip message
      */
-    String getCommandTooltip()
+    public String getCommandTooltip()
     {
         return tooltip;
     }
