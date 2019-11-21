@@ -21,24 +21,25 @@ public class BaseWorld extends World
     final protected int max_width, min_width;
     final protected int max_height, min_height;
     protected int portalOffset = 30;
+    protected String tooltipTitle;
     
     MonsterGenerator mg;
     public BaseWorld(String config)
     {
         super(800, 800, 1); 
+        tooltipTitle = "";
         mg = new MonsterGenerator();
         max_width=800;
         max_height=600;
         min_width=0;
         min_height=95;
-
         scoreboardmain=new Scoreboardmain();
         addObject(scoreboardmain,400,50);
         textboxmain = new Textboxmain();
         addObject(textboxmain,400,700);
         //bottomtext = new BottomText();
         //addObject(bottomtext,400,680);
-        /*scoreboard = Scoreboard.getScoreboardInstance();
+        /*
         System.out.println("Added scoreboard");
         addObject(scoreboard,300,130);
         */
@@ -103,5 +104,10 @@ public class BaseWorld extends World
             default:
                 break;
         }
+    }
+
+    public String getTitle()
+    {
+        return tooltipTitle;
     }
 }

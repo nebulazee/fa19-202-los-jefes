@@ -15,10 +15,26 @@ public class Tavern extends GameActor
     
     public Tavern()
     {
+        super();
         setImage(new GreenfootImage("Webp.net-resizeimage.png"));
     }
     public void act() 
     {
         // Add your action code here.
     }   
+
+    public void createCommandBindings()
+    {
+        IPlayerCommandTarget healCmd = new IPlayerCommandTarget(){
+            public void act(Man player){
+                if (player.chargeGold(20) == true)
+                {
+                    player.heal(1000);
+                    System.out.println("Tavern healing man");
+                }
+            }
+        };
+        newCommandBinding("Q", "Drink Ale to Heal (20 Gold)", healCmd);
+    }
+
 }
