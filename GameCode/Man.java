@@ -13,6 +13,7 @@ public class Man extends Subject {
      */
     ISubject scoreBoardObs = null;
     int health = 1000000;
+    int gold = 30;
     int animationCounter = 0;
     int timer = 1;
     boolean manDead = false;
@@ -55,34 +56,34 @@ public class Man extends Subject {
         // gif.resizeImages(60,60);
 
         setImage(img);
+        // ((Scoreboard) scoreBoardObs).setGoldCount(gold);
 
     }
 
     public void updateDamage(ISubject s) {
         if (s instanceof Monster) {
-            this.health = this.health - 1;
-            notifyObservers(s);
+            damage(1);
             // System.out.println(this.health);
         }
         if (s instanceof Demon) {
-            this.health = this.health - 1;
-            notifyObservers(s);
+            damage(1);
             // System.out.println(this.health);
         }
         if (s instanceof banana) {
-            this.health = this.health + 5;
-            notifyObservers(s);
+            heal(5);
         }
         if (s instanceof Goblin) {
-            this.health = this.health - 50;
-            notifyObservers(s);
+            damage(50);
         }
+        notifyObservers(s);
     }
 
     public void notifyObservers(ISubject s) {
         // man shud update score board observer
         if (s != null) {
             ((Scoreboard) scoreBoardObs).setValue(health);
+            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+
         }
     }
 
@@ -105,8 +106,31 @@ public class Man extends Subject {
 
     private void checkGold() {
         if (this.getOneIntersectingObject(Gold.class) != null) {
-            ((Scoreboard) scoreBoardObs).increaseGoldCount();
+            gold += 15;
+            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
             this.removeTouching(Gold.class);
+        }
+    }
+
+    public void heal(int hpUp) { health += hpUp; }
+    public void damage(int hit) { health -= hit; }
+    public void addGold(int reward)
+    {
+        gold += reward;
+        ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+    }
+
+    public Boolean chargeGold(int cost)
+    {
+        if (gold >= cost)
+        {
+            gold -= cost;
+            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+            return true;
+        }
+        else
+        {
+            return false;
         }
     }
 
@@ -212,6 +236,25 @@ public class Man extends Subject {
         int x = getX();
         int y = getY();
 
+        String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
+        StringBuffer msg = new StringBuffer();
+        msg.append(title);
+        msg.append("\n\n");
+        GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
+        if (obj != null)
+        {
+            msg.append(obj.getCommandTooltips());
+            Textbox.getInstance().setMsg(msg.toString());
+            if (Greenfoot.isKeyDown("q"))
+            {
+                obj.checkAndRunCommand("q");
+            }
+        }
+        else
+        {
+            Textbox.getInstance().setMsg(msg.toString());
+        }
+
         if (Greenfoot.isKeyDown("up")) {
             setImage(img);
             setLocation(x, y - 2);
@@ -283,12 +326,8 @@ public class Man extends Subject {
 
     public boolean hitTavern() {
         if (isTouching(Tavern.class)) {
-            textbox = Textbox.getInstance();
-            textbox.setMsg("Touch tavern");
             return true;
         } else {
-            textbox = Textbox.getInstance();
-            textbox.setMsg(" ");
             return false;
         }
     }

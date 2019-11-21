@@ -13,6 +13,7 @@ public abstract class GameActor extends Actor
     
     GameActor()
     {
+        commandMap = new HashMap();
         createCommandBindings();
     }
     
@@ -31,7 +32,9 @@ public abstract class GameActor extends Actor
         Man man = (Man) getOneIntersectingObject(Man.class);
         if (man != null)
         {
-            IPlayerCommand currentCommand = commandMap.get(pressedKey);
+            String command = pressedKey.toUpperCase();
+            System.out.println(command);
+            IPlayerCommand currentCommand = commandMap.getOrDefault(command, null);
             if (currentCommand != null)
             {
                 currentCommand.runCommand(man);
@@ -41,11 +44,15 @@ public abstract class GameActor extends Actor
 
     public String getCommandTooltips()
     {
+        if (commandMap.isEmpty() == true)
+        {
+            return "";
+        }
         StringBuffer sBuf = new StringBuffer();
 
         for (Map.Entry<String,IPlayerCommand> entry : commandMap.entrySet())
         {
-            sBuf.append("[" + entry.getKey() + "]" + "\t");
+            sBuf.append("[" + entry.getKey() + "]" + "   ");
             sBuf.append(entry.getValue().getCommandTooltip());
             sBuf.append("\n");
         }

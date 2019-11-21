@@ -15,14 +15,14 @@ public class Textboxmain extends GameActor
      Color n  ;
      Color map_background;
     
-     public  Textboxmain(){
+     public Textboxmain(){
         
         textDec= new GreenfootImage("txtbox.png");
         textDec.scale( textDec.getWidth()-400 , textDec.getHeight()-50);
         setImage(textDec);  
         tb=Textbox.getInstance();
         n = new Color(255,232,213);
-        img = new GreenfootImage(" csjna ", 20, 
+        img = new GreenfootImage("", 20, 
                                      Color.BLACK, n);
         
          map_background = new Color(0,0,0,0);                             
@@ -40,16 +40,18 @@ public class Textboxmain extends GameActor
     public void act() 
     {
 
-         setImage(textDec);
-         tb=Textbox.getInstance();
-         if(WorldManager.getInstance().currentWorld instanceof MonsterWorld) {
-         img = new GreenfootImage( tb.message , 20, 
-                                     Color.BLACK , n );
-          }
-         else if(WorldManager.getInstance().currentWorld instanceof TavernWorld) {
-             img = new GreenfootImage( tb.message , 20, 
-                                         Color.BLACK , n);                
-            }
+        setImage(textDec);
+        tb=Textbox.getInstance();
+        img = new GreenfootImage( tb.getMsg() , 20, Color.BLACK , n );
+
+        //  if(WorldManager.getInstance().currentWorld instanceof MonsterWorld) {
+        //  img = new GreenfootImage( tb.getMsg() , 20, 
+        //                              Color.BLACK , n );
+        //   }
+        //  else if(WorldManager.getInstance().currentWorld instanceof TavernWorld) {
+        //      img = new GreenfootImage( tb.getMsg() , 20, 
+        //                                  Color.BLACK , n);                
+        //     }
             
         map = new GreenfootImage( WorldManager.displayWorldMap() , 27, 
                                      Color.BLACK , map_background );   

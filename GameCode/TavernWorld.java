@@ -23,6 +23,7 @@ public class TavernWorld extends BaseWorld
     private void prepare()
     {
 
+        tooltipTitle = "Welcome, brave warrior! Your quest awaits you!\nHeal up at the tavern before you head out!";
         Tavern tavern = new Tavern();
         addObject(tavern, getWidth()/2, getHeight()/2);
 
@@ -36,6 +37,7 @@ public class TavernWorld extends BaseWorld
         man.addObservers(scoreboard);      
 
         tavern.setLocation(386,348);
+        Textbox.getInstance().setMsg(getTitle() + "\n\n" + "");
         //WorldManager.getNewInstance();
     }
 }
