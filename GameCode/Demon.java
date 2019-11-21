@@ -28,6 +28,8 @@ public class Demon extends Subject implements IMonsterFactory
     }
     MotionRenderer im1,im2;
     Demon() {
+    
+        super();
         GreenfootImage img = new GreenfootImage("Demon1.png");
         
         img.scale(60,60);
@@ -46,7 +48,7 @@ public class Demon extends Subject implements IMonsterFactory
                 else {
                 this.health = this.health-1;
                 notifyObservers(s);
-                System.out.println(this.health);
+                // System.out.println(this.health);
               }
             }
     }
@@ -81,11 +83,12 @@ public class Demon extends Subject implements IMonsterFactory
          if(scoreBoardObs!=null)
         ((Scoreboard)scoreBoardObs).setMonsterHealth(health); 
         {
-            if(getObjectsInRange(60, Man.class).size()>0)
-            man =getObjectsInRange(60, Man.class).get(0);
-            else 
-            man=null;
+            // if(getObjectsInRange(60, Man.class).size()>0)
+            // man =getObjectsInRange(60, Man.class).get(0);
+            // else 
+            // man=null;
             
+            man = (Man) getOneIntersectingObject(Man.class);
             
             if(null==man) {
                 //this.setImage(new MotionRenderer("0.png").image);

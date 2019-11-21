@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Textbox extends Actor
+public class Textbox extends GameActor
 {
     /**
      * Act - do whatever the Textbox wants to do. This method is called whenever

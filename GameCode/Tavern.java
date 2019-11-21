@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Tavern extends Actor
+public class Tavern extends GameActor
 {
     /**
      * Act - do whatever the Tavern wants to do. This method is called whenever
