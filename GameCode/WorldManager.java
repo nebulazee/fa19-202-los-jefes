@@ -192,37 +192,43 @@ public class WorldManager extends GameActor
     public static String displayWorldMap()
     {
         StringBuffer display = new StringBuffer();
-        display.append("  - - -  \n");
+        display.append("\u2015 \u2015 \u2015\n");
         
         for (World[] wList: instance.worldMap)
         {
-            display.append("| ");
+            // display.append("|");
+            StringBuffer items = new StringBuffer();
+
             for (World w: wList)
             {
-                display.append(getCode(w) + " ");
+                items.append(getCode(w) + " ");
             }
-            display.append("|\n");
+            // display.append("\u00A0");
+            display.append(items.toString().trim());
+            // display.append("\u00A0");
+            display.append("\n");
         }
-        display.append("  - - -  \n");
+        display.append("\u2015 \u2015 \u2015\n");
 
         return display.toString();
         
     }
     
-    private static char getCode(World w)
+    private static String getCode(World w)
     {
-        char code;
+        String code;
         switch(w.getClass().getName())
         {
-            case "MonsterWorld": code = 'M'; break;
-            case "AnimalWorld": code = ' '; break;
-            case "TreasureWorld": code = 'T'; break;
-            case "TavernWorld": code = 'H'; break;
-            default: code = ' '; break;
+            case "MonsterWorld": code = "\u2612"; break;
+            case "AnimalWorld": code = "\u25A2"; break;
+            case "TreasureWorld": code = "\u272A"; break; //25CE
+            case "TavernWorld": code = "\u25A9"; break;
+            default: code = "\u00A0"; break;
         }
+        // code = "+";
         if (instance.currentWorld.equals(w) == true)
         {
-            code = '*';
+            code = "\u25A3";
         }
         return code;
     }

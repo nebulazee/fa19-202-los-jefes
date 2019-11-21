@@ -83,11 +83,12 @@ public class Demon extends Subject implements IMonsterFactory
          if(scoreBoardObs!=null)
         ((Scoreboard)scoreBoardObs).setMonsterHealth(health); 
         {
-            if(getObjectsInRange(60, Man.class).size()>0)
-            man =getObjectsInRange(60, Man.class).get(0);
-            else 
-            man=null;
+            // if(getObjectsInRange(60, Man.class).size()>0)
+            // man =getObjectsInRange(60, Man.class).get(0);
+            // else 
+            // man=null;
             
+            man = (Man) getOneIntersectingObject(Man.class);
             
             if(null==man) {
                 //this.setImage(new MotionRenderer("0.png").image);
