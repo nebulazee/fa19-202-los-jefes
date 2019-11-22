@@ -6,12 +6,12 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Man extends Subject {
+public class Man extends Subject implements IScoreboardObserver
+{
     /**
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
      */
-    ISubject scoreBoardObs = null;
     int health = 1000;
     int gold = 30;
     int animationCounter = 0;
@@ -56,12 +56,12 @@ public class Man extends Subject {
         length = getImage().getWidth();
         // gif = new GifImage("skeleton-club.gif");
         // gif.resizeImages(60,60);
-        if((Scoreboard)scoreBoardObs!=null){
-            this.health=((Scoreboard)scoreBoardObs).manVal;
-            this.gold=((Scoreboard)scoreBoardObs).goldCount;
-            ((Scoreboard) scoreBoardObs).setValue(health);
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
-        }
+
+        Scoreboard.addScoreboardObserver(this);
+
+        health = Scoreboard.getHealth();
+        gold = Scoreboard.getGoldCount();
+
         setImage(img);
 
     }
@@ -70,39 +70,18 @@ public class Man extends Subject {
         if(s instanceof BaseMonster) {
             damage(10);
         }
-        /*if (s instanceof Monster) {
-            damage(1);
-            // System.out.println(this.health);
-        }
-        if (s instanceof Demon) {
-            damage(1);
-            // System.out.println(this.health);
-        }
-        if (s instanceof Monster2 ) {
-            damage(1);
-        }
-        */
         if (s instanceof banana) {
             heal(5);
         }
         if (s instanceof Goblin) {
             damage(50);
         }
-        notifyObservers(s);
     }
 
-    public void notifyObservers(ISubject s) {
-        // man shud update score board observer
-        if (s != null) {
-            ((Scoreboard) scoreBoardObs).setValue(health);
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
-
-        }
+    public void updateScoreboard() {
+        Scoreboard.setPlayerStats(this);
     }
 
-    public void addObservers(ISubject s) {
-        scoreBoardObs = s;
-    }
 
     public void setImage(MotionRenderer img) {
         // System.err.println("Man image is set to "+img.fileName);
@@ -112,17 +91,25 @@ public class Man extends Subject {
     private void checkGold() {
         if (this.getOneIntersectingObject(Gold.class) != null) {
             gold += 15;
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+            Scoreboard.setPlayerStats(this);
             this.removeTouching(Gold.class);
         }
     }
 
-    public void heal(int hpUp) { health += hpUp; }
-    public void damage(int hit) { health -= hit; }
+    public void heal(int hpUp) 
+    { 
+        health += hpUp; 
+        updateScoreboard();
+    }
+    public void damage(int hit) 
+    {
+        health -= hit;
+        updateScoreboard();
+    }
     public void addGold(int reward)
     {
         gold += reward;
-        ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+        updateScoreboard();
     }
 
     public Boolean chargeGold(int cost)
@@ -130,7 +117,7 @@ public class Man extends Subject {
         if (gold >= cost)
         {
             gold -= cost;
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+            updateScoreboard();
             return true;
         }
         else
@@ -139,15 +126,14 @@ public class Man extends Subject {
         }
     }
 
-    public void act() {
-       if((Scoreboard)scoreBoardObs!=null)
-       {
-            this.health=((Scoreboard)scoreBoardObs).manVal;
-            this.gold=((Scoreboard)scoreBoardObs).goldCount;
-            ((Scoreboard) scoreBoardObs).setValue(health);//
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);//
-        }
+    public void scoreboardUpdateEvent()
+    {
+        this.health = Scoreboard.getHealth();
+        this.gold = Scoreboard.getGoldCount();
+    }
 
+    public void act() 
+    {
         updateTooltips();
         movement();
         checkGold();
@@ -179,8 +165,6 @@ public class Man extends Subject {
 
         }
 
-        // if(getObjectsInRange(80, Monster.class).size()>0) {
-        // monster = getObjectsInRange(80, Monster.class).get(0);
         monster = (BaseMonster) getOneIntersectingObject(BaseMonster.class);
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
                 || Greenfoot.isKeyDown("s")) {
@@ -418,17 +402,17 @@ public class Man extends Subject {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
         if (p != null) {
             switch (p.getFlag()) {
-            case 'N':
-                WorldManager.signal("north");
+            case NORTH:
+                WorldManager.signal(Signal.NORTH);
                 break;
-            case 'S':
-                WorldManager.signal("south");
+            case SOUTH:
+                WorldManager.signal(Signal.SOUTH);
                 break;
-            case 'E':
-                WorldManager.signal("east");
+            case EAST:
+                WorldManager.signal(Signal.EAST);
                 break;
-            case 'W':
-                WorldManager.signal("west");
+            case WEST:
+                WorldManager.signal(Signal.WEST);
                 break;
             default:
                 break;
@@ -456,7 +440,7 @@ public class Man extends Subject {
     }
 
     public boolean hitMonster() {
-        if (isTouching(Monster.class)) {
+        if (isTouching(BaseMonster.class)) {
             return true;
         } else {
             return false;

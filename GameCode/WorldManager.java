@@ -17,7 +17,9 @@ public class WorldManager extends GameActor
     
     int worldHeight = 4;
     int worldWidth = 3;
-
+    enum WorldType{
+        MONSTER,ANIMAL,TREASURE;
+    }
     /**
      * Constructor for objects of class WorldManager
      */
@@ -53,6 +55,8 @@ public class WorldManager extends GameActor
     
     private void startUp()
     {
+        Scoreboard.getScoreboardInstance();
+        Textboxmain.getInstance();
         worldMap = new BaseWorld[worldHeight][worldWidth];
         constructWorlds();
         currentWorld.getTextbox().setMsg(currentWorld.getTitle() + "\n\n" + "");
@@ -60,10 +64,10 @@ public class WorldManager extends GameActor
 
     private void constructWorlds()
     {
-        List<String> worldTypes = new ArrayList<>();
-        worldTypes.add("monster");
-        worldTypes.add("animal");
-        worldTypes.add("treasure");
+        List<WorldType> worldTypes = new ArrayList<>();
+        worldTypes.add(WorldType.MONSTER);
+        worldTypes.add(WorldType.ANIMAL);
+        worldTypes.add(WorldType.TREASURE);
         Random rand = new Random(); 
         
         int monsters = 3;
@@ -73,8 +77,8 @@ public class WorldManager extends GameActor
         {
             for(int j=0; j<worldWidth; j++)
             {
-                if (monsters == 0) { worldTypes.remove("monster"); }
-                if (treasures == 0) { worldTypes.remove("treasure"); }
+                if (monsters == 0) { worldTypes.remove(WorldType.MONSTER); }
+                if (treasures == 0) { worldTypes.remove(WorldType.TREASURE); }
                 
                 if (i == 3 && j == 2)
                 {
@@ -85,10 +89,10 @@ public class WorldManager extends GameActor
                 }
                 else
                 {
-                    String type = worldTypes.get(rand.nextInt(worldTypes.size()));
+                    WorldType type = worldTypes.get(rand.nextInt(worldTypes.size()));
                     switch(type)
                     {
-                        case "monster":
+                        case MONSTER:
                             MonsterWorld mw = new MonsterWorld(constructConfigurationCode(i, j));
                             if(monsters == 3) {
                                 mw.setMonster(new BaseMonster("Demon1.png","Demon2.png"));
@@ -112,10 +116,10 @@ public class WorldManager extends GameActor
                             };*/
                             monsters--;
                             break;
-                        case "animal":
+                        case ANIMAL:
                             worldMap[i][j] = new AnimalWorld(constructConfigurationCode(i, j));
                             break;
-                        case "treasure":
+                        case TREASURE:
                             worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j));
                             treasures--;
                             break;
@@ -144,24 +148,24 @@ public class WorldManager extends GameActor
      * @param  signal  north, south, west, or east
      * @return void
      */
-    public static void signal(String signal)
+    public static void signal(Signal signal)
     {
         switch(signal)
         {
-            case "west": instance.switchWorlds("left"); break;
-            case "east": instance.switchWorlds("right"); break;
-            case "north": instance.switchWorlds("up"); break;
-            case "south": instance.switchWorlds("down"); break;
+            case WEST: instance.switchWorlds(Signal.LEFT); break;
+            case EAST: instance.switchWorlds(Signal.RIGHT); break;
+            case NORTH: instance.switchWorlds(Signal.UP); break;
+            case SOUTH: instance.switchWorlds(Signal.DOWN); break;
             default: break;
         }
         // System.out.println(displayWorldMap());
     }
     
-    private void switchWorlds(String direction)
+    private void switchWorlds(Signal s)
     {
         int hor = 0;
         int ver = 0;
-        char playerSpot;
+        Signal playerSpot;
         
         for(int i=0; i<worldHeight; i++)
         {
@@ -176,26 +180,26 @@ public class WorldManager extends GameActor
         }
         int new_hor = hor;
         int new_ver = ver;
-        switch(direction)
+        switch(s)
         {
-            case "left":
+            case LEFT:
                 if (hor-1 >=0) { new_hor = hor - 1; }
-                playerSpot = 'R';
+                playerSpot = Signal.R;
                 break;
-            case "right":
+            case RIGHT:
                 if (hor+1 < worldWidth) { new_hor = hor + 1; }
-                playerSpot = 'L';
+                playerSpot = Signal.L;
                 break;
-            case "up":
+            case UP:
                 if (ver-1 >=0) { new_ver = ver - 1; }
-                playerSpot = 'B';
+                playerSpot = Signal.B;
                 break;
-            case "down":
+            case DOWN:
                 if (ver+1 < worldHeight) { new_ver = ver + 1; }
-                playerSpot = 'T';
+                playerSpot = Signal.T;
                 break;
             default:
-                playerSpot = 'X';
+                playerSpot = Signal.X;
                 break;
         }
         

@@ -43,19 +43,8 @@ public class AnimalWorld extends BaseWorld
         //Goblin goblin4 = new Goblin();
         //addObject(goblin4,25,542);
 
-        Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         // System.out.println("Added scoreboard");
         //addObject(scoreboard,300,130);
-        
-        man = new Man();
-        addObject(man,287,355);
-        
-        man.addObservers(scoreboard);
-        goblin.addObservers(scoreboard);
-        goblin2.addObservers(scoreboard);
-        //goblin3.addObservers(scoreboard);
-        //goblin4.addObservers(scoreboard);
-        
         
        
     }
