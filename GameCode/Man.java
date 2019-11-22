@@ -317,6 +317,7 @@ public class Man extends Subject {
         Actor treasure = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Treasure.class);
         Actor score = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Scoreboardmain.class);
         Actor text = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Textboxmain.class);
+        //Actor gob = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Goblin.class);
         
         if(tavern==null && treasure==null && score==null && text==null){
             setLocation(currentX + changeX,currentY + changeY);
