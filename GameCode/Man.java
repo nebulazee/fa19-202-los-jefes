@@ -6,7 +6,8 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Man extends Subject {
+public class Man extends Subject implements IScoreboardObserver
+{
     /**
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
@@ -56,12 +57,12 @@ public class Man extends Subject {
         length = getImage().getWidth();
         // gif = new GifImage("skeleton-club.gif");
         // gif.resizeImages(60,60);
-        if((Scoreboard)scoreBoardObs!=null){
-            this.health=((Scoreboard)scoreBoardObs).manVal;
-            this.gold=((Scoreboard)scoreBoardObs).goldCount;
-            ((Scoreboard) scoreBoardObs).setValue(health);
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
-        }
+
+        Scoreboard.addScoreboardObserver(this);
+
+        this.health=Scoreboard.getHealth();
+        this.gold=Scoreboard.getGoldCount();
+
         setImage(img);
 
     }
@@ -81,16 +82,12 @@ public class Man extends Subject {
         if (s instanceof Goblin) {
             damage(50);
         }
-        notifyObservers(s);
     }
 
-    public void notifyObservers(ISubject s) {
+    public void updateScoreboard() {
         // man shud update score board observer
-        if (s != null) {
-            ((Scoreboard) scoreBoardObs).setValue(health);
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
-
-        }
+            Scoreboard.setHealth(health);
+            Scoreboard.setGoldCount(gold);
     }
 
     public void addObservers(ISubject s) {
@@ -105,17 +102,25 @@ public class Man extends Subject {
     private void checkGold() {
         if (this.getOneIntersectingObject(Gold.class) != null) {
             gold += 15;
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+            Scoreboard.setGoldCount(gold);
             this.removeTouching(Gold.class);
         }
     }
 
-    public void heal(int hpUp) { health += hpUp; }
-    public void damage(int hit) { health -= hit; }
+    public void heal(int hpUp) 
+    { 
+        health += hpUp; 
+        updateScoreboard();
+    }
+    public void damage(int hit) 
+    {
+        health -= hit;
+        updateScoreboard();
+    }
     public void addGold(int reward)
     {
         gold += reward;
-        ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+        updateScoreboard();
     }
 
     public Boolean chargeGold(int cost)
@@ -123,7 +128,7 @@ public class Man extends Subject {
         if (gold >= cost)
         {
             gold -= cost;
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+            updateScoreboard();
             return true;
         }
         else
@@ -132,15 +137,14 @@ public class Man extends Subject {
         }
     }
 
-    public void act() {
-       if((Scoreboard)scoreBoardObs!=null)
-       {
-            this.health=((Scoreboard)scoreBoardObs).manVal;
-            this.gold=((Scoreboard)scoreBoardObs).goldCount;
-            ((Scoreboard) scoreBoardObs).setValue(health);//
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);//
-        }
+    public void scoreboardUpdateEvent()
+    {
+        this.health = Scoreboard.getHealth();
+        this.gold = Scoreboard.getGoldCount();
+    }
 
+    public void act() 
+    {
         updateTooltips();
         movement();
         checkGold();

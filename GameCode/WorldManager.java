@@ -53,6 +53,8 @@ public class WorldManager extends GameActor
     
     private void startUp()
     {
+        Scoreboard.getScoreboardInstance();
+        Textboxmain.getInstance();
         worldMap = new BaseWorld[worldHeight][worldWidth];
         constructWorlds();
         currentWorld.getTextbox().setMsg(currentWorld.getTitle() + "\n\n" + "");

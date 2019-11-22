@@ -16,7 +16,6 @@ public class BaseWorld extends World
      */
     Scoreboardmain scoreboardmain;
     Textboxmain textboxmain;
-    WeaponSingleton weapon;
     //BottomText bottomtext;
 
     final protected int max_width, min_width;
@@ -34,11 +33,13 @@ public class BaseWorld extends World
         max_height=600;
         min_width=0;
         min_height=95;
+        man = new Man();
+        addObject(man,287,355);
+
         scoreboardmain=new Scoreboardmain();
         addObject(scoreboardmain,400,50);
         textboxmain = new Textboxmain();
         addObject(textboxmain,400,700);
-        weapon = weapon.getInstance();
         //bottomtext = new BottomText();
         //addObject(bottomtext,400,680);
         /*
@@ -116,5 +117,10 @@ public class BaseWorld extends World
     public Textboxmain getTextbox()
     {
         return textboxmain;
+    }
+
+    public Scoreboardmain getScoreboard()
+    {
+        return scoreboardmain;
     }
 }

@@ -15,19 +15,20 @@ public class EndScreen extends World
      */
     Color n = new Color(0,0,0,0);
     GreenfootImage img;
-    
+
     public EndScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 800, 1);
+        prepare();
     }
-    
+
     public void act()
     {
         this.checkNextScreen();            
-    
+
     }   
-    
+
     public void checkNextScreen()
     {
         if( Greenfoot.isKeyDown("enter"))
@@ -35,5 +36,12 @@ public class EndScreen extends World
             WorldManager.getInstance();
         }
     }   
-    
+
+    /**
+     * Prepare the world for the start of the program.
+     * That is: create the initial objects and add them to the world.
+     */
+    private void prepare()
+    {
+    }
 }
