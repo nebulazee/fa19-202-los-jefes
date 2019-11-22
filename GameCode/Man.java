@@ -178,25 +178,31 @@ public class Man extends Subject {
     private void attack() {
 
         if (Greenfoot.isKeyDown("a")) {
-            if (animationCounter % 2 == 0)
+            if (animationCounter % 2 == 0 && direction==Direction.LEFT)
                 animateAttack(imgA);
-
-        }
-        if (Greenfoot.isKeyDown("d")) {
-            if (animationCounter % 2 == 0)
+            if (animationCounter % 2 == 0 && direction==Direction.RIGHT)
                 animateAttack(imgD);
-
-        }
-        if (Greenfoot.isKeyDown("w")) {
-            if (animationCounter % 2 == 0)
+            if (animationCounter % 2 == 0 && direction==Direction.UP)
                 animateAttack(imgW);
-
-        }
-        if (Greenfoot.isKeyDown("s")) {
-            if (animationCounter % 2 == 0)
+            if (animationCounter % 2 == 0 && direction==Direction.DOWN)
                 animateAttack(imgS);
 
         }
+        // if (Greenfoot.isKeyDown("d")) {
+        //     if (animationCounter % 2 == 0)
+        //         animateAttack(imgD);
+
+        // }
+        // if (Greenfoot.isKeyDown("w")) {
+        //     if (animationCounter % 2 == 0)
+        //         animateAttack(imgW);
+
+        // }
+        // if (Greenfoot.isKeyDown("s")) {
+        //     if (animationCounter % 2 == 0)
+        //         animateAttack(imgS);
+
+        // }
 
         // if(getObjectsInRange(80, Monster.class).size()>0) {
         // monster = getObjectsInRange(80, Monster.class).get(0);
