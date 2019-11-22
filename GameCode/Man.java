@@ -39,7 +39,7 @@ public class Man extends Subject {
         }
     }
 
-    IMonsterFactory monster = null;
+    BaseMonster monster = null;
     Treasure treasure = null;
     private MotionRenderer img, imgW, imgA, imgS, imgD, imgR, imgB, imgL;
 
@@ -74,7 +74,10 @@ public class Man extends Subject {
     }
 
     public void updateDamage(ISubject s) {
-        if (s instanceof Monster) {
+        if(s instanceof BaseMonster) {
+            damage(10);
+        }
+        /*if (s instanceof Monster) {
             damage(1);
             // System.out.println(this.health);
         }
@@ -85,6 +88,7 @@ public class Man extends Subject {
         if (s instanceof Monster2 ) {
             damage(1);
         }
+        */
         if (s instanceof banana) {
             heal(5);
         }
@@ -206,18 +210,18 @@ public class Man extends Subject {
 
         // if(getObjectsInRange(80, Monster.class).size()>0) {
         // monster = getObjectsInRange(80, Monster.class).get(0);
-        monster = (Monster) getOneIntersectingObject(Monster.class);
+        monster = (BaseMonster) getOneIntersectingObject(BaseMonster.class);
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
                 || Greenfoot.isKeyDown("s")) {
             if (null != monster)
-                ((Monster) monster).updateDamage(this);
+                 monster.updateDamage(this);
         }
 
         // }
         // if (getObjectsInRange(80, Demon.class).size() > 0) {
         // monster = getObjectsInRange(80, Demon.class).get(0);
-        monster = (Demon) getOneIntersectingObject(Demon.class);
-        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
+        //monster = (Demon) getOneIntersectingObject(Demon.class);
+        /*if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
                 || Greenfoot.isKeyDown("s")) {
             if (null != monster)
                 ((Demon) monster).updateDamage(this);
@@ -228,7 +232,7 @@ public class Man extends Subject {
                 || Greenfoot.isKeyDown("s")) {
             if (null != monster)
                 ((Monster2) monster).updateDamage(this);
-        }
+        }*/
         // }
         // if (getObjectsInRange(80, Treasure.class).size() > 0) {
         // treasure = getObjectsInRange(80, Treasure.class).get(0);
