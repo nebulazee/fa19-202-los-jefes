@@ -14,6 +14,7 @@ public class Monster extends Subject implements IMonsterFactory
      */
     Man man=null;
     int health=1000;
+    WeaponSingleton weaponInstance;
     ISubject scoreBoardObs;
     boolean monsterDead=false;
     int c=1;

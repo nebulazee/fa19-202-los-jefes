@@ -16,6 +16,7 @@ public class BaseWorld extends World
      */
     Scoreboardmain scoreboardmain;
     Textboxmain textboxmain;
+    WeaponSingleton weapon;
     //BottomText bottomtext;
 
     final protected int max_width, min_width;
@@ -37,6 +38,7 @@ public class BaseWorld extends World
         addObject(scoreboardmain,400,50);
         textboxmain = new Textboxmain();
         addObject(textboxmain,400,700);
+        weapon = weapon.getInstance();
         //bottomtext = new BottomText();
         //addObject(bottomtext,400,680);
         /*

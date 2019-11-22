@@ -23,7 +23,7 @@ public class TreasureFactory
      * @param  y   a sample parameter for a method
      * @return     the sum of x and y 
      */
-    public Treasure getTreasure(int no)
+    public Treasure getTreasure()
     {
         // put your code here
        int randomNumber = Greenfoot.getRandomNumber(3); 
