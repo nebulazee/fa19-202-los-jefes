@@ -63,9 +63,13 @@ public class Man extends Subject {
         length = getImage().getWidth();
         // gif = new GifImage("skeleton-club.gif");
         // gif.resizeImages(60,60);
-
+        if((Scoreboard)scoreBoardObs!=null){
+            this.health=((Scoreboard)scoreBoardObs).manVal;
+            this.gold=((Scoreboard)scoreBoardObs).goldCount;
+            ((Scoreboard) scoreBoardObs).setValue(health);
+            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+        }
         setImage(img);
-        // ((Scoreboard) scoreBoardObs).setGoldCount(gold);
 
     }
 
@@ -77,6 +81,9 @@ public class Man extends Subject {
         if (s instanceof Demon) {
             damage(1);
             // System.out.println(this.health);
+        }
+        if (s instanceof Monster2 ) {
+            damage(1);
         }
         if (s instanceof banana) {
             heal(5);
@@ -144,6 +151,12 @@ public class Man extends Subject {
     }
 
     public void act() {
+       if((Scoreboard)scoreBoardObs!=null){
+            this.health=((Scoreboard)scoreBoardObs).manVal;
+            this.gold=((Scoreboard)scoreBoardObs).goldCount;
+            ((Scoreboard) scoreBoardObs).setValue(health);//
+            ((Scoreboard) scoreBoardObs).setGoldCount(gold);//
+        }
 
         movement();
         checkGold();
@@ -204,6 +217,12 @@ public class Man extends Subject {
                 ((Demon) monster).updateDamage(this);
         }
 
+        monster = (Monster2) getOneIntersectingObject(Monster2.class);
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
+                || Greenfoot.isKeyDown("s")) {
+            if (null != monster)
+                ((Monster2) monster).updateDamage(this);
+        }
         // }
         // if (getObjectsInRange(80, Treasure.class).size() > 0) {
         // treasure = getObjectsInRange(80, Treasure.class).get(0);
