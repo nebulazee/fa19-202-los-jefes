@@ -16,6 +16,8 @@ public class Demon extends Subject implements IMonsterFactory
     int health=1000;
     ISubject scoreBoardObs;
     boolean monsterDead=false;
+    int weaponCode = 0;
+    int attackpower=1;
     int c=1;
     class MotionRenderer {
         String file;
@@ -44,9 +46,25 @@ public class Demon extends Subject implements IMonsterFactory
                 this.getWorld().removeObject(this);
                 ((Actor)s).getWorld().addObject(new Gold(), this.getRandomNumber (300,500) , this.getRandomNumber (300,500));
                 //this.getWorld(). (new Gold(),300,100);
+                ((Scoreboard)scoreBoardObs).monsterDead();
                 }
                 else {
-                this.health = this.health-1;
+                    /*
+                     * here the weapon power is taken from weapon singleton class  
+                     */
+                weaponCode = 0;//WeaponSingleton.getInstance().getCurrentWeapon();
+                switch(weaponCode){
+                case 0: attackpower = 1;
+                        break;
+                case 1: attackpower = 5;
+                        break;
+                case 2: attackpower = 10;
+                        break;
+                case 3: attackpower = 15;
+                        break;
+                default:attackpower = 2;
+                }
+                this.health = this.health-attackpower;
                 notifyObservers(s);
                 // System.out.println(this.health);
               }
@@ -96,6 +114,7 @@ public class Demon extends Subject implements IMonsterFactory
             }
             else {
                 animasi();
+                
                 
                 man.updateDamage(this);
               
