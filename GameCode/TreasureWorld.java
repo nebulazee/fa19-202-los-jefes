@@ -28,9 +28,9 @@ public class TreasureWorld extends BaseWorld
     {
         
         TreasureFactory tf = new TreasureFactory();
-        Treasure treasure1 = tf.getTreasure(2);
+        Treasure treasure = tf.getTreasure();
         //treasure1.setLocation(400,400);
-        addObject(treasure1, 400, 350);
+        addObject(treasure, 400, 350);
         
         
         man = new Man();
