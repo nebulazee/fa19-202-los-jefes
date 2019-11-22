@@ -402,17 +402,17 @@ public class Man extends Subject implements IScoreboardObserver
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
         if (p != null) {
             switch (p.getFlag()) {
-            case 'N':
-                WorldManager.signal("north");
+            case NORTH:
+                WorldManager.signal(Signal.NORTH);
                 break;
-            case 'S':
-                WorldManager.signal("south");
+            case SOUTH:
+                WorldManager.signal(Signal.SOUTH);
                 break;
-            case 'E':
-                WorldManager.signal("east");
+            case EAST:
+                WorldManager.signal(Signal.EAST);
                 break;
-            case 'W':
-                WorldManager.signal("west");
+            case WEST:
+                WorldManager.signal(Signal.WEST);
                 break;
             default:
                 break;
