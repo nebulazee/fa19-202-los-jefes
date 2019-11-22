@@ -6,19 +6,18 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Man extends Subject {
+public class Man extends Subject implements IScoreboardObserver
+{
     /**
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
      */
-    ISubject scoreBoardObs = null;
-    int health = 1000000;
+    int health = 1000;
     int gold = 30;
     int animationCounter = 0;
     int timer = 1;
     boolean manDead = false;
     boolean trackMovement = false;
-    Textbox textbox = null;
     int speed = 2;
     int length;
     int direction = 0;
@@ -39,18 +38,12 @@ public class Man extends Subject {
         }
     }
 
-    IMonsterFactory monster = null;
+    BaseMonster monster = null;
     Treasure treasure = null;
     private MotionRenderer img, imgW, imgA, imgS, imgD, imgR, imgB, imgL;
 
-    public Man() {
-        // img = new GreenfootImage("warrior.png");
-        // imgW= new GreenfootImage("warrior-front-attack.png");
-        // imgD= new GreenfootImage("warrior-right-attack.png");
-        // imgA= new GreenfootImage("warrior-left-attack.png");
-        // imgS= new GreenfootImage("warrior-back-attack.png");
-        // img.scale(60,60);
-
+    public Man() 
+    {
         img = new MotionRenderer("warrior.png");
         imgW = new MotionRenderer("warrior-front-attack.png");
         imgD = new MotionRenderer("warrior-right-attack.png");
@@ -63,27 +56,19 @@ public class Man extends Subject {
         length = getImage().getWidth();
         // gif = new GifImage("skeleton-club.gif");
         // gif.resizeImages(60,60);
-        if((Scoreboard)scoreBoardObs!=null){
-            this.health=((Scoreboard)scoreBoardObs).manVal;
-            this.gold=((Scoreboard)scoreBoardObs).goldCount;
-            ((Scoreboard) scoreBoardObs).setValue(health);
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
-        }
+
+        Scoreboard.addScoreboardObserver(this);
+
+        health = Scoreboard.getHealth();
+        gold = Scoreboard.getGoldCount();
+
         setImage(img);
 
     }
 
     public void updateDamage(ISubject s) {
-        if (s instanceof Monster) {
-            damage(1);
-            // System.out.println(this.health);
-        }
-        if (s instanceof Demon) {
-            damage(1);
-            // System.out.println(this.health);
-        }
-        if (s instanceof Monster2 ) {
-            damage(1);
+        if(s instanceof BaseMonster) {
+            damage(10);
         }
         if (s instanceof banana) {
             heal(5);
@@ -91,29 +76,12 @@ public class Man extends Subject {
         if (s instanceof Goblin) {
             damage(50);
         }
-        notifyObservers(s);
     }
 
-    public void notifyObservers(ISubject s) {
-        // man shud update score board observer
-        if (s != null) {
-            ((Scoreboard) scoreBoardObs).setValue(health);
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
-
-        }
+    public void updateScoreboard() {
+        Scoreboard.setPlayerStats(this);
     }
 
-    public void addObservers(ISubject s) {
-        scoreBoardObs = s;
-    }
-
-    private void checktouching() {
-        if (isTouching(banana.class)) {
-            removeTouching(banana.class);
-            this.updateDamage(new banana());
-            // notifyObservers() i.e scoreboard
-        }
-    }
 
     public void setImage(MotionRenderer img) {
         // System.err.println("Man image is set to "+img.fileName);
@@ -123,17 +91,25 @@ public class Man extends Subject {
     private void checkGold() {
         if (this.getOneIntersectingObject(Gold.class) != null) {
             gold += 15;
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+            Scoreboard.setPlayerStats(this);
             this.removeTouching(Gold.class);
         }
     }
 
-    public void heal(int hpUp) { health += hpUp; }
-    public void damage(int hit) { health -= hit; }
+    public void heal(int hpUp) 
+    { 
+        health += hpUp; 
+        updateScoreboard();
+    }
+    public void damage(int hit) 
+    {
+        health -= hit;
+        updateScoreboard();
+    }
     public void addGold(int reward)
     {
         gold += reward;
-        ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+        updateScoreboard();
     }
 
     public Boolean chargeGold(int cost)
@@ -141,7 +117,7 @@ public class Man extends Subject {
         if (gold >= cost)
         {
             gold -= cost;
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+            updateScoreboard();
             return true;
         }
         else
@@ -150,14 +126,15 @@ public class Man extends Subject {
         }
     }
 
-    public void act() {
-       if((Scoreboard)scoreBoardObs!=null){
-            this.health=((Scoreboard)scoreBoardObs).manVal;
-            this.gold=((Scoreboard)scoreBoardObs).goldCount;
-            ((Scoreboard) scoreBoardObs).setValue(health);//
-            ((Scoreboard) scoreBoardObs).setGoldCount(gold);//
-        }
+    public void scoreboardUpdateEvent()
+    {
+        this.health = Scoreboard.getHealth();
+        this.gold = Scoreboard.getGoldCount();
+    }
 
+    public void act() 
+    {
+        updateTooltips();
         movement();
         checkGold();
         trackMovement = Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
@@ -167,7 +144,6 @@ public class Man extends Subject {
 
             setImage(img);
         }
-        checktouching();
         attack();
         animationCounter++;
 
@@ -178,40 +154,29 @@ public class Man extends Subject {
     private void attack() {
 
         if (Greenfoot.isKeyDown("a")) {
-            if (animationCounter % 2 == 0)
+            if (animationCounter % 2 == 0 && direction==Direction.LEFT)
                 animateAttack(imgA);
-
-        }
-        if (Greenfoot.isKeyDown("d")) {
-            if (animationCounter % 2 == 0)
+            if (animationCounter % 2 == 0 && direction==Direction.RIGHT)
                 animateAttack(imgD);
-
-        }
-        if (Greenfoot.isKeyDown("w")) {
-            if (animationCounter % 2 == 0)
+            if (animationCounter % 2 == 0 && direction==Direction.UP)
                 animateAttack(imgW);
-
-        }
-        if (Greenfoot.isKeyDown("s")) {
-            if (animationCounter % 2 == 0)
+            if (animationCounter % 2 == 0 && direction==Direction.DOWN)
                 animateAttack(imgS);
 
         }
 
-        // if(getObjectsInRange(80, Monster.class).size()>0) {
-        // monster = getObjectsInRange(80, Monster.class).get(0);
-        monster = (Monster) getOneIntersectingObject(Monster.class);
+        monster = (BaseMonster) getOneIntersectingObject(BaseMonster.class);
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
                 || Greenfoot.isKeyDown("s")) {
             if (null != monster)
-                ((Monster) monster).updateDamage(this);
+                 monster.updateDamage(this);
         }
 
         // }
         // if (getObjectsInRange(80, Demon.class).size() > 0) {
         // monster = getObjectsInRange(80, Demon.class).get(0);
-        monster = (Demon) getOneIntersectingObject(Demon.class);
-        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
+        //monster = (Demon) getOneIntersectingObject(Demon.class);
+        /*if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
                 || Greenfoot.isKeyDown("s")) {
             if (null != monster)
                 ((Demon) monster).updateDamage(this);
@@ -222,7 +187,7 @@ public class Man extends Subject {
                 || Greenfoot.isKeyDown("s")) {
             if (null != monster)
                 ((Monster2) monster).updateDamage(this);
-        }
+        }*/
         // }
         // if (getObjectsInRange(80, Treasure.class).size() > 0) {
         // treasure = getObjectsInRange(80, Treasure.class).get(0);
@@ -286,24 +251,6 @@ public class Man extends Subject {
 
 
     public void movePlayer(){
-        String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
-        StringBuffer msg = new StringBuffer();
-        msg.append(title);
-        msg.append("\n\n");
-        GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
-        if (obj != null)
-        {
-            msg.append(obj.getCommandTooltips());
-            Textbox.getInstance().setMsg(msg.toString());
-            if (Greenfoot.isKeyDown("q"))
-            {
-                obj.checkAndRunCommand("q");
-            }
-        }
-        else
-        {
-            Textbox.getInstance().setMsg(msg.toString());
-        }
 
         int currentX = getX();
         int currentY = getY();
@@ -317,6 +264,7 @@ public class Man extends Subject {
         Actor treasure = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Treasure.class);
         Actor score = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Scoreboardmain.class);
         Actor text = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Textboxmain.class);
+        //Actor gob = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Goblin.class);
         
         if(tavern==null && treasure==null && score==null && text==null){
             setLocation(currentX + changeX,currentY + changeY);
@@ -324,6 +272,30 @@ public class Man extends Subject {
                 setLocation(currentX - changeX,currentY - changeY);
             }
            
+        }
+    }
+
+    private void updateTooltips()
+    {
+        String title;
+        GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
+        if (obj != null)
+        {
+            title = obj.getActorTitle();
+            StringBuffer msg = new StringBuffer();
+            msg.append(title);
+            msg.append("\n\n");
+            msg.append(obj.getCommandTooltips());
+            Textboxmain.setTextboxMsg(msg.toString());
+            if (Greenfoot.isKeyDown("q"))
+            {
+                obj.checkAndRunCommand("q");
+            }
+        }
+        else
+        {
+            title = WorldManager.getCurrentWorld().getTitle();
+            Textboxmain.setTextboxMsg(title.toString());
         }
     }
     
@@ -357,7 +329,7 @@ public class Man extends Subject {
     // public void movement() {
     //     int x = getX();
     //     int y = getY();
-    //     String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
+    //     String title = ((BaseWorld)WorldManager.getCurrentWorld()).getTitle();
     //     StringBuffer msg = new StringBuffer();
     //     msg.append(title);
     //     msg.append("\n\n");
@@ -365,7 +337,7 @@ public class Man extends Subject {
     //     if (obj != null)
     //     {
     //         msg.append(obj.getCommandTooltips());
-    //         Textbox.getInstance().setMsg(msg.toString());
+    //         Textboxmain.setTextboxMsg(msg.toString());
     //         if (Greenfoot.isKeyDown("q"))
     //         {
     //             obj.checkAndRunCommand("q");
@@ -373,7 +345,7 @@ public class Man extends Subject {
     //     }
     //     else
     //     {
-    //         Textbox.getInstance().setMsg(msg.toString());
+    //         Textboxmain.setTextboxMsg(msg.toString());
     //     }
     //     if(Tavern == null){
     //     if (Greenfoot.isKeyDown("up")) {
@@ -430,17 +402,17 @@ public class Man extends Subject {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
         if (p != null) {
             switch (p.getFlag()) {
-            case 'N':
-                WorldManager.signal("north");
+            case NORTH:
+                WorldManager.signal(Signal.NORTH);
                 break;
-            case 'S':
-                WorldManager.signal("south");
+            case SOUTH:
+                WorldManager.signal(Signal.SOUTH);
                 break;
-            case 'E':
-                WorldManager.signal("east");
+            case EAST:
+                WorldManager.signal(Signal.EAST);
                 break;
-            case 'W':
-                WorldManager.signal("west");
+            case WEST:
+                WorldManager.signal(Signal.WEST);
                 break;
             default:
                 break;
@@ -468,7 +440,7 @@ public class Man extends Subject {
     }
 
     public boolean hitMonster() {
-        if (isTouching(Monster.class)) {
+        if (isTouching(BaseMonster.class)) {
             return true;
         } else {
             return false;

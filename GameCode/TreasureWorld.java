@@ -33,7 +33,7 @@ public class TreasureWorld extends BaseWorld
         addObject(treasure, 400, 350);
         
         
-        man = new Man();
-        addObject(man,287,355);
+        //man = new Man();
+        //addObject(man,287,355);
     }
 }

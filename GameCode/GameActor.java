@@ -10,6 +10,7 @@ import java.util.*;
 public abstract class GameActor extends Actor
 {
     protected HashMap<String, IPlayerCommand> commandMap;
+    private String actorTitle;
     
     GameActor()
     {
@@ -58,4 +59,8 @@ public abstract class GameActor extends Actor
         }
         return sBuf.toString();
     }
+
+    protected void setActorTitle(String t) { actorTitle = t; }
+
+    public String getActorTitle() { return actorTitle; }
 }

@@ -1,3 +1,4 @@
+
 import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 
@@ -10,14 +11,15 @@ import java.util.*;
 public class WorldManager extends GameActor
 {
     // instance variables - replace the example below with your own
-    World[][] worldMap;
-    public World currentWorld;
-    
+    BaseWorld[][] worldMap;
+    public BaseWorld currentWorld;
     static WorldManager instance;
     
     int worldHeight = 4;
     int worldWidth = 3;
-
+    enum WorldType{
+        MONSTER,ANIMAL,TREASURE;
+    }
     /**
      * Constructor for objects of class WorldManager
      */
@@ -25,6 +27,11 @@ public class WorldManager extends GameActor
     {
     }
     
+    public static BaseWorld getCurrentWorld()
+    {
+        return instance.currentWorld;
+    }
+
     public static WorldManager getInstance()
     {
         if (instance == null)
@@ -48,16 +55,19 @@ public class WorldManager extends GameActor
     
     private void startUp()
     {
-        worldMap = new World[worldHeight][worldWidth];
+        Scoreboard.getScoreboardInstance();
+        Textboxmain.getInstance();
+        worldMap = new BaseWorld[worldHeight][worldWidth];
         constructWorlds();
+        currentWorld.getTextbox().setMsg(currentWorld.getTitle() + "\n\n" + "");
     }
 
     private void constructWorlds()
     {
-        List<String> worldTypes = new ArrayList<>();
-        worldTypes.add("monster");
-        worldTypes.add("animal");
-        worldTypes.add("treasure");
+        List<WorldType> worldTypes = new ArrayList<>();
+        worldTypes.add(WorldType.MONSTER);
+        worldTypes.add(WorldType.ANIMAL);
+        worldTypes.add(WorldType.TREASURE);
         Random rand = new Random(); 
         
         int monsters = 3;
@@ -67,29 +77,49 @@ public class WorldManager extends GameActor
         {
             for(int j=0; j<worldWidth; j++)
             {
-                if (monsters == 0) { worldTypes.remove("monster"); }
-                if (treasures == 0) { worldTypes.remove("treasure"); }
+                if (monsters == 0) { worldTypes.remove(WorldType.MONSTER); }
+                if (treasures == 0) { worldTypes.remove(WorldType.TREASURE); }
                 
                 if (i == 3 && j == 2)
                 {
-                    World world = new TavernWorld(constructConfigurationCode(i, j)); 
+                    BaseWorld world = new TavernWorld(constructConfigurationCode(i, j)); 
                     worldMap[i][j] = world;
                     currentWorld = world;
                     Greenfoot.setWorld(world);
                 }
                 else
                 {
-                    String type = worldTypes.get(rand.nextInt(worldTypes.size()));
+                    WorldType type = worldTypes.get(rand.nextInt(worldTypes.size()));
                     switch(type)
                     {
-                        case "monster":
-                            worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j));
+                        case MONSTER:
+                            MonsterWorld mw = new MonsterWorld(constructConfigurationCode(i, j));
+                            if(monsters == 3) {
+                                mw.setMonster(new BaseMonster("Demon1.png","Demon2.png"));
+                            }
+                            else if(monsters == 2) {
+                                mw.setMonster(new BaseMonster("0.png","1.png"));
+                            }
+                            else {
+                                mw.setMonster(new BaseMonster("ogre1.png","ogre2.png"));
+                            }
+                            worldMap[i][j] = mw;//new MonsterWorld(constructConfigurationCode(i, j)){
+                                /*if(monsters==3){
+                                 public void setMonster(new BaseMonster("Demon1.png","Demon2.png"));
+                                }
+                                else if(monsters==2) 
+                                 setMonster(new BaseMonster("0.png","1.png"));
+                                else
+                                 setMonster(new BaseMonster("ogre1.png","ogre2.png"));  
+                                 
+                                
+                            };*/
                             monsters--;
                             break;
-                        case "animal":
+                        case ANIMAL:
                             worldMap[i][j] = new AnimalWorld(constructConfigurationCode(i, j));
                             break;
-                        case "treasure":
+                        case TREASURE:
                             worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j));
                             treasures--;
                             break;
@@ -113,29 +143,29 @@ public class WorldManager extends GameActor
     }
     
     /**
-     * Receives Signal From World
+     * Receives Signal From BaseWorld
      * 
      * @param  signal  north, south, west, or east
      * @return void
      */
-    public static void signal(String signal)
+    public static void signal(Signal signal)
     {
         switch(signal)
         {
-            case "west": instance.switchWorlds("left"); break;
-            case "east": instance.switchWorlds("right"); break;
-            case "north": instance.switchWorlds("up"); break;
-            case "south": instance.switchWorlds("down"); break;
+            case WEST: instance.switchWorlds(Signal.LEFT); break;
+            case EAST: instance.switchWorlds(Signal.RIGHT); break;
+            case NORTH: instance.switchWorlds(Signal.UP); break;
+            case SOUTH: instance.switchWorlds(Signal.DOWN); break;
             default: break;
         }
         // System.out.println(displayWorldMap());
     }
     
-    private void switchWorlds(String direction)
+    private void switchWorlds(Signal s)
     {
         int hor = 0;
         int ver = 0;
-        char playerSpot;
+        Signal playerSpot;
         
         for(int i=0; i<worldHeight; i++)
         {
@@ -150,34 +180,33 @@ public class WorldManager extends GameActor
         }
         int new_hor = hor;
         int new_ver = ver;
-        switch(direction)
+        switch(s)
         {
-            case "left":
+            case LEFT:
                 if (hor-1 >=0) { new_hor = hor - 1; }
-                playerSpot = 'R';
+                playerSpot = Signal.R;
                 break;
-            case "right":
+            case RIGHT:
                 if (hor+1 < worldWidth) { new_hor = hor + 1; }
-                playerSpot = 'L';
+                playerSpot = Signal.L;
                 break;
-            case "up":
+            case UP:
                 if (ver-1 >=0) { new_ver = ver - 1; }
-                playerSpot = 'B';
+                playerSpot = Signal.B;
                 break;
-            case "down":
+            case DOWN:
                 if (ver+1 < worldHeight) { new_ver = ver + 1; }
-                playerSpot = 'T';
+                playerSpot = Signal.T;
                 break;
             default:
-                playerSpot = 'X';
+                playerSpot = Signal.X;
                 break;
         }
         
-        // System.out.println("Switching screens from " + Integer.valueOf(getWorldId(hor, ver)) + " to " + Integer.valueOf(getWorldId(new_hor, new_ver)));
-        
         worldMap[ver][hor] = currentWorld;
         currentWorld = worldMap[new_ver][new_hor];
-        ((BaseWorld)currentWorld).setPlayerSpot(playerSpot);
+        currentWorld.setPlayerSpot(playerSpot);
+        currentWorld.getTextbox().setMsg(currentWorld.getTitle() + "\n\n" + "");
         Greenfoot.setWorld(currentWorld);
         Greenfoot.start();
 
@@ -194,12 +223,12 @@ public class WorldManager extends GameActor
         StringBuffer display = new StringBuffer();
         display.append("\u2015 \u2015 \u2015\n");
         
-        for (World[] wList: instance.worldMap)
+        for (BaseWorld[] wList: instance.worldMap)
         {
             // display.append("|");
             StringBuffer items = new StringBuffer();
 
-            for (World w: wList)
+            for (BaseWorld w: wList)
             {
                 items.append(getCode(w) + " ");
             }
@@ -214,7 +243,7 @@ public class WorldManager extends GameActor
         
     }
     
-    private static String getCode(World w)
+    private static String getCode(BaseWorld w)
     {
         String code;
         switch(w.getClass().getName())

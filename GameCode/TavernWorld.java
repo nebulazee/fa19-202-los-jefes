@@ -27,17 +27,11 @@ public class TavernWorld extends BaseWorld
         Tavern tavern = new Tavern();
         addObject(tavern, getWidth()/2, getHeight()/2);
 
-        Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         // System.out.println("Added scoreboard");
         // addObject(scoreboard,30,100);
 
-        man = new Man();
-        addObject(man,287,355);
-
-        man.addObservers(scoreboard);      
 
         tavern.setLocation(386,348);
-        Textbox.getInstance().setMsg(getTitle() + "\n\n" + "");
         //WorldManager.getNewInstance();
     }
 }

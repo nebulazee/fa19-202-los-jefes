@@ -9,29 +9,29 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class Portal extends Subject
 {
     
-    public Character flag ; 
+    public Signal flag ; 
     
     
-    Portal(Character flag)
+    Portal(Signal flag)
     {
         this.flag = flag; 
         
-        if(flag == 'E')
+        if(flag == Signal.EAST)
         {
             setImage("portal-east.png");
             getImage().scale(50,80);
         }
-        if(flag == 'W')
+        if(flag == Signal.WEST)
         {
             setImage("portal-west.png");
             getImage().scale(50,80);
         }
-        if(flag == 'S')
+        if(flag == Signal.SOUTH)
         {
             setImage("portal-south.png");
             getImage().scale(80,50);
         }
-        if(flag == 'N')
+        if(flag == Signal.NORTH)
         {
             setImage("portal-north.png");
             getImage().scale(80,50);
@@ -39,7 +39,7 @@ public class Portal extends Subject
 
     }
     
-    public Character getFlag()
+    public Signal getFlag()
     {
         return flag;   
         
@@ -52,34 +52,6 @@ public class Portal extends Subject
      */
     public void act() 
     {
-        // Add your action code here.
-        //timer =timer +1;
-        //if(timer%30 == 0)
-        //{
-        //  switch(count) 
-        //{
-        //    case 0:
-        //    setRotation(0);
-        //    count = 1;
-        //    break;
- 
-        //    case 1:
-        //    setRotation(-90);
-        //    count=2;
-        //    break;
- 
-        //    case 2:
-        //    setRotation(-180);
-        //    count=3;
-        //    break;
- 
-        //    case 3:
-        //    setRotation( -270);
-        //    count=0;
-        //    break;
-        //}
-            
-        //}
         
     }    
     

@@ -1,63 +1,126 @@
-import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
+import java.util.*;
 
 /**
  * Write a description of class Scoreboard here.
  * 
- * @author (your name) 
+ * @author (your name)
  * @version (a version number or a date)
  */
-public class Scoreboard extends Subject
-{
+public class Scoreboard extends Subject {
     /**
      * Act - do whatever the Scoreboard wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-     GreenfootImage img;
-     GreenfootImage imgM;
-     int monsterVal=1000;
-     int manVal=1000000;
-     static int goldCount=30;
-     private static Scoreboard scoreboard;
-     private Scoreboard(){
-       img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
-                                     Color.WHITE, Color.BLACK);
-//       imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
-        goldCount = 30;
-        this.setLocation(100,100);
-        setImage(img);
-        //setImage(imgM);
-        }
-       public int getGoldCount(){
-           return goldCount;
-        }
-        public static synchronized  Scoreboard getScoreboardInstance(){
-        if(scoreboard == null) {
-            goldCount=30;
-           scoreboard=new Scoreboard();
-        }
-            return scoreboard;
-        }
-    public void act() 
+    GreenfootImage img;
+    GreenfootImage imgM;
+    int monsterVal = 1000;
+    int manVal = 1000000;
+    int goldCount = 30;
+    int monsterKilledCount = 0;
+    int currentWeapon;
+
+    private ArrayList<IScoreboardObserver> observers ;
+
+    private static Scoreboard scoreboard;
+
+    private Scoreboard() 
     {
-        // Add your action code here.
-    }   
-    public void updateDamage(ISubject s){}
-    public void setGoldCount(int gold) {
-        goldCount = gold;
+        observers = new ArrayList<IScoreboardObserver>() ;
+
+        goldCount = 30;
+        monsterKilledCount = 0;
+        currentWeapon = 0;
+
+        this.setLocation(100, 100);
+    }
+
+    public int getMonsterKillCount() {
+        return monsterKilledCount;
+    }
+
+    public static synchronized Scoreboard getScoreboardInstance() {
+        if (scoreboard == null) {
+            scoreboard = new Scoreboard();
+        }
+        return scoreboard;
+    }
+
+    public void act() {
+
+    }
+
+    public void updateDamage(ISubject s) {
+    }
+
+    public static void setPlayerStats(Man man) 
+    {
+        scoreboard.manVal = man.health;
+        scoreboard.goldCount = man.gold;
+
+        notifyScoreboardObservers(((IScoreboardObserver)man));
+
+    }
+
+    public static int getGoldCount() 
+    {
+        return scoreboard.goldCount;
+    }
+
+    public static int getHealth() 
+    {
+        return scoreboard.manVal;
+    }
+
+    public static void monsterDead() {
+        scoreboard.monsterKilledCount++;
+        System.out.println("Monster killed so far " + scoreboard.monsterKilledCount);
+
+    }
+
+    public static void updateWeapon(int no)
+    {
+        if(no == 1)
+        {
+            scoreboard.currentWeapon = 1;
+            System.out.println("Current Weapon: 1");
+        }
+        else if(no == 2)
+        {
+            scoreboard.currentWeapon = 2;
+            System.out.println("Current Weapon: 2");
+        }
+        else if(no == 3)
+        {
+            scoreboard.currentWeapon = 3;
+            System.out.println("Current Weapon: 3");
+        }
+        notifyScoreboardObservers(null);
+
     }
     
-    public void setValue(int val)
+    public static int getCurrentWeapon()
     {
-        manVal=val;
-        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
-                                     Color.WHITE, Color.BLACK);
-                      
-        setImage(img);
+        return scoreboard.currentWeapon;
     }
-    public void setMonsterHealth(int val){
-        monsterVal=val;
-        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
-                                     Color.WHITE, Color.BLACK);
-        setImage(img);
+
+    public static void addScoreboardObserver( IScoreboardObserver obs ) 
+    {
+        scoreboard.observers.add( obs ) ;
     }
+
+    /**
+     * Notify all Observers of Update Event
+     */
+    public static void notifyScoreboardObservers(IScoreboardObserver updater)
+    {
+        for (int i=0; i<scoreboard.observers.size(); i++)
+        {
+            IScoreboardObserver observer = scoreboard.observers.get(i);
+            if (updater != null && updater != observer)
+            {
+                observer.scoreboardUpdateEvent() ;
+            }
+        }
+    }    
 }

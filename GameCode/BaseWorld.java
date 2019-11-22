@@ -16,7 +16,6 @@ public class BaseWorld extends World
      */
     Scoreboardmain scoreboardmain;
     Textboxmain textboxmain;
-    WeaponSingleton weapon;
     //BottomText bottomtext;
 
     final protected int max_width, min_width;
@@ -24,21 +23,21 @@ public class BaseWorld extends World
     protected int portalOffset = 30;
     protected String tooltipTitle;
     
-    MonsterGenerator mg;
     public BaseWorld(String config)
     {
         super(800, 800, 1); 
         tooltipTitle = "";
-        mg = new MonsterGenerator();
         max_width=800;
         max_height=600;
         min_width=0;
         min_height=95;
+        man = new Man();
+        addObject(man,287,355);
+
         scoreboardmain=new Scoreboardmain();
         addObject(scoreboardmain,400,50);
         textboxmain = new Textboxmain();
         addObject(textboxmain,400,700);
-        weapon = weapon.getInstance();
         //bottomtext = new BottomText();
         //addObject(bottomtext,400,680);
         /*
@@ -58,25 +57,25 @@ public class BaseWorld extends World
             {
                 case "N": 
                 {
-                    Portal p = new Portal('N');
+                    Portal p = new Portal(Signal.NORTH);
                     addObject(p, max_width/2, min_height + portalOffset);
                     break;
                 }
                 case "S": 
                 {
-                    Portal p = new Portal('S');
+                    Portal p = new Portal(Signal.SOUTH);
                     addObject(p, max_width/2, max_height - portalOffset);
                     break;
                 }
                 case "W":
                 {
-                    Portal p = new Portal('W');
+                    Portal p = new Portal(Signal.WEST);
                     addObject(p, min_width + portalOffset, min_height + (max_height - min_height)/2);
                     break;
                 }
                 case "E":
                 {
-                    Portal p = new Portal('E');
+                    Portal p = new Portal(Signal.EAST);
                     addObject(p, max_width - portalOffset, min_height + (max_height - min_height)/2);
                     break;
                 }
@@ -85,21 +84,21 @@ public class BaseWorld extends World
         }
     }
     
-    public void setPlayerSpot(char location)
+    public void setPlayerSpot(Signal location)
     {
         int playerOffset = 60 + portalOffset;
         switch(location)
         {
-            case 'L': // Left
+            case L: // Left
                 man.setLocation(min_width + playerOffset, min_height + (max_height - min_height)/2);
                 break;
-            case 'R': // Right
+            case R: // Right
                 man.setLocation(max_width - playerOffset, min_height + (max_height - min_height)/2);
                 break;
-            case 'T': // Top
+            case T: // Top
                 man.setLocation(max_width/2, min_height + playerOffset);
                 break;
-            case 'B': // Bottom
+            case B: // Bottom
                 man.setLocation(max_width/2, max_height - playerOffset);
                 break;
 
@@ -111,5 +110,15 @@ public class BaseWorld extends World
     public String getTitle()
     {
         return tooltipTitle;
+    }
+
+    public Textboxmain getTextbox()
+    {
+        return textboxmain;
+    }
+
+    public Scoreboardmain getScoreboard()
+    {
+        return scoreboardmain;
     }
 }
