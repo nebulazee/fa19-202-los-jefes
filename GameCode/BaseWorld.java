@@ -23,12 +23,10 @@ public class BaseWorld extends World
     protected int portalOffset = 30;
     protected String tooltipTitle;
     
-    MonsterGenerator mg;
     public BaseWorld(String config)
     {
         super(800, 800, 1); 
         tooltipTitle = "";
-        mg = new MonsterGenerator();
         max_width=800;
         max_height=600;
         min_width=0;

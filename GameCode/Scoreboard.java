@@ -32,10 +32,7 @@ public class Scoreboard extends Subject {
         monsterKilledCount = 0;
         currentWeapon = 0;
 
-        // img = new GreenfootImage("    Health : " + manVal + "\n" + "    Monster :" + monsterVal, 20, Color.WHITE,
-                // Color.BLACK);
         this.setLocation(100, 100);
-        // setImage(img);
     }
 
     public int getMonsterKillCount() {
@@ -56,21 +53,13 @@ public class Scoreboard extends Subject {
     public void updateDamage(ISubject s) {
     }
 
-    public static void setGoldCount(int gold) 
+    public static void setPlayerStats(Man man) 
     {
-        scoreboard.goldCount = gold;
-        scoreboard.notifyObservers();
-    }
+        scoreboard.manVal = man.health;
+        scoreboard.goldCount = man.gold;
 
-    public static void setHealth(int val) 
-    {
-        scoreboard.manVal = val;
-        scoreboard.notifyObservers();
+        notifyScoreboardObservers(((IScoreboardObserver)man));
 
-        // img = new GreenfootImage("    Health : " + manVal + "\n" + "    Monster :" + monsterVal, 20, Color.WHITE,
-        //         Color.BLACK);
-
-        // setImage(img);
     }
 
     public static int getGoldCount() 
@@ -81,10 +70,6 @@ public class Scoreboard extends Subject {
     public static int getHealth() 
     {
         return scoreboard.manVal;
-        // img = new GreenfootImage("    Health : " + manVal + "\n" + "    Monster :" + monsterVal, 20, Color.WHITE,
-        //         Color.BLACK);
-
-        // setImage(img);
     }
 
     public static void monsterDead() {
@@ -110,7 +95,7 @@ public class Scoreboard extends Subject {
             scoreboard.currentWeapon = 3;
             System.out.println("Current Weapon: 3");
         }
-        scoreboard.notifyObservers();
+        notifyScoreboardObservers(null);
 
     }
     
@@ -127,12 +112,15 @@ public class Scoreboard extends Subject {
     /**
      * Notify all Observers of Update Event
      */
-    public void notifyObservers()
+    public static void notifyScoreboardObservers(IScoreboardObserver updater)
     {
-        for (int i=0; i<observers.size(); i++)
+        for (int i=0; i<scoreboard.observers.size(); i++)
         {
-            IScoreboardObserver observer = observers.get(i) ;
-            observer.scoreboardUpdateEvent() ;
+            IScoreboardObserver observer = scoreboard.observers.get(i);
+            if (updater != null && updater != observer)
+            {
+                observer.scoreboardUpdateEvent() ;
+            }
         }
     }    
 }
