@@ -97,9 +97,6 @@ public class Man extends Subject implements IScoreboardObserver
             Scoreboard.setGoldCount(gold);
     }
 
-    public void addObservers(ISubject s) {
-        scoreBoardObs = s;
-    }
 
     public void setImage(MotionRenderer img) {
         // System.err.println("Man image is set to "+img.fileName);
