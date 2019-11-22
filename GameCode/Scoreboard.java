@@ -28,6 +28,9 @@ public class Scoreboard extends Subject
         setImage(img);
         //setImage(imgM);
         }
+        public int getMonsterKillCount(){
+        return this.monsterKilledCount;
+        }
        public int getGoldCount(){
            return goldCount;
         }
