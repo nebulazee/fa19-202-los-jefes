@@ -70,6 +70,7 @@ public class Monster2 extends Subject implements IMonsterFactory
                 this.getWorld().removeObject(this);
                 ((Actor)s).getWorld().addObject(new Gold(), Greenfoot.getRandomNumber (300) , Greenfoot.getRandomNumber (300));
                 //this.getWorld(). (new Gold(),300,100);
+                ((Scoreboard)scoreBoardObs).monsterDead();
                 }
                 else {
                     //check here what weapon man has
