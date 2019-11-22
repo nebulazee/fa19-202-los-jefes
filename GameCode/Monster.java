@@ -42,7 +42,7 @@ public class Monster extends Subject implements IMonsterFactory
               if(this.health<=0) {
                 monsterDead = true;
                 this.getWorld().removeObject(this);
-                ((Actor)s).getWorld().addObject(new Gold(), Greenfoot.getRandomNumber (300) , Greenfoot.getRandomNumber (300));
+                ((Actor)s).getWorld().addObject(new Gold(), this.getRandomNumber (300,500) , this.getRandomNumber (300,500));
                 //this.getWorld(). (new Gold(),300,100);
                 }
                 else {
@@ -105,4 +105,10 @@ public class Monster extends Subject implements IMonsterFactory
         }
         // Add your action code here.
     }    
+    
+    public int getRandomNumber(int start,int end)
+    {
+       int normal = Greenfoot.getRandomNumber(end-start+1);
+       return normal+start;
+    }
 }
