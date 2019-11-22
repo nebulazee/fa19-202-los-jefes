@@ -19,6 +19,15 @@ public class Man extends Subject {
     boolean manDead = false;
     boolean trackMovement = false;
     Textbox textbox = null;
+    int speed = 2;
+    int length;
+    int direction = 0;
+    class Direction {
+        public static final int UP = 270;
+        public static final int DOWN = 90;
+        public static final int LEFT = 180;
+        public static final int RIGHT = 0;
+    }
 
     class MotionRenderer {
         String file;
@@ -51,12 +60,16 @@ public class Man extends Subject {
         imgB = new MotionRenderer("warrior-back.png");
         imgL = new MotionRenderer("warrior-left.png");
         img.image.scale(60, 60);
-
+        length = getImage().getWidth();
         // gif = new GifImage("skeleton-club.gif");
         // gif.resizeImages(60,60);
-
+        if((Scoreboard)scoreBoardObs!=null){
+            this.health=((Scoreboard)scoreBoardObs).manVal;
+            this.gold=((Scoreboard)scoreBoardObs).goldCount;
+            ((Scoreboard) scoreBoardObs).setValue(health);
+            ((Scoreboard) scoreBoardObs).setGoldCount(gold);
+        }
         setImage(img);
-        // ((Scoreboard) scoreBoardObs).setGoldCount(gold);
 
     }
 
@@ -68,6 +81,9 @@ public class Man extends Subject {
         if (s instanceof Demon) {
             damage(1);
             // System.out.println(this.health);
+        }
+        if (s instanceof Monster2 ) {
+            damage(1);
         }
         if (s instanceof banana) {
             heal(5);
@@ -135,6 +151,12 @@ public class Man extends Subject {
     }
 
     public void act() {
+       if((Scoreboard)scoreBoardObs!=null){
+            this.health=((Scoreboard)scoreBoardObs).manVal;
+            this.gold=((Scoreboard)scoreBoardObs).goldCount;
+            ((Scoreboard) scoreBoardObs).setValue(health);//
+            ((Scoreboard) scoreBoardObs).setGoldCount(gold);//
+        }
 
         movement();
         checkGold();
@@ -195,6 +217,12 @@ public class Man extends Subject {
                 ((Demon) monster).updateDamage(this);
         }
 
+        monster = (Monster2) getOneIntersectingObject(Monster2.class);
+        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
+                || Greenfoot.isKeyDown("s")) {
+            if (null != monster)
+                ((Monster2) monster).updateDamage(this);
+        }
         // }
         // if (getObjectsInRange(80, Treasure.class).size() > 0) {
         // treasure = getObjectsInRange(80, Treasure.class).get(0);
@@ -232,10 +260,32 @@ public class Man extends Subject {
         // Greenfoot.setWorld(new MonsterWorld());
     }
 
-    public void movement() {
-        int x = getX();
-        int y = getY();
+    public void movement(){
+        if(Greenfoot.isKeyDown("up")){
+            direction=Direction.UP;
+            //setRotation(Direction.UP);
+            setImage(img);
+            movePlayer();
+        } else if(Greenfoot.isKeyDown("down")){
+            direction=Direction.DOWN;
+            //setRotation(Direction.DOWN);
+            setImage(imgB);
+            movePlayer();
+        } else if(Greenfoot.isKeyDown("left")){
+            direction=Direction.LEFT;
+            //setRotation(Direction.LEFT);
+            setImage(imgL);
+            movePlayer();
+        } else if(Greenfoot.isKeyDown("right")){
+            direction=Direction.RIGHT;
+            //setRotation(Direction.RIGHT);
+            setImage(imgR);
+            movePlayer();
+        }
+    }
 
+
+    public void movePlayer(){
         String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
         StringBuffer msg = new StringBuffer();
         msg.append(title);
@@ -255,49 +305,126 @@ public class Man extends Subject {
             Textbox.getInstance().setMsg(msg.toString());
         }
 
-        if (Greenfoot.isKeyDown("up")) {
-            setImage(img);
-            setLocation(x, y - 2);
-            if (hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox()) {
-                setLocation(x, y + 2);
+        int currentX = getX();
+        int currentY = getY();
+        
+        int changeX = getChangeX(direction);
+        int changeY = getChangeY(direction);
+        int adjustedChangeX = adjustOffset(changeX);
+        int adjustedChangeY = adjustOffset(changeY);
+        
+        Actor tavern = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Tavern.class);
+        Actor treasure = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Treasure.class);
+        Actor score = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Scoreboardmain.class);
+        Actor text = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Textboxmain.class);
+        
+        if(tavern==null && treasure==null && score==null && text==null){
+            setLocation(currentX + changeX,currentY + changeY);
+            if (hitGoblin()) {
+                setLocation(currentX - changeX,currentY - changeY);
             }
-            /*
-             * if(hitMonster()) { setLocation( x, y ); }
-             */
+           
         }
-        if (Greenfoot.isKeyDown("down")) {
-            setImage(imgB);
-            setLocation(x, y + 2);
-            if (hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox()) {
-                setLocation(x, y - 2);
-            }
-            /*
-             * if(hitMonster()) { setLocation( x, y ); }
-             */
-        }
-        if (Greenfoot.isKeyDown("right")) {
-            setImage(imgR);
-            setLocation(x + 2, y);
-
-            if (hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox()) {
-                setLocation(x - 2, y);
-            }
-            /*
-             * if(hitMonster()) { setLocation( x, y ); }
-             */
-        }
-        if (Greenfoot.isKeyDown("left")) {
-            setImage(imgL);
-            setLocation(x - 2, y);
-            if (hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox()) {
-                setLocation(x + 2, y);
-            }
-            /*
-             * if(hitMonster()){ setLocation( x, y ); }
-             */
-        }
-
     }
+    
+    private int getChangeX(int direction){
+        if(direction == Direction.RIGHT){
+            return speed;
+        }
+        if(direction == Direction.LEFT){
+            return -speed;
+        }
+        return 0;
+    }
+    
+    private int getChangeY(int direction){
+        if(direction == Direction.DOWN){
+            return speed;
+        }
+        if(direction == Direction.UP){
+            return -speed;
+        }
+        return 0;
+    }
+
+    private int adjustOffset(int offset){
+        int signOfOffset = (int)Math.signum(offset);
+        int distanceToFront = length/2;
+        int adjustAmount = distanceToFront * signOfOffset;
+        return offset + adjustAmount;
+    }
+
+    // public void movement() {
+    //     int x = getX();
+    //     int y = getY();
+    //     String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
+    //     StringBuffer msg = new StringBuffer();
+    //     msg.append(title);
+    //     msg.append("\n\n");
+    //     GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
+    //     if (obj != null)
+    //     {
+    //         msg.append(obj.getCommandTooltips());
+    //         Textbox.getInstance().setMsg(msg.toString());
+    //         if (Greenfoot.isKeyDown("q"))
+    //         {
+    //             obj.checkAndRunCommand("q");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Textbox.getInstance().setMsg(msg.toString());
+    //     }
+    //     if(Tavern == null){
+    //     if (Greenfoot.isKeyDown("up")) {
+    //         setImage(img);
+    //         setLocation(x, y - 2);
+    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
+    //             //setLocation(x, y - 2);
+    //              //setLocation(x, y + 2);
+    //         //}
+    //         /*
+    //          * if(hitMonster()) { setLocation( x, y ); }
+    //          */
+    //     }
+    //     if (Greenfoot.isKeyDown("down")) {
+    //         setImage(imgB);
+    //         setLocation(x, y + 2);
+            // if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
+            //     setLocation(x, y - 2);
+            //     setLocation(x, y + 2);
+            // }
+    //         /*
+    //          * if(hitMonster()) { setLocation( x, y ); }
+    //          */
+    //     }
+    //     if (Greenfoot.isKeyDown("right")) {
+    //         setImage(imgR);
+    //         setLocation(x + 2, y);
+
+    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
+    //             //setLocation(x - 2, y);
+    //             //setLocation(x + 2, y);
+    //         //}
+    //         /*
+    //          * if(hitMonster()) { setLocation( x, y ); }
+    //          */
+    //     }
+    //     if (Greenfoot.isKeyDown("left")) {
+    //         setImage(imgL);
+    //         setLocation(x - 2, y);
+    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
+    //             //setLocation(x + 2, y);
+    //             // setLocation(x - 2, y);
+    //         //}
+    //         /*
+    //          * if(hitMonster()){ setLocation( x, y ); }
+    //          */
+    //     }
+    //     }
+    
+
+    // }
 
     private void checkScreenChange() {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);

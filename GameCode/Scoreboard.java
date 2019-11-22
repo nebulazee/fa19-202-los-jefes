@@ -16,13 +16,13 @@ public class Scoreboard extends Subject
      GreenfootImage imgM;
      int monsterVal=1000;
      int manVal=1000000;
-     static int goldCount;
+     static int goldCount=30;
      private static Scoreboard scoreboard;
      private Scoreboard(){
        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
 //       imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
-        goldCount = 0;
+        goldCount = 30;
         this.setLocation(100,100);
         setImage(img);
         //setImage(imgM);
@@ -32,7 +32,7 @@ public class Scoreboard extends Subject
         }
         public static synchronized  Scoreboard getScoreboardInstance(){
         if(scoreboard == null) {
-            goldCount=0;
+            goldCount=30;
            scoreboard=new Scoreboard();
         }
             return scoreboard;
