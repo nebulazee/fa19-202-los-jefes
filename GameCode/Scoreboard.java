@@ -17,6 +17,7 @@ public class Scoreboard extends Subject
      int monsterVal=1000;
      int manVal=1000000;
      static int goldCount=30;
+     int monsterKilledCount=0;
      private static Scoreboard scoreboard;
      private Scoreboard(){
        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
@@ -37,9 +38,10 @@ public class Scoreboard extends Subject
         }
             return scoreboard;
         }
+        
     public void act() 
     {
-        // Add your action code here.
+        
     }   
     public void updateDamage(ISubject s){}
     public void setGoldCount(int gold) {
@@ -59,5 +61,10 @@ public class Scoreboard extends Subject
         img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
         setImage(img);
+    }
+    public void monsterDead(){
+        this.monsterKilledCount++;
+        System.out.println("Monster killed so far "+this.monsterKilledCount);
+        
     }
 }

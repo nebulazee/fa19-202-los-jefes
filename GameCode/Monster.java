@@ -14,6 +14,7 @@ public class Monster extends Subject implements IMonsterFactory
      */
     Man man=null;
     int health=1000;
+    WeaponSingleton weaponInstance;
     ISubject scoreBoardObs;
     boolean monsterDead=false;
     int c=1;
@@ -42,8 +43,8 @@ public class Monster extends Subject implements IMonsterFactory
               if(this.health<=0) {
                 monsterDead = true;
                 this.getWorld().removeObject(this);
-                ((Actor)s).getWorld().addObject(new Gold(), this.getRandomNumber (300,500) , this.getRandomNumber (300,500));
-                //this.getWorld(). (new Gold(),300,100);
+                ((Actor)s).getWorld().addObject(new Gold(), Greenfoot.getRandomNumber (300) , Greenfoot.getRandomNumber (300));
+                ((Scoreboard)scoreBoardObs).monsterDead();
                 }
                 else {
                 this.health = this.health-1;

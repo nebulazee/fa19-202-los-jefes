@@ -16,6 +16,7 @@ public class BlueTreasure extends Treasure
     private int openDelay;
     private boolean pickedBlueSword;
     private Weapon associated_weapon;
+    WeaponSingleton weaponInstance;
     public BlueTreasure()
     {
         GreenfootImage blueTreasureClosedImage = new GreenfootImage("treasure-closed-blue.png");
@@ -51,7 +52,8 @@ public class BlueTreasure extends Treasure
     {
         if(s instanceof Man && this.strength <= 0){
               this.pickedBlueSword = true;
-              
+              this.associated_weapon = new BlueSword();
+              weaponInstance.getInstance().updateWeapon(1);
               this.getWorld().removeObject(this);
             }
         
