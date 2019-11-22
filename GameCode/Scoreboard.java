@@ -19,6 +19,7 @@ public class Scoreboard extends Subject
      static int goldCount=30;
      int monsterKilledCount=0;
      private static Scoreboard scoreboard;
+     EndScreen endscreen;
      private Scoreboard(){
        img = new GreenfootImage("    Health : "+manVal+"\n"+"    Monster :"+monsterVal, 20, 
                                      Color.WHITE, Color.BLACK);
@@ -26,6 +27,7 @@ public class Scoreboard extends Subject
         goldCount = 30;
         this.setLocation(100,100);
         setImage(img);
+        endscreen = new EndScreen();
         //setImage(imgM);
         }
         public int getMonsterKillCount(){
@@ -68,6 +70,10 @@ public class Scoreboard extends Subject
     public void monsterDead(){
         this.monsterKilledCount++;
         System.out.println("Monster killed so far "+this.monsterKilledCount);
-        
+        if(this.monsterKilledCount==3){
+            //getWorld().removeObject(getWorld().getObjects(WorldManager));
+            Greenfoot.setWorld(endscreen);
+            Greenfoot.start();
+        }        
     }
 }

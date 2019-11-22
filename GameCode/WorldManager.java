@@ -13,7 +13,6 @@ public class WorldManager extends GameActor
     // instance variables - replace the example below with your own
     BaseWorld[][] worldMap;
     public BaseWorld currentWorld;
-    
     static WorldManager instance;
     
     int worldHeight = 4;
@@ -199,8 +198,6 @@ public class WorldManager extends GameActor
                 playerSpot = 'X';
                 break;
         }
-        
-        // System.out.println("Switching screens from " + Integer.valueOf(getWorldId(hor, ver)) + " to " + Integer.valueOf(getWorldId(new_hor, new_ver)));
         
         worldMap[ver][hor] = currentWorld;
         currentWorld = worldMap[new_ver][new_hor];
