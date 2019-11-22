@@ -232,72 +232,124 @@ public class Man extends Subject {
         // Greenfoot.setWorld(new MonsterWorld());
     }
 
-    public void movement() {
-        int x = getX();
-        int y = getY();
-
-        String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
-        StringBuffer msg = new StringBuffer();
-        msg.append(title);
-        msg.append("\n\n");
-        GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
-        if (obj != null)
-        {
-            msg.append(obj.getCommandTooltips());
-            Textbox.getInstance().setMsg(msg.toString());
-            if (Greenfoot.isKeyDown("q"))
-            {
-                obj.checkAndRunCommand("q");
-            }
+    public void movement(){
+        if(Greenfoot.isKeyDown("up")){
+            setRotation(Direction.UP);
+            movePlayer();
+        } else if(Greenfoot.isKeyDown("down")){
+            setRotation(Direction.DOWN);
+            movePlayer();
+        } else if(Greenfoot.isKeyDown("left")){
+            setRotation(Direction.LEFT);
+            movePlayer();
+        } else if(Greenfoot.isKeyDown("right")){
+            setRotation(Direction.RIGHT);
+            movePlayer();
         }
-        else
-        {
-            Textbox.getInstance().setMsg(msg.toString());
-        }
-
-        if (Greenfoot.isKeyDown("up")) {
-            setImage(img);
-            setLocation(x, y - 2);
-            if (hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox()) {
-                setLocation(x, y + 2);
-            }
-            /*
-             * if(hitMonster()) { setLocation( x, y ); }
-             */
-        }
-        if (Greenfoot.isKeyDown("down")) {
-            setImage(imgB);
-            setLocation(x, y + 2);
-            if (hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox()) {
-                setLocation(x, y - 2);
-            }
-            /*
-             * if(hitMonster()) { setLocation( x, y ); }
-             */
-        }
-        if (Greenfoot.isKeyDown("right")) {
-            setImage(imgR);
-            setLocation(x + 2, y);
-
-            if (hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox()) {
-                setLocation(x - 2, y);
-            }
-            /*
-             * if(hitMonster()) { setLocation( x, y ); }
-             */
-        }
-        if (Greenfoot.isKeyDown("left")) {
-            setImage(imgL);
-            setLocation(x - 2, y);
-            if (hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox()) {
-                setLocation(x + 2, y);
-            }
-            /*
-             * if(hitMonster()){ setLocation( x, y ); }
-             */
-        }
-
     }
+
+
+    public void movePlayer(){
+        int currentX = getX();
+        int currentY = getY();
+        int direction = getRotation();
+        int changeX = getChangeX(direction);
+        int changeY = getChangeY(direction);
+        setLocation(currentX + changeX,currentY + changeY);
+    }
+    
+    private int getChangeX(int direction){
+        if(direction == Direction.RIGHT){
+            return speed;
+        }
+        if(direction == Direction.LEFT){
+            return -speed;
+        }
+        return 0;
+    }
+    
+    private int getChangeY(int direction){
+        if(direction == Direction.DOWN){
+            return speed;
+        }
+        if(direction == Direction.UP){
+            return -speed;
+        }
+        return 0;
+    }
+
+    // public void movement() {
+    //     int x = getX();
+    //     int y = getY();
+    //     Actor Tavern = getOneObjectAtOffset(2, 0, Tavern.class);
+    //     String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
+    //     StringBuffer msg = new StringBuffer();
+    //     msg.append(title);
+    //     msg.append("\n\n");
+    //     GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
+    //     if (obj != null)
+    //     {
+    //         msg.append(obj.getCommandTooltips());
+    //         Textbox.getInstance().setMsg(msg.toString());
+    //         if (Greenfoot.isKeyDown("q"))
+    //         {
+    //             obj.checkAndRunCommand("q");
+    //         }
+    //     }
+    //     else
+    //     {
+    //         Textbox.getInstance().setMsg(msg.toString());
+    //     }
+    //     if(Tavern == null){
+    //     if (Greenfoot.isKeyDown("up")) {
+    //         setImage(img);
+    //         setLocation(x, y - 2);
+    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
+    //             //setLocation(x, y - 2);
+    //              //setLocation(x, y + 2);
+    //         //}
+    //         /*
+    //          * if(hitMonster()) { setLocation( x, y ); }
+    //          */
+    //     }
+    //     if (Greenfoot.isKeyDown("down")) {
+    //         setImage(imgB);
+    //         setLocation(x, y + 2);
+    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
+    //             //setLocation(x, y - 2);
+    //             //setLocation(x, y + 2);
+    //         //}
+    //         /*
+    //          * if(hitMonster()) { setLocation( x, y ); }
+    //          */
+    //     }
+    //     if (Greenfoot.isKeyDown("right")) {
+    //         setImage(imgR);
+    //         setLocation(x + 2, y);
+
+    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
+    //             //setLocation(x - 2, y);
+    //             //setLocation(x + 2, y);
+    //         //}
+    //         /*
+    //          * if(hitMonster()) { setLocation( x, y ); }
+    //          */
+    //     }
+    //     if (Greenfoot.isKeyDown("left")) {
+    //         setImage(imgL);
+    //         setLocation(x - 2, y);
+    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
+    //             //setLocation(x + 2, y);
+    //             // setLocation(x - 2, y);
+    //         //}
+    //         /*
+    //          * if(hitMonster()){ setLocation( x, y ); }
+    //          */
+    //     }
+    //     }
+    
+
+    // }
 
     private void checkScreenChange() {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
