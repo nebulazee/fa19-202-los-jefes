@@ -26,8 +26,11 @@ public class MonsterGenerator extends GameActor
 
             case "demon" :
                return new Demon();
+            
+            case "monster2" :
+                return new Monster2();
                 
-             default : break;
+            default : break;
            
         } 
         
