@@ -16,6 +16,7 @@ public class RedTreasure extends Treasure
     private int openDelay;
     private boolean pickedRedSword;
     private Weapon associated_weapon;
+    WeaponSingleton weaponInstance;
     public RedTreasure()
     {
         
@@ -52,6 +53,7 @@ public class RedTreasure extends Treasure
         if(s instanceof Man && this.strength <= 0){
               this.pickedRedSword = true;
               this.associated_weapon = new RedSword();
+              weaponInstance.getInstance().updateWeapon(2);
               this.getWorld().removeObject(this);
             }
         
@@ -80,6 +82,7 @@ public class RedTreasure extends Treasure
             {
                 GreenfootImage redSwordImage = new GreenfootImage("red-sword.png");
                 //redSwordImage.scale(45,45);
+                weaponInstance.getInstance().updateWeapon(2);
                 setImage(redSwordImage);
                 //this.setImage(new MotionRenderer("red-sword.png").image);
             }

@@ -14,6 +14,7 @@ public class Monster extends Subject implements IMonsterFactory
      */
     Man man=null;
     int health=1000;
+    WeaponSingleton weaponInstance;
     ISubject scoreBoardObs;
     boolean monsterDead=false;
     int c=1;
@@ -105,4 +106,10 @@ public class Monster extends Subject implements IMonsterFactory
         }
         // Add your action code here.
     }    
+    
+    public int getRandomNumber(int start,int end)
+    {
+       int normal = Greenfoot.getRandomNumber(end-start+1);
+       return normal+start;
+    }
 }

@@ -26,6 +26,8 @@ public class MonsterWorld extends BaseWorld
      */
     private void prepare()
     {
+        tooltipTitle = "A ravenous monster confronts you!\nSlay it, brave warrior! Slay it to proceed!";
+
         Goblin goblin = new Goblin();
         addObject( goblin ,20,225);
         banana banana = new banana();
