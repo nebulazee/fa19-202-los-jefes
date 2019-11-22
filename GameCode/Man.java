@@ -346,7 +346,7 @@ public class Man extends Subject {
     //     if (obj != null)
     //     {
     //         msg.append(obj.getCommandTooltips());
-    //         Textbox.getInstance().setMsg(msg.toString());
+    //         Textboxmain.setTextboxMsg(msg.toString());
     //         if (Greenfoot.isKeyDown("q"))
     //         {
     //             obj.checkAndRunCommand("q");
@@ -354,7 +354,7 @@ public class Man extends Subject {
     //     }
     //     else
     //     {
-    //         Textbox.getInstance().setMsg(msg.toString());
+    //         Textboxmain.setTextboxMsg(msg.toString());
     //     }
     //     if(Tavern == null){
     //     if (Greenfoot.isKeyDown("up")) {
