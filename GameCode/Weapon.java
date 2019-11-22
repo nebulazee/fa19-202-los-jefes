@@ -8,19 +8,20 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Weapon extends GameActor
 {
+    protected int damage;
+    protected int attack_speed;
+    protected String strong_against;
+    protected String weak_against;
+
     Weapon()
     {
         super();
     }
     
-    /**
-     * Act - do whatever the Weapon wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    //public int damage_capability;
-    
-    public void act() 
-    {
-        // Add your action code here.
-    }    
+    public int getDamage() { return damage; }    
+
+    public int getSpeed() { return attack_speed; } 
+ 
+    // public float getMonsterDamageMultiplier(Monster m) { } 
+
 }

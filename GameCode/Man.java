@@ -43,14 +43,8 @@ public class Man extends Subject {
     Treasure treasure = null;
     private MotionRenderer img, imgW, imgA, imgS, imgD, imgR, imgB, imgL;
 
-    public Man() {
-        // img = new GreenfootImage("warrior.png");
-        // imgW= new GreenfootImage("warrior-front-attack.png");
-        // imgD= new GreenfootImage("warrior-right-attack.png");
-        // imgA= new GreenfootImage("warrior-left-attack.png");
-        // imgS= new GreenfootImage("warrior-back-attack.png");
-        // img.scale(60,60);
-
+    public Man() 
+    {
         img = new MotionRenderer("warrior.png");
         imgW = new MotionRenderer("warrior-front-attack.png");
         imgD = new MotionRenderer("warrior-right-attack.png");
@@ -85,9 +79,6 @@ public class Man extends Subject {
         if (s instanceof Monster2 ) {
             damage(1);
         }
-        if (s instanceof banana) {
-            heal(5);
-        }
         if (s instanceof Goblin) {
             damage(50);
         }
@@ -105,14 +96,6 @@ public class Man extends Subject {
 
     public void addObservers(ISubject s) {
         scoreBoardObs = s;
-    }
-
-    private void checktouching() {
-        if (isTouching(banana.class)) {
-            removeTouching(banana.class);
-            this.updateDamage(new banana());
-            // notifyObservers() i.e scoreboard
-        }
     }
 
     public void setImage(MotionRenderer img) {
@@ -151,13 +134,15 @@ public class Man extends Subject {
     }
 
     public void act() {
-       if((Scoreboard)scoreBoardObs!=null){
+       if((Scoreboard)scoreBoardObs!=null)
+       {
             this.health=((Scoreboard)scoreBoardObs).manVal;
             this.gold=((Scoreboard)scoreBoardObs).goldCount;
             ((Scoreboard) scoreBoardObs).setValue(health);//
             ((Scoreboard) scoreBoardObs).setGoldCount(gold);//
         }
 
+        updateTooltips();
         movement();
         checkGold();
         trackMovement = Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
@@ -167,7 +152,6 @@ public class Man extends Subject {
 
             setImage(img);
         }
-        checktouching();
         attack();
         animationCounter++;
 
@@ -188,21 +172,6 @@ public class Man extends Subject {
                 animateAttack(imgS);
 
         }
-        // if (Greenfoot.isKeyDown("d")) {
-        //     if (animationCounter % 2 == 0)
-        //         animateAttack(imgD);
-
-        // }
-        // if (Greenfoot.isKeyDown("w")) {
-        //     if (animationCounter % 2 == 0)
-        //         animateAttack(imgW);
-
-        // }
-        // if (Greenfoot.isKeyDown("s")) {
-        //     if (animationCounter % 2 == 0)
-        //         animateAttack(imgS);
-
-        // }
 
         // if(getObjectsInRange(80, Monster.class).size()>0) {
         // monster = getObjectsInRange(80, Monster.class).get(0);
@@ -292,24 +261,6 @@ public class Man extends Subject {
 
 
     public void movePlayer(){
-        String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
-        StringBuffer msg = new StringBuffer();
-        msg.append(title);
-        msg.append("\n\n");
-        GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
-        if (obj != null)
-        {
-            msg.append(obj.getCommandTooltips());
-            Textbox.getInstance().setMsg(msg.toString());
-            if (Greenfoot.isKeyDown("q"))
-            {
-                obj.checkAndRunCommand("q");
-            }
-        }
-        else
-        {
-            Textbox.getInstance().setMsg(msg.toString());
-        }
 
         int currentX = getX();
         int currentY = getY();
@@ -331,6 +282,30 @@ public class Man extends Subject {
                 setLocation(currentX - changeX,currentY - changeY);
             }
            
+        }
+    }
+
+    private void updateTooltips()
+    {
+        String title;
+        GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
+        if (obj != null)
+        {
+            title = obj.getActorTitle();
+            StringBuffer msg = new StringBuffer();
+            msg.append(title);
+            msg.append("\n\n");
+            msg.append(obj.getCommandTooltips());
+            Textbox.getInstance().setMsg(msg.toString());
+            if (Greenfoot.isKeyDown("q"))
+            {
+                obj.checkAndRunCommand("q");
+            }
+        }
+        else
+        {
+            title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
+            Textbox.getInstance().setMsg(title.toString());
         }
     }
     
