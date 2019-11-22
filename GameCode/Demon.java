@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Demon extends Subject implements IMonsterFactory
+public class Demon  extends Subject implements IMonsterFactory
 {
     /**
      * Act - do whatever the Demon wants to do. This method is called whenever
@@ -19,6 +19,10 @@ public class Demon extends Subject implements IMonsterFactory
     int weaponCode = 0;
     int attackpower=1;
     int c=1;
+    String image1;
+    GreenfootImage image2;
+    
+    
     class MotionRenderer {
         String file;
         GreenfootImage image;
@@ -39,6 +43,7 @@ public class Demon extends Subject implements IMonsterFactory
         if(scoreBoardObs!=null)
         ((Scoreboard)scoreBoardObs).setMonsterHealth(health);
     }
+   
       public void updateDamage(ISubject s){
           if(s instanceof Man){
               if(this.health<=0) {
@@ -97,31 +102,7 @@ public class Demon extends Subject implements IMonsterFactory
     
     public void act() 
     {
-        //int c=0;
-         if(scoreBoardObs!=null)
-        ((Scoreboard)scoreBoardObs).setMonsterHealth(health); 
-        {
-            // if(getObjectsInRange(60, Man.class).size()>0)
-            // man =getObjectsInRange(60, Man.class).get(0);
-            // else 
-            // man=null;
-            
-            man = (Man) getOneIntersectingObject(Man.class);
-            
-            if(null==man) {
-                //this.setImage(new MotionRenderer("0.png").image);
-               
-            }
-            else {
-                animasi();
-                
-                
-                man.updateDamage(this);
-              
-                System.out.println(c);
-                
-            }
-        }
+        
         // Add your action code here.
     }      
     
