@@ -37,7 +37,6 @@ public class TavernWorld extends BaseWorld
         man.addObservers(scoreboard);      
 
         tavern.setLocation(386,348);
-        Textbox.getInstance().setMsg(getTitle() + "\n\n" + "");
         //WorldManager.getNewInstance();
     }
 }

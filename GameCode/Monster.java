@@ -18,7 +18,8 @@ public class Monster extends Subject implements IMonsterFactory
     ISubject scoreBoardObs;
     boolean monsterDead=false;
     int c=1;
-    class MotionRenderer {
+    class MotionRenderer 
+    {
         String file;
         GreenfootImage image;
         public MotionRenderer (String file){
