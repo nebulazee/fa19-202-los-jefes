@@ -1,4 +1,5 @@
-import greenfoot.*;  // (BaseWorld, Actor, GreenfootImage, Greenfoot and MouseInfo)
+
+import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 import java.util.*;
 
 /**
@@ -89,7 +90,27 @@ public class WorldManager extends GameActor
                     switch(type)
                     {
                         case "monster":
-                            worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j));
+                            MonsterWorld mw = new MonsterWorld(constructConfigurationCode(i, j));
+                            if(monsters == 3) {
+                                mw.setMonster(new BaseMonster("Demon1.png","Demon2.png"));
+                            }
+                            else if(monsters == 2) {
+                                mw.setMonster(new BaseMonster("0.png","1.png"));
+                            }
+                            else {
+                                mw.setMonster(new BaseMonster("ogre1.png","ogre2.png"));
+                            }
+                            worldMap[i][j] = mw;//new MonsterWorld(constructConfigurationCode(i, j)){
+                                /*if(monsters==3){
+                                 public void setMonster(new BaseMonster("Demon1.png","Demon2.png"));
+                                }
+                                else if(monsters==2) 
+                                 setMonster(new BaseMonster("0.png","1.png"));
+                                else
+                                 setMonster(new BaseMonster("ogre1.png","ogre2.png"));  
+                                 
+                                
+                            };*/
                             monsters--;
                             break;
                         case "animal":
