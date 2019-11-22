@@ -33,7 +33,7 @@ public class EndScreen extends World
     {
         if( Greenfoot.isKeyDown("enter"))
         {
-            WorldManager.getInstance();
+            WorldManager.getNewInstance();
         }
     }   
 

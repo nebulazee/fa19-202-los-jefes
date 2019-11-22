@@ -13,7 +13,7 @@ public class Man extends Subject implements IScoreboardObserver
      * 'Act' or 'Run' button gets pressed in the environment.
      */
     ISubject scoreBoardObs = null;
-    int health = 1000000;
+    int health = 1000;
     int gold = 30;
     int animationCounter = 0;
     int timer = 1;
