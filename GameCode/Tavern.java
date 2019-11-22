@@ -16,6 +16,7 @@ public class Tavern extends GameActor
     public Tavern()
     {
         super();
+        setActorTitle("TAVERN");
         setImage(new GreenfootImage("Webp.net-resizeimage.png"));
     }
     public void act() 

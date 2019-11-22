@@ -112,4 +112,9 @@ public class BaseWorld extends World
     {
         return tooltipTitle;
     }
+
+    public Textboxmain getTextbox()
+    {
+        return textboxmain;
+    }
 }
