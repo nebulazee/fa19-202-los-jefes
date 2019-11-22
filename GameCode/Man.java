@@ -12,7 +12,6 @@ public class Man extends Subject implements IScoreboardObserver
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
      */
-    ISubject scoreBoardObs = null;
     int health = 1000;
     int gold = 30;
     int animationCounter = 0;

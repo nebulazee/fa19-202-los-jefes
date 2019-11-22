@@ -42,7 +42,7 @@ public class GoldenTreasure extends Treasure
         if(s instanceof Man){
               this.strength = this.strength-10;
             
-            System.out.println(this.strength);
+            // System.out.println(this.strength);
             }
         
     }

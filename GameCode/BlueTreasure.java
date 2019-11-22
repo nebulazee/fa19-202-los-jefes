@@ -42,7 +42,7 @@ public class BlueTreasure extends Treasure
         if(s instanceof Man){
               this.strength = this.strength-10;
               this.associated_weapon = new BlueSword();
-            System.out.println(this.strength);
+            // System.out.println(this.strength);
             }
         
     }

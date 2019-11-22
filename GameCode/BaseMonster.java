@@ -40,7 +40,6 @@ public class BaseMonster extends Subject {
 
         img.scale(60, 60);
         this.setImage(img);
-        WorldManager.getCurrentWorld().getScoreboard().setMonsterHealth(health);
     }
 
     /*
@@ -91,9 +90,6 @@ public class BaseMonster extends Subject {
         }
     }
 
-    public void addObservers(ISubject s) {
-        scoreBoardObs = s;
-    }
 
     public void animasi() {
         if (c == 1) {
@@ -123,13 +119,11 @@ public class BaseMonster extends Subject {
 
             man.updateDamage(this);
 
-            System.out.println(c);
+            // System.out.println(c);
 
         }
     }
 
-    // Add your action code here.
-    }
 
     public int getRandomNumber(int start, int end) {
         int normal = Greenfoot.getRandomNumber(end - start + 1);
