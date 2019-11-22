@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class Monster2 extends Subject implements IMonsterFactory
+public class Monster2  extends Subject implements IMonsterFactory
 {
     /**
      * Act - do whatever the Monster2 wants to do. This method is called whenever
