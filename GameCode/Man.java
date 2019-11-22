@@ -59,8 +59,8 @@ public class Man extends Subject implements IScoreboardObserver
 
         Scoreboard.addScoreboardObserver(this);
 
-        this.health=Scoreboard.getHealth();
-        this.gold=Scoreboard.getGoldCount();
+        health = Scoreboard.getHealth();
+        gold = Scoreboard.getGoldCount();
 
         setImage(img);
 
@@ -70,18 +70,6 @@ public class Man extends Subject implements IScoreboardObserver
         if(s instanceof BaseMonster) {
             damage(10);
         }
-        /*if (s instanceof Monster) {
-            damage(1);
-            // System.out.println(this.health);
-        }
-        if (s instanceof Demon) {
-            damage(1);
-            // System.out.println(this.health);
-        }
-        if (s instanceof Monster2 ) {
-            damage(1);
-        }
-        */
         if (s instanceof banana) {
             heal(5);
         }
@@ -91,9 +79,7 @@ public class Man extends Subject implements IScoreboardObserver
     }
 
     public void updateScoreboard() {
-        // man shud update score board observer
-            Scoreboard.setHealth(health);
-            Scoreboard.setGoldCount(gold);
+        Scoreboard.setPlayerStats(this);
     }
 
 
@@ -105,7 +91,7 @@ public class Man extends Subject implements IScoreboardObserver
     private void checkGold() {
         if (this.getOneIntersectingObject(Gold.class) != null) {
             gold += 15;
-            Scoreboard.setGoldCount(gold);
+            Scoreboard.setPlayerStats(this);
             this.removeTouching(Gold.class);
         }
     }
@@ -179,8 +165,6 @@ public class Man extends Subject implements IScoreboardObserver
 
         }
 
-        // if(getObjectsInRange(80, Monster.class).size()>0) {
-        // monster = getObjectsInRange(80, Monster.class).get(0);
         monster = (BaseMonster) getOneIntersectingObject(BaseMonster.class);
         if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
                 || Greenfoot.isKeyDown("s")) {
@@ -456,7 +440,7 @@ public class Man extends Subject implements IScoreboardObserver
     }
 
     public boolean hitMonster() {
-        if (isTouching(Monster.class)) {
+        if (isTouching(BaseMonster.class)) {
             return true;
         } else {
             return false;

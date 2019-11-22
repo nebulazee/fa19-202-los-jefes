@@ -52,34 +52,6 @@ public class Portal extends Subject
      */
     public void act() 
     {
-        // Add your action code here.
-        //timer =timer +1;
-        //if(timer%30 == 0)
-        //{
-        //  switch(count) 
-        //{
-        //    case 0:
-        //    setRotation(0);
-        //    count = 1;
-        //    break;
- 
-        //    case 1:
-        //    setRotation(-90);
-        //    count=2;
-        //    break;
- 
-        //    case 2:
-        //    setRotation(-180);
-        //    count=3;
-        //    break;
- 
-        //    case 3:
-        //    setRotation( -270);
-        //    count=0;
-        //    break;
-        //}
-            
-        //}
         
     }    
     
