@@ -27,6 +27,7 @@ public class AnimalWorld extends BaseWorld
      */
     private void prepare()
     {
+        tooltipTitle = "A field of goblins! Neither friend, nor foe.\nBest to avoid them and continue on your quest.";
         
         Goblin goblin = new Goblin();
           

@@ -26,7 +26,7 @@ public class TreasureWorld extends BaseWorld
      */
     private void prepare()
     {
-        
+        tooltipTitle = "You come across a treasure chest.\nWhat rewards could it hold?";        
         TreasureFactory tf = new TreasureFactory();
         Treasure treasure = tf.getTreasure();
         //treasure1.setLocation(400,400);

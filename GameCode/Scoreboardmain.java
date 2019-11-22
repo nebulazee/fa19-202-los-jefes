@@ -28,6 +28,8 @@ public class Scoreboardmain extends Subject {
         scoreboard.drawImage(img, scoreboard.getWidth() / 2 - 100, scoreboard.getHeight() / 2);
 
         this.setLocation(400, 50);
+           
+        
         setImage(scoreboard);
         // setImage(imgM);
     }

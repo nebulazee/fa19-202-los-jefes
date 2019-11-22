@@ -21,7 +21,7 @@ public class Textboxmain extends GameActor
         textDec.scale( textDec.getWidth()-400 , textDec.getHeight()-50);
         setImage(textDec);  
         tb=Textbox.getInstance();
-        n = new Color(255,232,213);
+        n = new Color(0,0,0,0);
         img = new GreenfootImage("", 20, 
                                      Color.BLACK, n);
         
