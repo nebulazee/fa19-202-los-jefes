@@ -39,8 +39,7 @@ public class MonsterWorld extends BaseWorld
         // System.out.println("Added scoreboard");
         //addObject(scoreboard,300,130);
         
-        man = new Man();
-        addObject(man,287,355);
+
 
         //Monster monster = new Monster();
         int monsterCode = Greenfoot.getRandomNumber(3);
@@ -67,11 +66,9 @@ public class MonsterWorld extends BaseWorld
         //banana.setLocation(532,97);
         //Scoreboard scoreboard = Scoreboard.getScoreboardInstance();
         //addObject(scoreboard,34,13);
-        man.addObservers(scoreboard);
     }
     public void setMonster(BaseMonster m) {
         currentMonster=m;
         addObject(m,400,350);
-        m.addObservers(scoreboard);
     }
 }

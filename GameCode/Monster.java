@@ -37,7 +37,7 @@ public class Monster extends Subject implements IMonsterFactory
         img.scale(60,60);
         this.setImage(img);
         if(scoreBoardObs!=null)
-        ((Scoreboard)scoreBoardObs).setMonsterHealth(health);
+        WorldManager.getCurrentWorld().getScoreboard().setMonsterHealth(health);
     }
       public void updateDamage(ISubject s){
           if(s instanceof Man){
@@ -45,7 +45,7 @@ public class Monster extends Subject implements IMonsterFactory
                 monsterDead = true;
                 this.getWorld().removeObject(this);
                 ((Actor)s).getWorld().addObject(new Gold(), Greenfoot.getRandomNumber (300) , Greenfoot.getRandomNumber (300));
-                ((Scoreboard)scoreBoardObs).monsterDead();
+                Scoreboard.monsterDead();
                 }
                 else {
                 this.health = this.health-1;
@@ -57,7 +57,7 @@ public class Monster extends Subject implements IMonsterFactory
     public void notifyObservers(ISubject s){
         //man shud update score board observer
         if(s!=null) {
-        ((Scoreboard)scoreBoardObs).setMonsterHealth(health);
+            WorldManager.getCurrentWorld().getScoreboard().setMonsterHealth(health);
         }
     }
      public void addObservers(ISubject s){
@@ -83,7 +83,7 @@ public class Monster extends Subject implements IMonsterFactory
     {
         //int c=0;
          if(scoreBoardObs!=null)
-        ((Scoreboard)scoreBoardObs).setMonsterHealth(health); 
+         WorldManager.getCurrentWorld().getScoreboard().setMonsterHealth(health);
         {
             // if(getObjectsInRange(60, Man.class).size()>0)
             // man =getObjectsInRange(60, Man.class).get(0);
