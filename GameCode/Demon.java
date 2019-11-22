@@ -49,7 +49,7 @@ public class Demon  extends Subject implements IMonsterFactory
               if(this.health<=0) {
                 monsterDead = true;
                 this.getWorld().removeObject(this);
-                ((Actor)s).getWorld().addObject(new Gold(), this.getRandomNumber (300,500) , this.getRandomNumber (300,500));
+                ((Actor)s).getWorld().addObject(new Gold(), this.getRandomNumber (0,500) , this.getRandomNumber (300,500));
                 //this.getWorld(). (new Gold(),300,100);
                 ((Scoreboard)scoreBoardObs).monsterDead();
                 }
