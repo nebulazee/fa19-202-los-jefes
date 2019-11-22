@@ -18,7 +18,6 @@ public class Man extends Subject {
     int timer = 1;
     boolean manDead = false;
     boolean trackMovement = false;
-    Textbox textbox = null;
     int speed = 2;
     int length;
     int direction = 0;
@@ -296,7 +295,7 @@ public class Man extends Subject {
             msg.append(title);
             msg.append("\n\n");
             msg.append(obj.getCommandTooltips());
-            Textbox.getInstance().setMsg(msg.toString());
+            Textboxmain.setTextboxMsg(msg.toString());
             if (Greenfoot.isKeyDown("q"))
             {
                 obj.checkAndRunCommand("q");
@@ -304,8 +303,8 @@ public class Man extends Subject {
         }
         else
         {
-            title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
-            Textbox.getInstance().setMsg(title.toString());
+            title = WorldManager.getCurrentWorld().getTitle();
+            Textboxmain.setTextboxMsg(title.toString());
         }
     }
     
@@ -339,7 +338,7 @@ public class Man extends Subject {
     // public void movement() {
     //     int x = getX();
     //     int y = getY();
-    //     String title = ((BaseWorld)WorldManager.getInstance().currentWorld).getTitle();
+    //     String title = ((BaseWorld)WorldManager.getCurrentWorld()).getTitle();
     //     StringBuffer msg = new StringBuffer();
     //     msg.append(title);
     //     msg.append("\n\n");
