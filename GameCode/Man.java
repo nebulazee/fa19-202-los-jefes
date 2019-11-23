@@ -7,10 +7,7 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Man extends Subject implements IScoreboardObserver {
-    /**
-     * Act - do whatever the Man wants to do. This method is called whenever the
-     * 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     int health;
     int gold;
     int animationCounter = 0;
@@ -21,6 +18,10 @@ public class Man extends Subject implements IScoreboardObserver {
     int length;
     int direction = 0;
     EndScreen es;
+    
+    int baseAttack = 15;
+    float actionDelay = 0.16f;
+    int actionTimer = 0;
 
     class Direction {
         public static final int UP = 270;
@@ -66,7 +67,7 @@ public class Man extends Subject implements IScoreboardObserver {
 
     public void updateDamage(ISubject s) {
         if (s instanceof Goblin) {
-            damage(50);
+            damage(25);
         }
     }
 
@@ -112,12 +113,23 @@ public class Man extends Subject implements IScoreboardObserver {
         }
     }
 
+    public int getDamage()
+    {
+        return baseAttack + Scoreboard.getCurrentWeapon().getDamage();
+    }
+
     public void scoreboardUpdateEvent() {
         this.health = Scoreboard.getHealth();
         this.gold = Scoreboard.getGoldCount();
     }
-
-    public void act() {
+    
+    /**
+     * Act - do whatever the Man wants to do. This method is called whenever the
+     * 'Act' or 'Run' button gets pressed in the environment.
+     */
+    public void act() 
+    {
+        this.actionTimer++;
         updateTooltips();
         movement();
         trackMovement = Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
@@ -136,6 +148,7 @@ public class Man extends Subject implements IScoreboardObserver {
 
     private void attack() {
 
+        Boolean attk = this.actionTimer/(int)(((actionDelay/4) + Scoreboard.getCurrentWeapon().getSpeed())*100) > 1;
         if (Greenfoot.isKeyDown("a")) {
             if (animationCounter % 2 == 0 && direction == Direction.LEFT)
                 animateAttack(imgA);
@@ -145,20 +158,13 @@ public class Man extends Subject implements IScoreboardObserver {
                 animateAttack(imgW);
             if (animationCounter % 2 == 0 && direction == Direction.DOWN)
                 animateAttack(imgS);
+            
+            // animationCounter = 1;
+            //% 2 == 0
 
         }
 
-        Treasure treasure = (Treasure) getOneIntersectingObject(Treasure.class);
-        if (treasure != null) {
-            if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
-                    || Greenfoot.isKeyDown("s")) {
-                treasure.takeDamage();
-            } else if (Greenfoot.isKeyDown("g")) {
-                // treasure.pickWeapon(this);
-            }
-        }
 
-        // }
     }
 
     public void animateAttack(MotionRenderer img) {
@@ -172,13 +178,21 @@ public class Man extends Subject implements IScoreboardObserver {
         // endAnimation();
 
     }
-
+    
+    /**
+     * Prints Man's current location
+     * 
+     */
     private void checkLocation() {
         System.out.println(getX() + "  , " + getY());
         // if(getX() == 599)
         // Greenfoot.setWorld(new MonsterWorld());
     }
-
+    
+    /**
+     * Mans movement method
+     * 
+     */
     public void movement() {
         if (Greenfoot.isKeyDown("up")) {
             direction = Direction.UP;
@@ -202,7 +216,8 @@ public class Man extends Subject implements IScoreboardObserver {
             movePlayer();
         }
     }
-
+    
+     
     public void movePlayer() {
 
         int currentX = getX();
@@ -229,7 +244,11 @@ public class Man extends Subject implements IScoreboardObserver {
 
         }
     }
-
+    
+     /**
+     * Updates tool tip at bottom
+     * 
+     */
     private void updateTooltips() {
         String title;
         GameActor obj = (GameActor) getOneIntersectingObject(GameActor.class);
@@ -246,10 +265,20 @@ public class Man extends Subject implements IScoreboardObserver {
                 Textboxmain.setTextboxMsg(title);
             }
             if (Greenfoot.isKeyDown("q")) {
-                obj.checkAndRunCommand("q");
+                if(this.actionTimer/(int)(actionDelay*100) > 1)
+                {
+                    obj.checkAndRunCommand("q");
+                    actionTimer = 0;
+                }
             }
             if (Greenfoot.isKeyDown("a")) {
-                obj.checkAndRunCommand("a");
+                if(this.actionTimer/(int)(((actionDelay/4) + Scoreboard.getCurrentWeapon().getSpeed())*100) > 1)
+                {
+                    // animationCounter = 2;
+                    attack();
+                    obj.checkAndRunCommand("a");
+                }
+
             }
         } else {
             title = WorldManager.getCurrentWorld().getTitle();
@@ -283,7 +312,11 @@ public class Man extends Subject implements IScoreboardObserver {
         int adjustAmount = distanceToFront * signOfOffset;
         return offset + adjustAmount;
     }
-
+    
+     /**
+     * Checks Screen change condition on touching portals
+     * 
+     */
     private void checkScreenChange() {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
         if (p != null) {
@@ -308,7 +341,11 @@ public class Man extends Subject implements IScoreboardObserver {
         }
 
     }
-
+    
+    /**
+     * Checks if Man touches Goblin
+     * @return true if Man touches Goblin
+     */
     public boolean hitGoblin() {
         if (isTouching(Goblin.class)) {
             return true;
@@ -316,7 +353,11 @@ public class Man extends Subject implements IScoreboardObserver {
             return false;
         }
     }
-
+    
+    /**
+     * Checks if Man touches Monster
+     * @return true if Man touches Monster
+     */
     public boolean hitMonster() {
         if (isTouching(BaseMonster.class)) {
             return true;

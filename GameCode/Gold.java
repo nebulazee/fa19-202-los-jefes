@@ -8,11 +8,8 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Gold extends Subject
 {
-    /**
-     * Act - do whatever the Gold wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
     Gold obj;
+    
     Gold()
     {
         super();
@@ -22,6 +19,11 @@ public class Gold extends Subject
         this.setImage(img);
         obj = this;
     }
+    
+    /**
+     * Act - do whatever the Gold wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act() 
     {
         // Add your action code here.

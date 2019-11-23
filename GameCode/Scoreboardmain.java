@@ -8,22 +8,30 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Scoreboardmain extends Subject 
 {
-    int monsterVal = 1000;
-    int manVal = 1000;
+    int monsterVal;
     GreenfootImage img;
     GreenfootImage scoreboard;
     Color n = new Color(255, 232, 213);
     
+    /**
+     * not used 
+     * @param s ISubject
+     */
     public void updateDamage(ISubject s) 
     {
 
     }
-
+    
+    /**
+     * Constructor method 
+     * 
+     */
     public Scoreboardmain() {
         scoreboard = new GreenfootImage("upper_textbox.png");
         scoreboard.scale(scoreboard.getWidth() - 400, scoreboard.getHeight() - 150);
         img = new GreenfootImage("    Health : " + Scoreboard.getHealth() + "" + "    Monster :" + 1000, 20, Color.BLACK, n);
       
+        monsterVal = 0;
 
         scoreboard.drawImage(img, scoreboard.getWidth() / 2 - 200, scoreboard.getHeight() / 2);
 
@@ -33,7 +41,11 @@ public class Scoreboardmain extends Subject
         setImage(scoreboard);
         // setImage(imgM);
     }
-
+    
+    /**
+     * Setter method 
+     * @param val Monster Health value
+     */
     public void setMonsterHealth(int val) 
     {
         this.monsterVal = val;
