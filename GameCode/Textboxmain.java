@@ -28,7 +28,7 @@ public class Textboxmain extends GameActor
 
         // this.setLocation(100,100);
         // setImage(img);
-        textDec.drawImage(img, textDec.getWidth() / 2, textDec.getHeight() / 2);
+        textDec.drawImage(img, textDec.getWidth() / 2 - 200, textDec.getHeight() / 2);
         this.setLocation(400, 700);
         // setImage(imgM);
     }
@@ -55,7 +55,7 @@ public class Textboxmain extends GameActor
         textDec = new GreenfootImage("txtbox.png");
         textDec.scale(textDec.getWidth() - 400, textDec.getHeight() - 50);
         textDec.drawImage(map, 30, 30);
-        textDec.drawImage(img, textDec.getWidth() / 2, textDec.getHeight() / 2);
+        textDec.drawImage(img, textDec.getWidth() / 2 -200 , textDec.getHeight() / 2);
         setImage(textDec);
         this.setLocation(400, 700);
         // setImage(img);
