@@ -19,6 +19,7 @@ public class StartScreen extends World
         super(800, 800, 1);         
         st = new StartScreenText();
         addObject(st,400,400);
+
         
     }
     

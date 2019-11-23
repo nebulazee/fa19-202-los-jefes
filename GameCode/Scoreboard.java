@@ -15,7 +15,7 @@ public class Scoreboard extends Subject {
     GreenfootImage img;
     GreenfootImage imgM;
     int monsterVal = 1000;
-    int manVal = 1000000;
+    int manVal = 10000;
     int goldCount = 30;
     int monsterKilledCount = 0;
     int currentWeapon;
@@ -31,6 +31,7 @@ public class Scoreboard extends Subject {
         goldCount = 30;
         monsterKilledCount = 0;
         currentWeapon = 0;
+        manVal = 10000;
 
         this.setLocation(100, 100);
     }
@@ -41,8 +42,14 @@ public class Scoreboard extends Subject {
 
     public static synchronized Scoreboard getScoreboardInstance() {
         if (scoreboard == null) {
-            scoreboard = new Scoreboard();
+            return getNewScoreboardInstance();
         }
+        return scoreboard;
+    }
+    
+    public static synchronized Scoreboard getNewScoreboardInstance() {
+        
+        scoreboard = new Scoreboard(); 
         return scoreboard;
     }
 
@@ -70,6 +77,11 @@ public class Scoreboard extends Subject {
     public static int getHealth() 
     {
         return scoreboard.manVal;
+    }
+    
+    public static void setHealth(int health) 
+    {
+        scoreboard.manVal = health;
     }
 
     public static void monsterDead() {
