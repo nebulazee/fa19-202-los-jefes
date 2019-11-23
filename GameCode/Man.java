@@ -12,8 +12,8 @@ public class Man extends Subject implements IScoreboardObserver
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
      */
-    int health = 1000;
-    int gold = 30;
+    int health;
+    int gold;
     int animationCounter = 0;
     int timer = 1;
     boolean manDead = false;
@@ -104,6 +104,11 @@ public class Man extends Subject implements IScoreboardObserver
     public void damage(int hit) 
     {
         health -= hit;
+        updateScoreboard();
+    }
+    public void restore()
+    {
+        health = WorldManager.getInstance().getInitialHealth();
         updateScoreboard();
     }
     public void addGold(int reward)
@@ -286,7 +291,15 @@ public class Man extends Subject implements IScoreboardObserver
             msg.append(title);
             msg.append("\n\n");
             msg.append(obj.getCommandTooltips());
-            Textboxmain.setTextboxMsg(msg.toString());
+            if (title != "" && obj.getCommandTooltips() != "")
+            {
+                Textboxmain.setTextboxMsg(msg.toString());
+            }
+            else
+            {
+                title = WorldManager.getCurrentWorld().getTitle();
+                Textboxmain.setTextboxMsg(title);
+            }
             if (Greenfoot.isKeyDown("q"))
             {
                 obj.checkAndRunCommand("q");
@@ -295,7 +308,7 @@ public class Man extends Subject implements IScoreboardObserver
         else
         {
             title = WorldManager.getCurrentWorld().getTitle();
-            Textboxmain.setTextboxMsg(title.toString());
+            Textboxmain.setTextboxMsg(title);
         }
     }
     

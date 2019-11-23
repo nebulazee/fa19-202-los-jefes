@@ -14,7 +14,8 @@ public abstract class GameActor extends Actor
     
     GameActor()
     {
-        commandMap = new HashMap();
+        commandMap = new HashMap<String, IPlayerCommand>();
+        actorTitle = "";
         createCommandBindings();
     }
     

@@ -14,10 +14,9 @@ public class Scoreboard extends Subject {
      */
     GreenfootImage img;
     GreenfootImage imgM;
-    int monsterVal = 1000;
-    int manVal = 1000000;
-    int goldCount = 30;
-    int monsterKilledCount = 0;
+    int manVal;
+    int goldCount;
+    int monsterKilledCount;
     int currentWeapon;
 
     private ArrayList<IScoreboardObserver> observers ;
@@ -28,9 +27,10 @@ public class Scoreboard extends Subject {
     {
         observers = new ArrayList<IScoreboardObserver>() ;
 
-        goldCount = 30;
         monsterKilledCount = 0;
         currentWeapon = 0;
+        manVal = WorldManager.getInstance().getInitialHealth();
+        goldCount = WorldManager.getInstance().getInitialGold();
 
         this.setLocation(100, 100);
     }

@@ -17,6 +17,10 @@ public class WorldManager extends GameActor
     
     int worldHeight = 4;
     int worldWidth = 3;
+
+    final int gameHitPoints = 10000;
+    final int startingGold = 20;
+
     enum WorldType{
         MONSTER,ANIMAL,TREASURE;
     }
@@ -261,4 +265,7 @@ public class WorldManager extends GameActor
         }
         return code;
     }
+
+    public int getInitialHealth() { return gameHitPoints; }
+    public int getInitialGold() { return startingGold; }
 }
