@@ -62,6 +62,10 @@ public class Scoreboard extends Subject {
         scoreboard.goldCount = man.gold;
 
         notifyScoreboardObservers(((IScoreboardObserver)man));
+        if(scoreboard.manVal<=0)
+        {
+            Greenfoot.setWorld(scoreboard.es);
+        }
 
     }
 
