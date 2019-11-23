@@ -19,7 +19,7 @@ public class Scoreboard extends Subject {
     int goldCount = 30;
     int monsterKilledCount = 0;
     int currentWeapon;
-
+    EndScreen es;
     private ArrayList<IScoreboardObserver> observers ;
 
     private static Scoreboard scoreboard;
@@ -31,15 +31,11 @@ public class Scoreboard extends Subject {
         goldCount = 30;
         monsterKilledCount = 0;
         currentWeapon = 0;
-        manVal = 10000;
-
+        es = new EndScreen();
         this.setLocation(100, 100);
     }
 
-    public int getMonsterKillCount() {
-        return monsterKilledCount;
-    }
-
+    
     public static synchronized Scoreboard getScoreboardInstance() {
         if (scoreboard == null) {
             return getNewScoreboardInstance();
@@ -87,7 +83,11 @@ public class Scoreboard extends Subject {
     public static void monsterDead() {
         scoreboard.monsterKilledCount++;
         System.out.println("Monster killed so far " + scoreboard.monsterKilledCount);
-
+        if(scoreboard.monsterKilledCount==3)
+        {
+            Greenfoot.setWorld(scoreboard.es);
+        }
+        
     }
 
     public static void updateWeapon(int no)
@@ -113,6 +113,7 @@ public class Scoreboard extends Subject {
     
     public static int getCurrentWeapon()
     {
+        
         return scoreboard.currentWeapon;
     }
 

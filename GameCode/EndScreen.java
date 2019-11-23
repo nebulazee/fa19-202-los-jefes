@@ -12,26 +12,26 @@ public class EndScreen extends World
     /**
      * Constructor for objects of class EndScreen.
      * 
-     */
-    Color n = new Color(0,0,0,0);
-    GreenfootImage img;
-
+     */    
+    EndScreenText es;
     public EndScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
         super(800, 800, 1);
+        es = new EndScreenText();
+        addObject(es,400,400);
         prepare();
     }
 
     public void act()
     {
-        this.checkNextScreen();            
+        this.checkNextScreen();  
 
     }   
 
     public void checkNextScreen()
     {
-        if( Greenfoot.isKeyDown("enter"))
+        if( Greenfoot.isKeyDown("q"))
         {
             WorldManager.getNewInstance();
         }
