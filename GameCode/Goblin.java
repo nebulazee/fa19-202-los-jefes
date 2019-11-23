@@ -7,28 +7,43 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Goblin extends Subject
-{
+{    
+    private int direction=5;
+    private GreenfootImage right = new GreenfootImage("71.png");
+    private GreenfootImage left = new GreenfootImage("bullWL1.png");
+    
+    /**
+     * Constructor of Goblin
+     *      
+     */
+    public Goblin()
+    {
+        super();
+        setImage(left);
+    }
+    
+    /**
+     * Update Damage (not used)
+     * 
+     * @param s ISubject
+     */
+    public void updateDamage(ISubject s) {
+        
+    }
+    
     /**
      * Act - do whatever the Goblin wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    private int direction=5;
-    private GreenfootImage right = new GreenfootImage("71.png");
-    private GreenfootImage left = new GreenfootImage("bullWL1.png");
-    public Goblin()
-    {
-        super();
-    }
-    public void updateDamage(ISubject s) {
-        
-    }
     public void act() 
     {
-        moveBackandForth();
-       // updateDa
-        // Add your action code here.
+        moveBackandForth();       
     }    
     
+    /**
+     *  Sets Goblin movement
+     * 
+     */
     public void moveBackandForth()
     {
         
@@ -44,10 +59,16 @@ public class Goblin extends Subject
         } 
         if( !hitknight() )
         {
-        move(direction-1);
+        move((direction-1)/2);
         }
     }
-public boolean hitknight()
+    
+    /**
+     *  Checks if Man is touching
+     * 
+     * @return true if Man touching
+     */
+    public boolean hitknight()
     {
         if( isTouching( Man.class) )
         {

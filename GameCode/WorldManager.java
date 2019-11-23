@@ -88,19 +88,19 @@ public class WorldManager extends GameActor {
                         if (monsters == 3) {
                             worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
                                 public void createMonster() {
-                                    currentMonster = new BaseMonster("Demon1.png", "Demon2.png", "CEREBRUS");
+                                    currentMonster = new BaseMonster("Demon1.png", "Demon2.png", "CEREBRUS", 1000, 0.30f);
                                 }
                             };
                         } else if (monsters == 2) {
                             worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
                                 public void createMonster() {
-                                    currentMonster = new BaseMonster("0.png", "1.png", "EL DIABLO");
+                                    currentMonster = new BaseMonster("0.png", "1.png", "EL DIABLO", 2000, 0.10f);
                                 }
                             };
                         } else {
                             worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
                                 public void createMonster() {
-                                    currentMonster = new BaseMonster("ogre1.png", "ogre2.png", "OGRE");
+                                    currentMonster = new BaseMonster("ogre1.png", "ogre2.png", "OGRE", 500, 0.50f);
                                 }
                             };
                         }
@@ -113,8 +113,8 @@ public class WorldManager extends GameActor {
                         String[] treasureTypes = { "red", "blue", "golden" };
                         String color = treasureTypes[Greenfoot.getRandomNumber(3)];
                         String weapon = "sword (" + String.valueOf(Greenfoot.getRandomNumber(51)) + ").png";
-                        int dmg = 21 + Greenfoot.getRandomNumber(30);
-                        float speed = Greenfoot.getRandomNumber(30) / 10;
+                        int dmg = 11 + Greenfoot.getRandomNumber(20);
+                        float speed = Greenfoot.getRandomNumber(8) / 10;
 
                         worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j)) {
                             public void createTreasure() {

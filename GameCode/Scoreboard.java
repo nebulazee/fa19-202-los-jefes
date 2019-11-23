@@ -8,10 +8,7 @@ import java.util.*;
  * @version (a version number or a date)
  */
 public class Scoreboard extends Subject {
-    /**
-     * Act - do whatever the Scoreboard wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     GreenfootImage img;
     GreenfootImage imgM;
     int manVal;
@@ -23,9 +20,12 @@ public class Scoreboard extends Subject {
     GreenfootImage vic = new GreenfootImage("victoryedited.jpg");
     GreenfootImage def = new GreenfootImage("defeat.png");
     private ArrayList<IScoreboardObserver> observers;
-
     private static Scoreboard scoreboard;
-
+    
+    /**
+     * Constructor method 
+     * 
+     */
     private Scoreboard() {
         observers = new ArrayList<IScoreboardObserver>();
 
@@ -38,34 +38,54 @@ public class Scoreboard extends Subject {
 
         this.setLocation(100, 100);
     }
-
+    
+    /**
+     * Singleton pattern 
+     * @return Scoreboard instance
+     */
     public static synchronized Scoreboard getScoreboardInstance() {
         if (scoreboard == null) {
             return getNewScoreboardInstance();
         }
         return scoreboard;
     }
-
+    
+    /**
+     * Singleton pattern 
+     * @return new Scoreboard instance if not created
+     */
     public static synchronized Scoreboard getNewScoreboardInstance() {
         scoreboard = new Scoreboard();
         return scoreboard;
     }
-
+    
+    /**
+     * Act - do whatever the Scoreboard wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act() {
 
-    }
+    }    
 
-    public int gethealth() {
-        return manVal;
-    }
-
+    /**
+     * Getter method 
+     * @return Monster Kill Count
+     */
     public int getMonsterKill() {
         return monsterKilledCount;
     }
-
+    
+    /**
+     * not used 
+     * @param s ISubject
+     */
     public void updateDamage(ISubject s) {
     }
-
+    
+    /**
+     * Updates Players stats 
+     * @param man Man object 
+     */
     public static void setPlayerStats(Man man) {
         scoreboard.manVal = man.health;
         scoreboard.goldCount = man.gold;
@@ -77,39 +97,66 @@ public class Scoreboard extends Subject {
         }
 
     }
-
+    
+    /**
+     * Getter method 
+     * @return Gold Count
+     */
     public static int getGoldCount() {
         return scoreboard.goldCount;
     }
-
+    
+    /**
+     * Getter method 
+     * @return Health Count
+     */
     public static int getHealth() {
         return scoreboard.manVal;
     }
-
+    
+    /**
+     * Setter method 
+     * @param health Sets Man health
+     */
     public static void setHealth(int health) {
         scoreboard.manVal = health;
     }
-
+    
+    /**
+     * Checks End Game condition
+     * 
+     */
     public static void monsterDead() {
         scoreboard.monsterKilledCount++;
-        System.out.println("Monster killed so far " + scoreboard.monsterKilledCount);
         if (scoreboard.monsterKilledCount == 3) {
             // scoreboard.est.setImage(scoreboard.vic);
             Greenfoot.setWorld(new EndScreen());
         }
 
     }
-
+    
+    /**
+     * Weapon Update 
+     * @param w Weapon to be updated
+     */
     public static void updateWeapon(Weapon w) {
         scoreboard.currentWeapon = w;
         notifyScoreboardObservers(null);
     }
-
+    
+    /**
+     * Getter method 
+     * @return Current Weapon
+     */
     public static Weapon getCurrentWeapon() {
 
         return scoreboard.currentWeapon;
     }
-
+    
+    /**
+     * Observer pattern 
+     * @param obs Observer
+     */
     public static void addScoreboardObserver(IScoreboardObserver obs) {
         scoreboard.observers.add(obs);
     }

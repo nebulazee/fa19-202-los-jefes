@@ -12,7 +12,7 @@ public class AnimalWorld extends BaseWorld
     /**
      * Constructor for objects of class MyWorld.
      * 
-     */
+     */ 
     public AnimalWorld(String config)
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -24,12 +24,12 @@ public class AnimalWorld extends BaseWorld
     /**
      * Prepare the world for the start of the program.
      * That is: create the initial objects and add them to the world.
-     */
+     */ 
     private void prepare()
     {
         worldType = "AnimalWorld";
         
-        tooltipTitle = "A field of goblins! Neither friend, nor foe.\nBest to avoid them and continue on your quest.";
+        tooltipTitle = "A field of Enchanted Minotaurs! Their allegance is neutral. \nInterfere with them at your own peril!\nBest to avoid them and continue on your quest.";
         
         Goblin goblin = new Goblin();
         addObject(goblin,20,225);   

@@ -7,13 +7,12 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class EndScreen extends World
-{
-
-    /**
-     * Constructor for objects of class EndScreen.
-     * 
-     */    
+{      
     EndScreenText es;
+    
+    /**
+     * Constructor for objects of class EndScreen. 
+     */  
     public EndScreen()
     {    
         // Create a new world with 600x400 cells with a cell size of 1x1 pixels.
@@ -23,12 +22,19 @@ public class EndScreen extends World
         prepare();
     }
 
+     /**
+     * Act - do whatever the EndScreen wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act()
     {
         this.checkNextScreen();  
 
     }   
 
+    /**
+     * going next screen
+     */
     public void checkNextScreen()
     {
         if( Greenfoot.isKeyDown("q"))
