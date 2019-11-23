@@ -51,6 +51,7 @@ public boolean hitknight()
     {
         if( isTouching( Man.class) )
         {
+            
             // if(getObjectsInRange(100, Man.class).size()>0)
             // man =getObjectsInRange(100, Man.class).get(0);
             Man man = (Man) getOneIntersectingObject(Man.class);
