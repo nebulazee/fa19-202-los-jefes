@@ -57,12 +57,12 @@ public class RedTreasure extends Treasure
             }
         
     }
-    /*
+    
     public Treasure getTreasure()
     {
         return new RedTreasure();
     }
-    */
+    
     
     public void act() 
     {
@@ -79,10 +79,12 @@ public class RedTreasure extends Treasure
             }
             else if(this.openDelay == 120)
             {
-                GreenfootImage redSwordImage = new GreenfootImage("red-sword.png");
-                //redSwordImage.scale(45,45);
-                Scoreboard.updateWeapon(2);
-                setImage(redSwordImage);
+                String swordFileName = getSwordFileName();
+                System.out.println("Sword Image: " + swordFileName);
+                GreenfootImage redTreasureSwordImage = new GreenfootImage(swordFileName);
+                redTreasureSwordImage.scale(50,50);
+                //Scoreboard.updateWeapon(2);
+                setImage(redTreasureSwordImage);
                 //this.setImage(new MotionRenderer("red-sword.png").image);
             }
         }
@@ -91,5 +93,18 @@ public class RedTreasure extends Treasure
     public void setImage(MotionRenderer img){
     //System.err.println("Man image is set to "+img.fileName);
         super.setImage(img.image);
+    }
+    
+    public String getSwordFileName()
+    {
+        int swordNumber = Greenfoot.getRandomNumber(50);
+        String fileName = "";
+        fileName += "sword";
+        fileName +=" (";
+        fileName += swordNumber;
+        fileName += ")";
+        fileName += ".png";
+        
+        return fileName;
     }
 }
