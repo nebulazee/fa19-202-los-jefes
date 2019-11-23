@@ -47,7 +47,7 @@ public abstract class GameActor extends Actor
      * 
      * @param pressedKey String
      */
-    protected void checkAndRunCommand(String pressedKey)
+    public void checkAndRunCommand(String pressedKey)
     {
         Man man = (Man) getOneIntersectingObject(Man.class);
         if (man != null)
