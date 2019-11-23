@@ -8,19 +8,25 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Weapon extends GameActor
 {
-    protected int damage;
-    protected int attack_speed;
-    protected String strong_against;
-    protected String weak_against;
+    protected final int damage;
+    protected final float attackSpeed;
+    protected final String weaponImage;
+    protected String strongAgainst;
+    protected String weakAgainst;
 
-    Weapon()
+    Weapon(String img, int dmg, float speed)
     {
         super();
+        weaponImage = img;
+        damage = dmg;
+        attackSpeed = speed;
     }
     
     public int getDamage() { return damage; }    
 
-    public int getSpeed() { return attack_speed; } 
+    public float getSpeed() { return attackSpeed; } 
+    
+    public String getWeaponImage() { return weaponImage; }
  
     // public float getMonsterDamageMultiplier(Monster m) { } 
 

@@ -120,20 +120,33 @@ public class WorldManager extends GameActor
                             worldMap[i][j] = new AnimalWorld(constructConfigurationCode(i, j));
                             break;
                         case TREASURE:
-                             TreasureWorld tw =  new TreasureWorld(constructConfigurationCode(i, j));
                              if(treasures == 2) {
-                                tw.setTreasure(new Treasure("Demon1.png"){
-                                    public void pickWeapon(ISubject s){
-                                    }
-                                });
+                                 worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j)) {
+                                     public void createTreasure()
+                                     {
+                                         this.worldTreasure = new Treasure("treasure-closed-golden.png", "treasure-open-golden.png") {
+                                             public void createWeapon()
+                                             {
+                                                 associatedWeapon = new Weapon("golden-sword.png", 100, 0.1f);
+                                                }
+                                            };
+                                        }
+                                    };
+
                             }
                             else if(treasures == 1) {
-                                tw.setTreasure(new Treasure("0.png"){
-                                    public void pickWeapon(ISubject s){
-                                    }
-                                });
+                                 worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j)) {
+                                     public void createTreasure()
+                                     {
+                                         this.worldTreasure = new Treasure("treasure-closed-blue.png", "treasure-open-blue.png") {
+                                             public void createWeapon()
+                                             {
+                                                 associatedWeapon = new Weapon("blue-sword.png", 50, 0.2f);
+                                                }
+                                            };
+                                        }
+                                    };
                             }  
-                            worldMap[i][j] = tw;
                             treasures--;
                             break;
                         default:

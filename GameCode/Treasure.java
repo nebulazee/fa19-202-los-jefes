@@ -6,31 +6,104 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public  class Treasure extends Subject
+public abstract class Treasure extends GameActor
 {
-    String image1;
+    String imageClosed, imageOpen;
+    private int strength;
+    private int openDelay;
+    private boolean pickedWeapon;
+    public Weapon associatedWeapon;
+    
     Treasure()
     {
         super();
     }
-    Treasure(String image1) {
-        super();
-        this.image1 = image1;
-        
-        GreenfootImage img = new GreenfootImage(this.image1);
-
-        img.scale(60, 60);
-        this.setImage(img);
-    }
     
-    /**
-     * Act - do whatever the Treasure wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
-    public  void pickWeapon(ISubject s)
+    Treasure(String imageClosed, String imageOpen) 
     {
+        super();
+        this.imageClosed = imageClosed;
+        this.imageOpen = imageOpen;
+        
+        createWeapon();
+        
+        GreenfootImage treasureClosedImage = new GreenfootImage(imageClosed);
+        treasureClosedImage.scale(50,50);
+        setImage(treasureClosedImage);
+
+        this.strength = 30;
+        this.openDelay = 0;
+        //this.pickedWeapon = false;
+    }
+    class MotionRenderer {
+        String file;
+        GreenfootImage image;
+        public MotionRenderer (String file){
+            this.file=file;
+            this.image= new GreenfootImage(file);
+            //image.scale(60,60);
+        }
     }
     
-    //public abstract Treasure getTreasure();  
+    MotionRenderer im;
+    public void takeDamage()
+    {
+        this.strength = this.strength-10;
+            // System.out.println(this.strength);
+    }
+    
+    public Weapon exchangeWeapon(Weapon w)
+    {
+        //this.pickedWeapon = true;
+        Weapon temp = associatedWeapon;
+        this.associatedWeapon = w;
+        Scoreboard.updateWeapon(1);
+        updateWeaponImage();
+        
+        return temp;
+
+    }
+    
+    private void updateWeaponImage()
+    {
+        GreenfootImage weaponImage = new GreenfootImage(associatedWeapon.getWeaponImage());
+        setImage(weaponImage);
+    }
+
+    public abstract void createWeapon();
+    
+    public void act() 
+    {
+        
+        if(this.strength <= 0)
+        {
+            this.openDelay++;
+            if(this.openDelay == 60)
+            {
+                GreenfootImage treasureOpenImage = new GreenfootImage(imageOpen);
+                treasureOpenImage.scale(50,50);
+                setImage(treasureOpenImage);
+                //this.setImage(new MotionRenderer("treasure-open-blue.png").image);
+            }
+            else if(this.openDelay == 120)
+            {
+                GreenfootImage weaponImage = new GreenfootImage(associatedWeapon.getWeaponImage());
+                setImage(weaponImage);
+                //this.setImage(new MotionRenderer("blue-sword.png").image);
+            }
+        }
+        
+    }  
+    public void setImage(MotionRenderer img){
+    //System.err.println("Man image is set to "+img.fileName);
+        super.setImage(img.image);
+    }
+    
+    //public abstract Treasure getTreasure();
+    
+    
+    
+    
+    
     
 }
