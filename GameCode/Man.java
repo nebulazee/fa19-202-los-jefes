@@ -277,6 +277,7 @@ public class Man extends Subject implements IScoreboardObserver {
                     // animationCounter = 2;
                     attack();
                     obj.checkAndRunCommand("a");
+                    actionTimer = 0;
                 }
 
             }

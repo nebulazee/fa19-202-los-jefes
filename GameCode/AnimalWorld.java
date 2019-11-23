@@ -29,7 +29,7 @@ public class AnimalWorld extends BaseWorld
     {
         worldType = "AnimalWorld";
         
-        tooltipTitle = "A field of goblins! Neither friend, nor foe.\nBest to avoid them and continue on your quest.";
+        tooltipTitle = "A field of Enchanted Minotaurs! Their allegance is neutral. \nInterfere with them at your own peril!\nBest to avoid them and continue on your quest.";
         
         Goblin goblin = new Goblin();
         addObject(goblin,20,225);   
