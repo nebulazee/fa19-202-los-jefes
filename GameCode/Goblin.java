@@ -19,6 +19,7 @@ public class Goblin extends Subject
     public Goblin()
     {
         super();
+        setImage(left);
     }
     
     /**
@@ -36,7 +37,6 @@ public class Goblin extends Subject
      */
     public void act() 
     {
-        setImage(left);
         moveBackandForth();       
     }    
     
