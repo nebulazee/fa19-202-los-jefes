@@ -18,7 +18,7 @@ public class EndScreenText extends Actor
     EndScreen es;
     public EndScreenText()
     {
-        if(WorldManager.getCurrentWorld() instanceof MonsterWorld){
+        if(WorldManager.getCurrentWorld() instanceof MonsterWorld || WorldManager.getCurrentWorld() instanceof AnimalWorld){
          sb = Scoreboard.getScoreboardInstance();  
          health = sb.gethealth();
          monsterkill = sb.getmonsterkill();
