@@ -165,9 +165,9 @@ public class Man extends Subject implements IScoreboardObserver
         {
             if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
                     || Greenfoot.isKeyDown("s")) {
-                treasure.updateDamage(this);
+                treasure.takeDamage();
             } else if (Greenfoot.isKeyDown("g")) {
-                treasure.pickWeapon(this);
+                //treasure.pickWeapon(this);
             }
         }
 
