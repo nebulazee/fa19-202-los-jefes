@@ -21,6 +21,7 @@ public class Man extends Subject implements IScoreboardObserver
     int speed = 2;
     int length;
     int direction = 0;
+    EndScreen es;
     class Direction {
         public static final int UP = 270;
         public static final int DOWN = 90;
@@ -56,7 +57,7 @@ public class Man extends Subject implements IScoreboardObserver
         length = getImage().getWidth();
         // gif = new GifImage("skeleton-club.gif");
         // gif.resizeImages(60,60);
-
+        es = new EndScreen();
         Scoreboard.addScoreboardObserver(this);
 
         health = Scoreboard.getHealth();
@@ -104,6 +105,10 @@ public class Man extends Subject implements IScoreboardObserver
     public void damage(int hit) 
     {
         health -= hit;
+        if(health<=0)
+        {
+            Greenfoot.setWorld(es);
+        }
         updateScoreboard();
     }
     public void addGold(int reward)
@@ -326,77 +331,6 @@ public class Man extends Subject implements IScoreboardObserver
         return offset + adjustAmount;
     }
 
-    // public void movement() {
-    //     int x = getX();
-    //     int y = getY();
-    //     String title = ((BaseWorld)WorldManager.getCurrentWorld()).getTitle();
-    //     StringBuffer msg = new StringBuffer();
-    //     msg.append(title);
-    //     msg.append("\n\n");
-    //     GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
-    //     if (obj != null)
-    //     {
-    //         msg.append(obj.getCommandTooltips());
-    //         Textboxmain.setTextboxMsg(msg.toString());
-    //         if (Greenfoot.isKeyDown("q"))
-    //         {
-    //             obj.checkAndRunCommand("q");
-    //         }
-    //     }
-    //     else
-    //     {
-    //         Textboxmain.setTextboxMsg(msg.toString());
-    //     }
-    //     if(Tavern == null){
-    //     if (Greenfoot.isKeyDown("up")) {
-    //         setImage(img);
-    //         setLocation(x, y - 2);
-    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
-    //             //setLocation(x, y - 2);
-    //              //setLocation(x, y + 2);
-    //         //}
-    //         /*
-    //          * if(hitMonster()) { setLocation( x, y ); }
-    //          */
-    //     }
-    //     if (Greenfoot.isKeyDown("down")) {
-    //         setImage(imgB);
-    //         setLocation(x, y + 2);
-            // if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
-            //     setLocation(x, y - 2);
-            //     setLocation(x, y + 2);
-            // }
-    //         /*
-    //          * if(hitMonster()) { setLocation( x, y ); }
-    //          */
-    //     }
-    //     if (Greenfoot.isKeyDown("right")) {
-    //         setImage(imgR);
-    //         setLocation(x + 2, y);
-
-    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
-    //             //setLocation(x - 2, y);
-    //             //setLocation(x + 2, y);
-    //         //}
-    //         /*
-    //          * if(hitMonster()) { setLocation( x, y ); }
-    //          */
-    //     }
-    //     if (Greenfoot.isKeyDown("left")) {
-    //         setImage(imgL);
-    //         setLocation(x - 2, y);
-    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
-    //             //setLocation(x + 2, y);
-    //             // setLocation(x - 2, y);
-    //         //}
-    //         /*
-    //          * if(hitMonster()){ setLocation( x, y ); }
-    //          */
-    //     }
-    //     }
-    
-
-    // }
 
     private void checkScreenChange() {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
@@ -423,13 +357,7 @@ public class Man extends Subject implements IScoreboardObserver
 
     }
 
-    public boolean hitTavern() {
-        if (isTouching(Tavern.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+   
 
     public boolean hitGoblin() {
         if (isTouching(Goblin.class)) {
@@ -441,30 +369,6 @@ public class Man extends Subject implements IScoreboardObserver
 
     public boolean hitMonster() {
         if (isTouching(BaseMonster.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitTreasure() {
-        if (isTouching(Treasure.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitScoreboard() {
-        if (isTouching(Scoreboardmain.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitTextbox() {
-        if (isTouching(Textboxmain.class)) {
             return true;
         } else {
             return false;
