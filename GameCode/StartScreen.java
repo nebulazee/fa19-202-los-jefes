@@ -5,17 +5,16 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * 
  * @author (your name) 
  * @version (a version number or a date)
- */
+ */ 
 public class StartScreen extends World
 {
-    StartScreenText st;
+    StartScreenText st;        
+    GreenfootSound backgroundMusic = new GreenfootSound("music.mp3");
+    
     /**
      * Constructor for objects of class StartScreen.
      * 
      */
-    
-    GreenfootSound backgroundMusic = new GreenfootSound("music.mp3");
-    
     public StartScreen()
     {    
         // Create a new world with 800x600 cells with a cell size of 1x1 pixels.
@@ -27,11 +26,11 @@ public class StartScreen extends World
     
     public void act()
     {
-        this.checkNextScreen();            
+        this.checkNextScreen();             
     
     }   
     
-    public void checkNextScreen()
+    public void checkNextScreen() 
     {
         if( Greenfoot.isKeyDown("enter"))
         {
