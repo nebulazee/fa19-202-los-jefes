@@ -55,9 +55,7 @@ public class Scoreboard extends Subject {
 
     }
 
-    public int gethealth() {
-        return manVal;
-    }
+    
 
     public int getMonsterKill() {
         return monsterKilledCount;

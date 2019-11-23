@@ -19,8 +19,8 @@ public class EndScreenText extends Actor {
     {
         if(WorldManager.getCurrentWorld() instanceof MonsterWorld || WorldManager.getCurrentWorld() instanceof AnimalWorld){
          sb = Scoreboard.getScoreboardInstance();  
-         health = sb.gethealth();
-         monsterkill = sb.getmonsterkill();
+         health = sb.getHealth();
+         monsterkill = sb.getMonsterKill();
          vic = new GreenfootImage("victoryedited.jpg");
          def = new GreenfootImage("defeat.png"); 
          if(health<=0)
