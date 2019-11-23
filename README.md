@@ -15,6 +15,30 @@
 - A **Command** pattern binds game actions to specific objects (Actors) to enable dynamic customization of interactions with the game player and Actors.
   ![uml class diagram](https://github.com/nguyensjsu/fa19-202-los-jefes/blob/master/GameCode/documents/CommandPattern.svg)
 
-### Agile - Team Burndown
+## Agile
+
+### Task Division
+
+#### Aashay Mokadam
+
+World Manager (State Pattern), Textbox Commands (Command Pattern)
+
+#### Aishwarya Rastogi
+
+Scoreboard (Singleton Pattern), Monster Generation (Factory Method)
+
+#### Harsh Trivedi
+
+Start Screen, State Machine Assistance, Scoreboard (Observer)
+
+#### Samkit Sheth
+
+Actor Movement and Interactions, Text Tooltips (Singleton, Observer), Game End Logic
+
+#### Varshit Shah
+
+Treasure and Weapon Generation (Nested Factory Method)
+
+### Team Burndown
 
 ![agile burndown chart](https://github.com/nguyensjsu/fa19-202-los-jefes/blob/master/GameCode/documents/Agile-Burndown.png)
