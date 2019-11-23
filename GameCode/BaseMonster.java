@@ -20,7 +20,7 @@ public class BaseMonster extends Subject
     int c = 1;
     String image1;
     String image2;
-
+    private int openDelay;
     class MotionRenderer {
         String file;
         GreenfootImage image;
@@ -47,9 +47,9 @@ public class BaseMonster extends Subject
         this.image1 = image1;
         this.image2 = image2;
         GreenfootImage img = new GreenfootImage(this.image1);
-
-        img.scale(60, 60);
+        img.scale(60, 60); 
         this.setImage(img);
+        this.openDelay = 0;
     }
 
     public void updateDamage(ISubject s) {
@@ -85,6 +85,7 @@ public class BaseMonster extends Subject
                 this.health = this.health - attackpower;
                 notifyObservers(s);
                 // System.out.println(this.health);
+           
             }
         }
     }
@@ -98,6 +99,7 @@ public class BaseMonster extends Subject
 
 
     public void animasi() {
+        if(this.openDelay%20 == 0){
         if (c == 1) {
             setImage(new MotionRenderer(this.image1).image);
             c = 2;
@@ -105,15 +107,18 @@ public class BaseMonster extends Subject
             setImage(new MotionRenderer(this.image2).image);
             c = 1;
         }
-
+    }
+    //attackDelay++;
+    
     }
 
     public void act() {
         WorldManager.getCurrentWorld().getScoreboard().setMonsterHealth(health);
-
+        
         man = (Man) getOneIntersectingObject(Man.class);
-
+        this.openDelay++;
         if (null == man) {
+            
         } else {
             animasi();
 
