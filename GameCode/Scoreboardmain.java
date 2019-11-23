@@ -14,11 +14,19 @@ public class Scoreboardmain extends Subject
     GreenfootImage scoreboard;
     Color n = new Color(255, 232, 213);
     
+    /**
+     * not used 
+     * @param s ISubject
+     */
     public void updateDamage(ISubject s) 
     {
 
     }
-
+    
+    /**
+     * Constructor method 
+     * 
+     */
     public Scoreboardmain() {
         scoreboard = new GreenfootImage("upper_textbox.png");
         scoreboard.scale(scoreboard.getWidth() - 400, scoreboard.getHeight() - 150);
@@ -33,7 +41,11 @@ public class Scoreboardmain extends Subject
         setImage(scoreboard);
         // setImage(imgM);
     }
-
+    
+    /**
+     * Setter method 
+     * @param val Monster Health value
+     */
     public void setMonsterHealth(int val) 
     {
         this.monsterVal = val;

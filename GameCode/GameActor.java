@@ -12,6 +12,9 @@ public abstract class GameActor extends Actor
     protected HashMap<String, IPlayerCommand> commandMap;
     private String actorTitle;
     
+    /**
+     * GameActor Constructor
+     */
     GameActor()
     {
         commandMap = new HashMap<String, IPlayerCommand>();
@@ -19,8 +22,18 @@ public abstract class GameActor extends Actor
         createCommandBindings();
     }
     
+    /**
+     * GameActor Command Create
+     */
     public void createCommandBindings(){}
 
+    /**
+     * GameActor new Command bind
+     * 
+     * @param key String
+     * @param message String
+     * @param command IPlayerCommandTarget
+     */
     protected void newCommandBinding(String key, String message, IPlayerCommandTarget command)
     {
         PlayerCommand cmd = new PlayerCommand();
@@ -29,6 +42,11 @@ public abstract class GameActor extends Actor
         commandMap.put(key, cmd);
     }
 
+    /**
+     * GameActor checkAndRunCommand
+     * 
+     * @param pressedKey String
+     */
     protected void checkAndRunCommand(String pressedKey)
     {
         Man man = (Man) getOneIntersectingObject(Man.class);
@@ -43,6 +61,11 @@ public abstract class GameActor extends Actor
         }
     }
 
+    /**
+     * GameActor command tooltip
+     * 
+     * @return String
+     */
     public String getCommandTooltips()
     {
         if (commandMap.isEmpty() == true)
@@ -59,8 +82,18 @@ public abstract class GameActor extends Actor
         }
         return sBuf.toString();
     }
-
+    
+    /**
+     * GameActor set Actor Title
+     * 
+     * @param t String
+     */
     protected void setActorTitle(String t) { actorTitle = t; }
 
+    /**
+     * GameActor actor getter
+     * 
+     * @return String
+     */
     public String getActorTitle() { return actorTitle; }
 }

@@ -11,7 +11,11 @@ public class Portal extends Subject
     
     public Signal flag ; 
     
-    
+    /**
+     * Constructor method
+     * 
+     * @param flag Creates portals based on flag  
+     */
     Portal(Signal flag)
     {
         this.flag = flag; 
@@ -39,6 +43,11 @@ public class Portal extends Subject
 
     }
     
+    /**
+     * Getter method
+     * 
+     * @return Flag for portal direction
+     */
     public Signal getFlag()
     {
         return flag;   
@@ -55,5 +64,10 @@ public class Portal extends Subject
         
     }    
     
+    /**
+     * updating damage of man (not used)
+     * 
+     * @param ISubject s
+     */
     public void updateDamage(ISubject s){}
 }

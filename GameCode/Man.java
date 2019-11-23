@@ -7,10 +7,7 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class Man extends Subject implements IScoreboardObserver {
-    /**
-     * Act - do whatever the Man wants to do. This method is called whenever the
-     * 'Act' or 'Run' button gets pressed in the environment.
-     */
+    
     int health;
     int gold;
     int animationCounter = 0;
@@ -116,7 +113,11 @@ public class Man extends Subject implements IScoreboardObserver {
         this.health = Scoreboard.getHealth();
         this.gold = Scoreboard.getGoldCount();
     }
-
+    
+    /**
+     * Act - do whatever the Man wants to do. This method is called whenever the
+     * 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act() {
         updateTooltips();
         movement();
@@ -172,13 +173,21 @@ public class Man extends Subject implements IScoreboardObserver {
         // endAnimation();
 
     }
-
+    
+    /**
+     * Prints Man's current location
+     * 
+     */
     private void checkLocation() {
         System.out.println(getX() + "  , " + getY());
         // if(getX() == 599)
         // Greenfoot.setWorld(new MonsterWorld());
     }
-
+    
+    /**
+     * Mans movement method
+     * 
+     */
     public void movement() {
         if (Greenfoot.isKeyDown("up")) {
             direction = Direction.UP;
@@ -202,7 +211,8 @@ public class Man extends Subject implements IScoreboardObserver {
             movePlayer();
         }
     }
-
+    
+     
     public void movePlayer() {
 
         int currentX = getX();
@@ -229,7 +239,11 @@ public class Man extends Subject implements IScoreboardObserver {
 
         }
     }
-
+    
+     /**
+     * Updates tool tip at bottom
+     * 
+     */
     private void updateTooltips() {
         String title;
         GameActor obj = (GameActor) getOneIntersectingObject(GameActor.class);
@@ -283,7 +297,11 @@ public class Man extends Subject implements IScoreboardObserver {
         int adjustAmount = distanceToFront * signOfOffset;
         return offset + adjustAmount;
     }
-
+    
+     /**
+     * Checks Screen change condition on touching portals
+     * 
+     */
     private void checkScreenChange() {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
         if (p != null) {
@@ -308,7 +326,11 @@ public class Man extends Subject implements IScoreboardObserver {
         }
 
     }
-
+    
+    /**
+     * Checks if Man touches Goblin
+     * @return true if Man touches Goblin
+     */
     public boolean hitGoblin() {
         if (isTouching(Goblin.class)) {
             return true;
@@ -316,7 +338,11 @@ public class Man extends Subject implements IScoreboardObserver {
             return false;
         }
     }
-
+    
+    /**
+     * Checks if Man touches Monster
+     * @return true if Man touches Monster
+     */
     public boolean hitMonster() {
         if (isTouching(BaseMonster.class)) {
             return true;

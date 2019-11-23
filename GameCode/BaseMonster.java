@@ -7,11 +7,7 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @version (a version number or a date)
  */
 public class BaseMonster extends Subject 
-{
-    /**
-     * Act - do whatever the BaseMonster wants to do. This method is called whenever
-     * the 'Act' or 'Run' button gets pressed in the environment.
-     */
+{    
     Man man = null;
     int health = 1000;
     boolean monsterDead = false;
@@ -33,7 +29,14 @@ public class BaseMonster extends Subject
     }
 
     MotionRenderer im1, im2;
-
+    
+    /**
+     * Constructor of BaseMonster
+     * 
+     * @param String image1
+     * @param String image2
+     * @param String name
+     */
     BaseMonster(String image1, String image2, String name) 
     {
         if (name == null || name == "")
@@ -51,7 +54,12 @@ public class BaseMonster extends Subject
         this.setImage(img);
         this.openDelay = 0;
     }
-
+    
+    /**
+     * updating damage of man
+     * 
+     * @param ISubject s
+     */
     public void updateDamage(ISubject s) {
         if (s instanceof Man) {
             if (this.health <= 0) {
@@ -89,7 +97,12 @@ public class BaseMonster extends Subject
             }
         }
     }
-
+    
+    /**
+     * notifyObservers
+     * 
+     * @param ISubject s
+     */
     public void notifyObservers(ISubject s) {
         // man shud update score board observer
         if (s != null) {
@@ -97,7 +110,9 @@ public class BaseMonster extends Subject
         }
     }
 
-
+    /**
+     * Animation of Monster
+     */
     public void animasi() {
         if(this.openDelay%20 == 0){
         if (c == 1) {
@@ -107,11 +122,15 @@ public class BaseMonster extends Subject
             setImage(new MotionRenderer(this.image2).image);
             c = 1;
         }
+    }    
+    //attackDelay++;    
     }
-    //attackDelay++;
     
-    }
-
+    
+    /**
+     * Act - do whatever the BaseMonster wants to do. This method is called whenever
+     * the 'Act' or 'Run' button gets pressed in the environment.
+     */
     public void act() {
         WorldManager.getCurrentWorld().getScoreboard().setMonsterHealth(health);
         
@@ -129,12 +148,20 @@ public class BaseMonster extends Subject
         }
     }
 
-
+    /**
+     * Getting Random Number
+     * 
+     * @param start Starting range
+     * @param end End range 
+     */
     public int getRandomNumber(int start, int end) {
         int normal = Greenfoot.getRandomNumber(end - start + 1);
         return normal + start;
     }
     
+    /**
+     * createCommandBindings for Command Pattern
+     */
     public void createCommandBindings()
     {        
         IPlayerCommandTarget takeDamageCommand = new IPlayerCommandTarget(){
