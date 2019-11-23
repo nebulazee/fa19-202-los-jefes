@@ -6,8 +6,7 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name)
  * @version (a version number or a date)
  */
-public class Man extends Subject implements IScoreboardObserver
-{
+public class Man extends Subject implements IScoreboardObserver {
     /**
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
@@ -22,6 +21,7 @@ public class Man extends Subject implements IScoreboardObserver
     int length;
     int direction = 0;
     EndScreen es;
+
     class Direction {
         public static final int UP = 270;
         public static final int DOWN = 90;
@@ -39,12 +39,9 @@ public class Man extends Subject implements IScoreboardObserver
         }
     }
 
-    BaseMonster monster = null;
-    Treasure treasure = null;
     private MotionRenderer img, imgW, imgA, imgS, imgD, imgR, imgB, imgL;
 
-    public Man() 
-    {
+    public Man() {
         img = new MotionRenderer("warrior.png");
         imgW = new MotionRenderer("warrior-front-attack.png");
         imgD = new MotionRenderer("warrior-right-attack.png");
@@ -77,59 +74,50 @@ public class Man extends Subject implements IScoreboardObserver
         Scoreboard.setPlayerStats(this);
     }
 
-
     public void setImage(MotionRenderer img) {
         // System.err.println("Man image is set to "+img.fileName);
         super.setImage(img.image);
     }
 
-    public void heal(int hpUp) 
-    { 
-        health += hpUp; 
+    public void heal(int hpUp) {
+        health += hpUp;
         updateScoreboard();
     }
-    public void damage(int hit) 
-    {
+
+    public void damage(int hit) {
         health -= hit;
-        if(health<=0)
-        {
+        if (health <= 0) {
             Greenfoot.setWorld(es);
         }
         updateScoreboard();
     }
-    public void restore()
-    {
+
+    public void restore() {
         health = WorldManager.getInstance().getInitialHealth();
         updateScoreboard();
     }
-    public void addGold(int reward)
-    {
+
+    public void addGold(int reward) {
         gold += reward;
         updateScoreboard();
     }
 
-    public Boolean chargeGold(int cost)
-    {
-        if (gold >= cost)
-        {
+    public Boolean chargeGold(int cost) {
+        if (gold >= cost) {
             gold -= cost;
             updateScoreboard();
             return true;
-        }
-        else
-        {
+        } else {
             return false;
         }
     }
 
-    public void scoreboardUpdateEvent()
-    {
+    public void scoreboardUpdateEvent() {
         this.health = Scoreboard.getHealth();
         this.gold = Scoreboard.getGoldCount();
     }
 
-    public void act() 
-    {
+    public void act() {
         updateTooltips();
         movement();
         trackMovement = Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
@@ -149,25 +137,24 @@ public class Man extends Subject implements IScoreboardObserver
     private void attack() {
 
         if (Greenfoot.isKeyDown("a")) {
-            if (animationCounter % 2 == 0 && direction==Direction.LEFT)
+            if (animationCounter % 2 == 0 && direction == Direction.LEFT)
                 animateAttack(imgA);
-            if (animationCounter % 2 == 0 && direction==Direction.RIGHT)
+            if (animationCounter % 2 == 0 && direction == Direction.RIGHT)
                 animateAttack(imgD);
-            if (animationCounter % 2 == 0 && direction==Direction.UP)
+            if (animationCounter % 2 == 0 && direction == Direction.UP)
                 animateAttack(imgW);
-            if (animationCounter % 2 == 0 && direction==Direction.DOWN)
+            if (animationCounter % 2 == 0 && direction == Direction.DOWN)
                 animateAttack(imgS);
 
         }
 
-        treasure = (Treasure) getOneIntersectingObject(Treasure.class);
-        if (treasure != null)
-        {
+        Treasure treasure = (Treasure) getOneIntersectingObject(Treasure.class);
+        if (treasure != null) {
             if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
                     || Greenfoot.isKeyDown("s")) {
                 treasure.takeDamage();
             } else if (Greenfoot.isKeyDown("g")) {
-                //treasure.pickWeapon(this);
+                // treasure.pickWeapon(this);
             }
         }
 
@@ -175,14 +162,14 @@ public class Man extends Subject implements IScoreboardObserver
     }
 
     public void animateAttack(MotionRenderer img) {
-        
+
         if (timer == 1)
             setImage(img);
         else if (timer == 2)
             setImage(imgD);
         else if (timer == 3)
             setImage(imgA);
-        // endAnimation();     
+        // endAnimation();
 
     }
 
@@ -192,120 +179,110 @@ public class Man extends Subject implements IScoreboardObserver
         // Greenfoot.setWorld(new MonsterWorld());
     }
 
-    public void movement(){
-        if(Greenfoot.isKeyDown("up")){
-            direction=Direction.UP;
-            //setRotation(Direction.UP);
+    public void movement() {
+        if (Greenfoot.isKeyDown("up")) {
+            direction = Direction.UP;
+            // setRotation(Direction.UP);
             setImage(img);
             movePlayer();
-        } else if(Greenfoot.isKeyDown("down")){
-            direction=Direction.DOWN;
-            //setRotation(Direction.DOWN);
+        } else if (Greenfoot.isKeyDown("down")) {
+            direction = Direction.DOWN;
+            // setRotation(Direction.DOWN);
             setImage(imgB);
             movePlayer();
-        } else if(Greenfoot.isKeyDown("left")){
-            direction=Direction.LEFT;
-            //setRotation(Direction.LEFT);
+        } else if (Greenfoot.isKeyDown("left")) {
+            direction = Direction.LEFT;
+            // setRotation(Direction.LEFT);
             setImage(imgL);
             movePlayer();
-        } else if(Greenfoot.isKeyDown("right")){
-            direction=Direction.RIGHT;
-            //setRotation(Direction.RIGHT);
+        } else if (Greenfoot.isKeyDown("right")) {
+            direction = Direction.RIGHT;
+            // setRotation(Direction.RIGHT);
             setImage(imgR);
             movePlayer();
         }
     }
 
-
-    public void movePlayer(){
+    public void movePlayer() {
 
         int currentX = getX();
         int currentY = getY();
-        
+
         int changeX = getChangeX(direction);
         int changeY = getChangeY(direction);
         int adjustedChangeX = adjustOffset(changeX);
         int adjustedChangeY = adjustOffset(changeY);
-        
+
         Actor tavern = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Tavern.class);
         Actor treasure = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Treasure.class);
         Actor score = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Scoreboardmain.class);
         Actor text = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Textboxmain.class);
         Actor monster = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, BaseMonster.class);
-        //Actor gob = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Goblin.class);
-        
-        if(tavern==null && treasure==null && score==null && text==null && monster==null){
-            setLocation(currentX + changeX,currentY + changeY);
+        // Actor gob = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY,
+        // Goblin.class);
+
+        if (tavern == null && treasure == null && score == null && text == null && monster == null) {
+            setLocation(currentX + changeX, currentY + changeY);
             if (hitGoblin()) {
-                setLocation(currentX - changeX,currentY - changeY);
+                setLocation(currentX - changeX, currentY - changeY);
             }
-           
+
         }
     }
 
-    private void updateTooltips()
-    {
+    private void updateTooltips() {
         String title;
-        GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
-        if (obj != null)
-        {
+        GameActor obj = (GameActor) getOneIntersectingObject(GameActor.class);
+        if (obj != null) {
             title = obj.getActorTitle();
             StringBuffer msg = new StringBuffer();
             msg.append(title);
             msg.append("\n\n");
             msg.append(obj.getCommandTooltips());
-            if (title != "" || obj.getCommandTooltips() != "")
-            {
+            if (title != "" || obj.getCommandTooltips() != "") {
                 Textboxmain.setTextboxMsg(msg.toString());
-            }
-            else
-            {
+            } else {
                 title = WorldManager.getCurrentWorld().getTitle();
                 Textboxmain.setTextboxMsg(title);
             }
-            if (Greenfoot.isKeyDown("q"))
-            {
+            if (Greenfoot.isKeyDown("q")) {
                 obj.checkAndRunCommand("q");
             }
-            if (Greenfoot.isKeyDown("a"))
-            {
+            if (Greenfoot.isKeyDown("a")) {
                 obj.checkAndRunCommand("a");
             }
-        }
-        else
-        {
+        } else {
             title = WorldManager.getCurrentWorld().getTitle();
             Textboxmain.setTextboxMsg(title);
         }
     }
-    
-    private int getChangeX(int direction){
-        if(direction == Direction.RIGHT){
+
+    private int getChangeX(int direction) {
+        if (direction == Direction.RIGHT) {
             return speed;
         }
-        if(direction == Direction.LEFT){
-            return -speed;
-        }
-        return 0;
-    }
-    
-    private int getChangeY(int direction){
-        if(direction == Direction.DOWN){
-            return speed;
-        }
-        if(direction == Direction.UP){
+        if (direction == Direction.LEFT) {
             return -speed;
         }
         return 0;
     }
 
-    private int adjustOffset(int offset){
-        int signOfOffset = (int)Math.signum(offset);
-        int distanceToFront = length/2;
+    private int getChangeY(int direction) {
+        if (direction == Direction.DOWN) {
+            return speed;
+        }
+        if (direction == Direction.UP) {
+            return -speed;
+        }
+        return 0;
+    }
+
+    private int adjustOffset(int offset) {
+        int signOfOffset = (int) Math.signum(offset);
+        int distanceToFront = length / 2;
         int adjustAmount = distanceToFront * signOfOffset;
         return offset + adjustAmount;
     }
-
 
     private void checkScreenChange() {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
@@ -331,8 +308,6 @@ public class Man extends Subject implements IScoreboardObserver
         }
 
     }
-
-   
 
     public boolean hitGoblin() {
         if (isTouching(Goblin.class)) {
