@@ -14,12 +14,14 @@ public class Scoreboard extends Subject {
      */
     GreenfootImage img;
     GreenfootImage imgM;
-    int monsterVal = 1000;
-    int manVal = 10000;
-    int goldCount = 30;
-    int monsterKilledCount = 0;
+    int manVal;
+    int goldCount;
+    int monsterKilledCount;
     int currentWeapon;
-
+    EndScreen es;
+    EndScreenText est;
+    GreenfootImage vic = new GreenfootImage("victoryedited.jpg");
+    GreenfootImage def = new GreenfootImage("defeat.png"); 
     private ArrayList<IScoreboardObserver> observers ;
 
     private static Scoreboard scoreboard;
@@ -28,18 +30,17 @@ public class Scoreboard extends Subject {
     {
         observers = new ArrayList<IScoreboardObserver>() ;
 
-        goldCount = 30;
         monsterKilledCount = 0;
         currentWeapon = 0;
-        manVal = 10000;
+        manVal = WorldManager.getInstance().getInitialHealth();
+        goldCount = WorldManager.getInstance().getInitialGold();
 
+        es = new EndScreen();
+       
         this.setLocation(100, 100);
     }
 
-    public int getMonsterKillCount() {
-        return monsterKilledCount;
-    }
-
+    
     public static synchronized Scoreboard getScoreboardInstance() {
         if (scoreboard == null) {
             return getNewScoreboardInstance();
@@ -47,14 +48,23 @@ public class Scoreboard extends Subject {
         return scoreboard;
     }
     
-    public static synchronized Scoreboard getNewScoreboardInstance() {
-        
+    public static synchronized Scoreboard getNewScoreboardInstance() {        
         scoreboard = new Scoreboard(); 
         return scoreboard;
     }
 
     public void act() {
 
+    }
+    
+    public int gethealth()
+    {
+        return manVal;
+    }
+    
+    public int getmonsterkill()
+    {
+        return monsterKilledCount;
     }
 
     public void updateDamage(ISubject s) {
@@ -66,6 +76,11 @@ public class Scoreboard extends Subject {
         scoreboard.goldCount = man.gold;
 
         notifyScoreboardObservers(((IScoreboardObserver)man));
+        if(scoreboard.manVal<=0)
+        {
+            //scoreboard.est.setImage(scoreboard.def);
+            Greenfoot.setWorld(new EndScreen());
+        }
 
     }
 
@@ -87,7 +102,12 @@ public class Scoreboard extends Subject {
     public static void monsterDead() {
         scoreboard.monsterKilledCount++;
         System.out.println("Monster killed so far " + scoreboard.monsterKilledCount);
-
+        if(scoreboard.monsterKilledCount==3)
+        {
+            //scoreboard.est.setImage(scoreboard.vic);
+            Greenfoot.setWorld(new EndScreen());
+        }
+        
     }
 
     public static void updateWeapon(int no)
@@ -113,6 +133,7 @@ public class Scoreboard extends Subject {
     
     public static int getCurrentWeapon()
     {
+        
         return scoreboard.currentWeapon;
     }
 

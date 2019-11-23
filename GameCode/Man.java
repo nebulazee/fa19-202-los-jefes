@@ -12,8 +12,8 @@ public class Man extends Subject implements IScoreboardObserver
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
      */
-    int health = 1000;
-    int gold = 30;
+    int health;
+    int gold;
     int animationCounter = 0;
     int timer = 1;
     boolean manDead = false;
@@ -21,6 +21,7 @@ public class Man extends Subject implements IScoreboardObserver
     int speed = 2;
     int length;
     int direction = 0;
+    EndScreen es;
     class Direction {
         public static final int UP = 270;
         public static final int DOWN = 90;
@@ -56,7 +57,7 @@ public class Man extends Subject implements IScoreboardObserver
         length = getImage().getWidth();
         // gif = new GifImage("skeleton-club.gif");
         // gif.resizeImages(60,60);
-
+        es = new EndScreen();
         Scoreboard.addScoreboardObserver(this);
 
         health = Scoreboard.getHealth();
@@ -67,12 +68,6 @@ public class Man extends Subject implements IScoreboardObserver
     }
 
     public void updateDamage(ISubject s) {
-        if(s instanceof BaseMonster) {
-            damage(10);
-        }
-        if (s instanceof banana) {
-            heal(5);
-        }
         if (s instanceof Goblin) {
             damage(50);
         }
@@ -88,14 +83,6 @@ public class Man extends Subject implements IScoreboardObserver
         super.setImage(img.image);
     }
 
-    private void checkGold() {
-        if (this.getOneIntersectingObject(Gold.class) != null) {
-            gold += 15;
-            Scoreboard.setPlayerStats(this);
-            this.removeTouching(Gold.class);
-        }
-    }
-
     public void heal(int hpUp) 
     { 
         health += hpUp; 
@@ -104,6 +91,15 @@ public class Man extends Subject implements IScoreboardObserver
     public void damage(int hit) 
     {
         health -= hit;
+        if(health<=0)
+        {
+            Greenfoot.setWorld(es);
+        }
+        updateScoreboard();
+    }
+    public void restore()
+    {
+        health = WorldManager.getInstance().getInitialHealth();
         updateScoreboard();
     }
     public void addGold(int reward)
@@ -136,7 +132,6 @@ public class Man extends Subject implements IScoreboardObserver
     {
         updateTooltips();
         movement();
-        checkGold();
         trackMovement = Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
                 || Greenfoot.isKeyDown("down");
         if (trackMovement == false) {
@@ -165,32 +160,6 @@ public class Man extends Subject implements IScoreboardObserver
 
         }
 
-        monster = (BaseMonster) getOneIntersectingObject(BaseMonster.class);
-        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
-                || Greenfoot.isKeyDown("s")) {
-            if (null != monster)
-                 monster.updateDamage(this);
-        }
-
-        // }
-        // if (getObjectsInRange(80, Demon.class).size() > 0) {
-        // monster = getObjectsInRange(80, Demon.class).get(0);
-        //monster = (Demon) getOneIntersectingObject(Demon.class);
-        /*if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
-                || Greenfoot.isKeyDown("s")) {
-            if (null != monster)
-                ((Demon) monster).updateDamage(this);
-        }
-
-        monster = (Monster2) getOneIntersectingObject(Monster2.class);
-        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
-                || Greenfoot.isKeyDown("s")) {
-            if (null != monster)
-                ((Monster2) monster).updateDamage(this);
-        }*/
-        // }
-        // if (getObjectsInRange(80, Treasure.class).size() > 0) {
-        // treasure = getObjectsInRange(80, Treasure.class).get(0);
         treasure = (Treasure) getOneIntersectingObject(Treasure.class);
         if (treasure != null)
         {
@@ -206,16 +175,14 @@ public class Man extends Subject implements IScoreboardObserver
     }
 
     public void animateAttack(MotionRenderer img) {
-
+        
         if (timer == 1)
             setImage(img);
         else if (timer == 2)
             setImage(imgD);
         else if (timer == 3)
             setImage(imgA);
-        // else if(timer>=4)
-        // endAnimation();
-        timer++;
+        // endAnimation();     
 
     }
 
@@ -264,9 +231,10 @@ public class Man extends Subject implements IScoreboardObserver
         Actor treasure = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Treasure.class);
         Actor score = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Scoreboardmain.class);
         Actor text = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Textboxmain.class);
+        Actor monster = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, BaseMonster.class);
         //Actor gob = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Goblin.class);
         
-        if(tavern==null && treasure==null && score==null && text==null){
+        if(tavern==null && treasure==null && score==null && text==null && monster==null){
             setLocation(currentX + changeX,currentY + changeY);
             if (hitGoblin()) {
                 setLocation(currentX - changeX,currentY - changeY);
@@ -286,16 +254,28 @@ public class Man extends Subject implements IScoreboardObserver
             msg.append(title);
             msg.append("\n\n");
             msg.append(obj.getCommandTooltips());
-            Textboxmain.setTextboxMsg(msg.toString());
+            if (title != "" || obj.getCommandTooltips() != "")
+            {
+                Textboxmain.setTextboxMsg(msg.toString());
+            }
+            else
+            {
+                title = WorldManager.getCurrentWorld().getTitle();
+                Textboxmain.setTextboxMsg(title);
+            }
             if (Greenfoot.isKeyDown("q"))
             {
                 obj.checkAndRunCommand("q");
+            }
+            if (Greenfoot.isKeyDown("a"))
+            {
+                obj.checkAndRunCommand("a");
             }
         }
         else
         {
             title = WorldManager.getCurrentWorld().getTitle();
-            Textboxmain.setTextboxMsg(title.toString());
+            Textboxmain.setTextboxMsg(title);
         }
     }
     
@@ -326,77 +306,6 @@ public class Man extends Subject implements IScoreboardObserver
         return offset + adjustAmount;
     }
 
-    // public void movement() {
-    //     int x = getX();
-    //     int y = getY();
-    //     String title = ((BaseWorld)WorldManager.getCurrentWorld()).getTitle();
-    //     StringBuffer msg = new StringBuffer();
-    //     msg.append(title);
-    //     msg.append("\n\n");
-    //     GameActor obj = (GameActor)getOneIntersectingObject(GameActor.class);
-    //     if (obj != null)
-    //     {
-    //         msg.append(obj.getCommandTooltips());
-    //         Textboxmain.setTextboxMsg(msg.toString());
-    //         if (Greenfoot.isKeyDown("q"))
-    //         {
-    //             obj.checkAndRunCommand("q");
-    //         }
-    //     }
-    //     else
-    //     {
-    //         Textboxmain.setTextboxMsg(msg.toString());
-    //     }
-    //     if(Tavern == null){
-    //     if (Greenfoot.isKeyDown("up")) {
-    //         setImage(img);
-    //         setLocation(x, y - 2);
-    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
-    //             //setLocation(x, y - 2);
-    //              //setLocation(x, y + 2);
-    //         //}
-    //         /*
-    //          * if(hitMonster()) { setLocation( x, y ); }
-    //          */
-    //     }
-    //     if (Greenfoot.isKeyDown("down")) {
-    //         setImage(imgB);
-    //         setLocation(x, y + 2);
-            // if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
-            //     setLocation(x, y - 2);
-            //     setLocation(x, y + 2);
-            // }
-    //         /*
-    //          * if(hitMonster()) { setLocation( x, y ); }
-    //          */
-    //     }
-    //     if (Greenfoot.isKeyDown("right")) {
-    //         setImage(imgR);
-    //         setLocation(x + 2, y);
-
-    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
-    //             //setLocation(x - 2, y);
-    //             //setLocation(x + 2, y);
-    //         //}
-    //         /*
-    //          * if(hitMonster()) { setLocation( x, y ); }
-    //          */
-    //     }
-    //     if (Greenfoot.isKeyDown("left")) {
-    //         setImage(imgL);
-    //         setLocation(x - 2, y);
-    //         //if (!(hitTavern() || hitGoblin() || hitTreasure() || hitScoreboard() || hitTextbox())) {
-    //             //setLocation(x + 2, y);
-    //             // setLocation(x - 2, y);
-    //         //}
-    //         /*
-    //          * if(hitMonster()){ setLocation( x, y ); }
-    //          */
-    //     }
-    //     }
-    
-
-    // }
 
     private void checkScreenChange() {
         Portal p = (Portal) getOneIntersectingObject(Portal.class);
@@ -423,13 +332,7 @@ public class Man extends Subject implements IScoreboardObserver
 
     }
 
-    public boolean hitTavern() {
-        if (isTouching(Tavern.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+   
 
     public boolean hitGoblin() {
         if (isTouching(Goblin.class)) {
@@ -441,30 +344,6 @@ public class Man extends Subject implements IScoreboardObserver
 
     public boolean hitMonster() {
         if (isTouching(BaseMonster.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitTreasure() {
-        if (isTouching(Treasure.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitScoreboard() {
-        if (isTouching(Scoreboardmain.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitTextbox() {
-        if (isTouching(Textboxmain.class)) {
             return true;
         } else {
             return false;

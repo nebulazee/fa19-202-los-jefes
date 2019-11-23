@@ -27,18 +27,10 @@ public abstract class TreasureWorld extends BaseWorld
     private void prepare()
     {
         tooltipTitle = "You come across a treasure chest.\nWhat rewards could it hold?";   
+        worldType = "TreasureWorld";
         
         createTreasure(); 
         addObject(worldTreasure,400,350);
-
-        //TreasureFactory tf = new TreasureFactory();
-        //Treasure treasure = tf.getTreasure();
-        //treasure1.setLocation(400,400);
-        //addObject(treasure, 400, 350);
-        
-        
-        //man = new Man();
-        //addObject(man,287,355);
     }
     
     public abstract void createTreasure(); 
