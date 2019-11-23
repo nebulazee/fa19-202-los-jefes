@@ -102,7 +102,8 @@ public class WorldManager extends GameActor
                             else {
                                 mw.setMonster(new BaseMonster("ogre1.png","ogre2.png"));
                             }
-                            worldMap[i][j] = mw;//new MonsterWorld(constructConfigurationCode(i, j)){
+                            worldMap[i][j] = mw;
+                            //new MonsterWorld(constructConfigurationCode(i, j)){
                                 /*if(monsters==3){
                                  public void setMonster(new BaseMonster("Demon1.png","Demon2.png"));
                                 }
@@ -119,7 +120,20 @@ public class WorldManager extends GameActor
                             worldMap[i][j] = new AnimalWorld(constructConfigurationCode(i, j));
                             break;
                         case TREASURE:
-                            worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j));
+                             TreasureWorld tw =  new TreasureWorld(constructConfigurationCode(i, j));
+                             if(treasures == 2) {
+                                tw.setTreasure(new Treasure("Demon1.png"){
+                                    public void pickWeapon(ISubject s){
+                                    }
+                                });
+                            }
+                            else if(treasures == 1) {
+                                tw.setTreasure(new Treasure("0.png"){
+                                    public void pickWeapon(ISubject s){
+                                    }
+                                });
+                            }  
+                            worldMap[i][j] = tw;
                             treasures--;
                             break;
                         default:
