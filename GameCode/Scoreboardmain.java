@@ -25,7 +25,7 @@ public class Scoreboardmain extends Subject
         img = new GreenfootImage("    Health : " + Scoreboard.getHealth() + "" + "    Monster :" + 1000, 20, Color.BLACK, n);
         // imgM = new GreenfootImage(,20,Color.WHITE, Color.BLACK);
 
-        scoreboard.drawImage(img, scoreboard.getWidth() / 2 - 100, scoreboard.getHeight() / 2);
+        scoreboard.drawImage(img, scoreboard.getWidth() / 2 - 200, scoreboard.getHeight() / 2);
 
         this.setLocation(400, 50);
            
@@ -62,8 +62,8 @@ public class Scoreboardmain extends Subject
                     Color.BLACK, n);
         }
 
-        scoreboard.drawImage(img, scoreboard.getWidth() / 2 - 100, scoreboard.getHeight() / 2);
-        this.setLocation(400, 50);
+        scoreboard.drawImage(img, scoreboard.getWidth() / 2 - 200, scoreboard.getHeight() / 2);
+        //this.setLocation(400, 50);
         setImage(scoreboard);
         // setImage(img);
         // Add your action code here.

@@ -175,16 +175,14 @@ public class Man extends Subject implements IScoreboardObserver
     }
 
     public void animateAttack(MotionRenderer img) {
-
+        
         if (timer == 1)
             setImage(img);
         else if (timer == 2)
             setImage(imgD);
         else if (timer == 3)
             setImage(imgA);
-        // else if(timer>=4)
-        // endAnimation();
-        timer++;
+        // endAnimation();     
 
     }
 
