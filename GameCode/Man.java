@@ -21,6 +21,7 @@ public class Man extends Subject implements IScoreboardObserver
     int speed = 2;
     int length;
     int direction = 0;
+    EndScreen es;
     class Direction {
         public static final int UP = 270;
         public static final int DOWN = 90;
@@ -56,7 +57,7 @@ public class Man extends Subject implements IScoreboardObserver
         length = getImage().getWidth();
         // gif = new GifImage("skeleton-club.gif");
         // gif.resizeImages(60,60);
-
+        es = new EndScreen();
         Scoreboard.addScoreboardObserver(this);
 
         health = Scoreboard.getHealth();
@@ -90,6 +91,10 @@ public class Man extends Subject implements IScoreboardObserver
     public void damage(int hit) 
     {
         health -= hit;
+        if(health<=0)
+        {
+            Greenfoot.setWorld(es);
+        }
         updateScoreboard();
     }
     public void restore()
@@ -329,13 +334,7 @@ public class Man extends Subject implements IScoreboardObserver
 
     }
 
-    public boolean hitTavern() {
-        if (isTouching(Tavern.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
+   
 
     public boolean hitGoblin() {
         if (isTouching(Goblin.class)) {
@@ -347,30 +346,6 @@ public class Man extends Subject implements IScoreboardObserver
 
     public boolean hitMonster() {
         if (isTouching(BaseMonster.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitTreasure() {
-        if (isTouching(Treasure.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitScoreboard() {
-        if (isTouching(Scoreboardmain.class)) {
-            return true;
-        } else {
-            return false;
-        }
-    }
-
-    public boolean hitTextbox() {
-        if (isTouching(Textboxmain.class)) {
             return true;
         } else {
             return false;

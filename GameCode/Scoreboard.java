@@ -18,7 +18,7 @@ public class Scoreboard extends Subject {
     int goldCount;
     int monsterKilledCount;
     int currentWeapon;
-
+    EndScreen es;
     private ArrayList<IScoreboardObserver> observers ;
 
     private static Scoreboard scoreboard;
@@ -32,17 +32,21 @@ public class Scoreboard extends Subject {
         manVal = WorldManager.getInstance().getInitialHealth();
         goldCount = WorldManager.getInstance().getInitialGold();
 
+        es = new EndScreen();
         this.setLocation(100, 100);
     }
 
-    public int getMonsterKillCount() {
-        return monsterKilledCount;
-    }
-
+    
     public static synchronized Scoreboard getScoreboardInstance() {
         if (scoreboard == null) {
-            scoreboard = new Scoreboard();
+            return getNewScoreboardInstance();
         }
+        return scoreboard;
+    }
+    
+    public static synchronized Scoreboard getNewScoreboardInstance() {
+        
+        scoreboard = new Scoreboard(); 
         return scoreboard;
     }
 
@@ -59,6 +63,10 @@ public class Scoreboard extends Subject {
         scoreboard.goldCount = man.gold;
 
         notifyScoreboardObservers(((IScoreboardObserver)man));
+        if(scoreboard.manVal<=0)
+        {
+            Greenfoot.setWorld(scoreboard.es);
+        }
 
     }
 
@@ -71,11 +79,20 @@ public class Scoreboard extends Subject {
     {
         return scoreboard.manVal;
     }
+    
+    public static void setHealth(int health) 
+    {
+        scoreboard.manVal = health;
+    }
 
     public static void monsterDead() {
         scoreboard.monsterKilledCount++;
         System.out.println("Monster killed so far " + scoreboard.monsterKilledCount);
-
+        if(scoreboard.monsterKilledCount==3)
+        {
+            Greenfoot.setWorld(scoreboard.es);
+        }
+        
     }
 
     public static void updateWeapon(int no)
@@ -101,6 +118,7 @@ public class Scoreboard extends Subject {
     
     public static int getCurrentWeapon()
     {
+        
         return scoreboard.currentWeapon;
     }
 

@@ -81,9 +81,17 @@ public class Textboxmain extends GameActor
     {
         if (textbox == null) 
         {
-            textbox = new Textboxmain();
-            return textbox;
-        } else
+           return  getNewTextboxmainInstance();
+        } 
+        else
             return textbox;
     }
+    
+    public static Textboxmain getNewTextboxmainInstance()
+    {
+        textbox = new Textboxmain();
+        return textbox;
+    }
+    
+    
 }

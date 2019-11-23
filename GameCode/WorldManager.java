@@ -40,9 +40,7 @@ public class WorldManager extends GameActor
     {
         if (instance == null)
         {
-            instance = new WorldManager();
-            instance.startUp();
-            return instance;
+            return getNewInstance();
         }
         else
         {
@@ -59,10 +57,11 @@ public class WorldManager extends GameActor
     
     private void startUp()
     {
-        Scoreboard.getScoreboardInstance();
-        Textboxmain.getInstance();
+        Scoreboard.getNewScoreboardInstance();
+        Textboxmain.getNewTextboxmainInstance();
         worldMap = new BaseWorld[worldHeight][worldWidth];
         constructWorlds();
+        
         currentWorld.getTextbox().setMsg(currentWorld.getTitle() + "\n\n" + "");
     }
 
