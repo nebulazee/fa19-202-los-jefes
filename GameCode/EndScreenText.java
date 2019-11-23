@@ -15,19 +15,20 @@ public class EndScreenText extends Actor {
     Scoreboard sb;
     int health, monsterkill;
     EndScreen es;
-
-    public EndScreenText() {
-        if (WorldManager.getCurrentWorld() instanceof MonsterWorld) {
-            sb = Scoreboard.getScoreboardInstance();
-            health = sb.gethealth();
-            monsterkill = sb.getMonsterKill();
-            vic = new GreenfootImage("victoryedited.jpg");
-            def = new GreenfootImage("defeat.png");
-            if (health <= 0) {
-                setImage(def);
-            } else {
-                setImage(vic);
-            }
+    public EndScreenText()
+    {
+        if(WorldManager.getCurrentWorld() instanceof MonsterWorld || WorldManager.getCurrentWorld() instanceof AnimalWorld){
+         sb = Scoreboard.getScoreboardInstance();  
+         health = sb.gethealth();
+         monsterkill = sb.getmonsterkill();
+         vic = new GreenfootImage("victoryedited.jpg");
+         def = new GreenfootImage("defeat.png"); 
+         if(health<=0)
+         {
+          setImage(def);
+         }else{
+           setImage(vic);      
+         }
         }
     }
 
