@@ -18,6 +18,10 @@ public class Man extends Subject implements IScoreboardObserver {
     int length;
     int direction = 0;
     EndScreen es;
+    
+    int baseAttack = 15;
+    float actionDelay = 0.16f;
+    int actionTimer = 0;
 
     class Direction {
         public static final int UP = 270;
@@ -63,7 +67,7 @@ public class Man extends Subject implements IScoreboardObserver {
 
     public void updateDamage(ISubject s) {
         if (s instanceof Goblin) {
-            damage(50);
+            damage(25);
         }
     }
 
@@ -109,6 +113,11 @@ public class Man extends Subject implements IScoreboardObserver {
         }
     }
 
+    public int getDamage()
+    {
+        return baseAttack + Scoreboard.getCurrentWeapon().getDamage();
+    }
+
     public void scoreboardUpdateEvent() {
         this.health = Scoreboard.getHealth();
         this.gold = Scoreboard.getGoldCount();
@@ -118,7 +127,9 @@ public class Man extends Subject implements IScoreboardObserver {
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
      */
-    public void act() {
+    public void act() 
+    {
+        this.actionTimer++;
         updateTooltips();
         movement();
         trackMovement = Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
@@ -137,6 +148,7 @@ public class Man extends Subject implements IScoreboardObserver {
 
     private void attack() {
 
+        Boolean attk = this.actionTimer/(int)(((actionDelay/4) + Scoreboard.getCurrentWeapon().getSpeed())*100) > 1;
         if (Greenfoot.isKeyDown("a")) {
             if (animationCounter % 2 == 0 && direction == Direction.LEFT)
                 animateAttack(imgA);
@@ -146,20 +158,13 @@ public class Man extends Subject implements IScoreboardObserver {
                 animateAttack(imgW);
             if (animationCounter % 2 == 0 && direction == Direction.DOWN)
                 animateAttack(imgS);
+            
+            // animationCounter = 1;
+            //% 2 == 0
 
         }
 
-        Treasure treasure = (Treasure) getOneIntersectingObject(Treasure.class);
-        if (treasure != null) {
-            if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
-                    || Greenfoot.isKeyDown("s")) {
-                treasure.takeDamage();
-            } else if (Greenfoot.isKeyDown("g")) {
-                // treasure.pickWeapon(this);
-            }
-        }
 
-        // }
     }
 
     public void animateAttack(MotionRenderer img) {
@@ -260,10 +265,20 @@ public class Man extends Subject implements IScoreboardObserver {
                 Textboxmain.setTextboxMsg(title);
             }
             if (Greenfoot.isKeyDown("q")) {
-                obj.checkAndRunCommand("q");
+                if(this.actionTimer/(int)(actionDelay*100) > 1)
+                {
+                    obj.checkAndRunCommand("q");
+                    actionTimer = 0;
+                }
             }
             if (Greenfoot.isKeyDown("a")) {
-                obj.checkAndRunCommand("a");
+                if(this.actionTimer/(int)(((actionDelay/4) + Scoreboard.getCurrentWeapon().getSpeed())*100) > 1)
+                {
+                    // animationCounter = 2;
+                    attack();
+                    obj.checkAndRunCommand("a");
+                }
+
             }
         } else {
             title = WorldManager.getCurrentWorld().getTitle();

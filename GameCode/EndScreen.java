@@ -23,7 +23,7 @@ public class EndScreen extends World
     }
 
      /**
-     * Act - do whatever the banana wants to do. This method is called whenever
+     * Act - do whatever the EndScreen wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
     public void act()

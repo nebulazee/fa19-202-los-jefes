@@ -88,19 +88,19 @@ public class WorldManager extends GameActor {
                         if (monsters == 3) {
                             worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
                                 public void createMonster() {
-                                    currentMonster = new BaseMonster("Demon1.png", "Demon2.png", "CEREBRUS");
+                                    currentMonster = new BaseMonster("Demon1.png", "Demon2.png", "CEREBRUS", 300, 0.30f);
                                 }
                             };
                         } else if (monsters == 2) {
                             worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
                                 public void createMonster() {
-                                    currentMonster = new BaseMonster("0.png", "1.png", "EL DIABLO");
+                                    currentMonster = new BaseMonster("0.png", "1.png", "EL DIABLO", 500, 0.10f);
                                 }
                             };
                         } else {
                             worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
                                 public void createMonster() {
-                                    currentMonster = new BaseMonster("ogre1.png", "ogre2.png", "OGRE");
+                                    currentMonster = new BaseMonster("ogre1.png", "ogre2.png", "OGRE", 200, 0.50f);
                                 }
                             };
                         }
@@ -114,7 +114,7 @@ public class WorldManager extends GameActor {
                         String color = treasureTypes[Greenfoot.getRandomNumber(3)];
                         String weapon = "sword (" + String.valueOf(Greenfoot.getRandomNumber(51)) + ").png";
                         int dmg = 21 + Greenfoot.getRandomNumber(30);
-                        float speed = Greenfoot.getRandomNumber(30) / 10;
+                        float speed = Greenfoot.getRandomNumber(8) / 10;
 
                         worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j)) {
                             public void createTreasure() {

@@ -128,7 +128,6 @@ public class Scoreboard extends Subject {
      */
     public static void monsterDead() {
         scoreboard.monsterKilledCount++;
-        System.out.println("Monster killed so far " + scoreboard.monsterKilledCount);
         if (scoreboard.monsterKilledCount == 3) {
             // scoreboard.est.setImage(scoreboard.vic);
             Greenfoot.setWorld(new EndScreen());

@@ -8,8 +8,7 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  */
 public class Scoreboardmain extends Subject 
 {
-    int monsterVal = 1000;
-    int manVal = 1000;
+    int monsterVal;
     GreenfootImage img;
     GreenfootImage scoreboard;
     Color n = new Color(255, 232, 213);
@@ -32,6 +31,7 @@ public class Scoreboardmain extends Subject
         scoreboard.scale(scoreboard.getWidth() - 400, scoreboard.getHeight() - 150);
         img = new GreenfootImage("    Health : " + Scoreboard.getHealth() + "" + "    Monster :" + 1000, 20, Color.BLACK, n);
       
+        monsterVal = 0;
 
         scoreboard.drawImage(img, scoreboard.getWidth() / 2 - 200, scoreboard.getHeight() / 2);
 

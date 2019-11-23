@@ -9,7 +9,7 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
 public class BaseWorld extends World {
     protected Man man;
 
-    Scoreboardmain scoreboardmain;
+    protected Scoreboardmain scoreboardmain;
     Textboxmain textboxmain;
 
     final protected int max_width, min_width;
