@@ -37,7 +37,6 @@ public class Goblin extends Subject
      */
     public void act() 
     {
-        
         moveBackandForth();       
     }    
     
