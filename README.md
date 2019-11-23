@@ -15,8 +15,21 @@
 - A **Command** pattern binds game actions to specific objects (Actors) to enable dynamic customization of interactions with the game player and Actors.
   ![uml class diagram](https://github.com/nguyensjsu/fa19-202-los-jefes/blob/master/GameCode/documents/CommandPattern.svg)
 
-## Agile
+## Agile Award
 
+#### Stand-Up Video 1 
+https://drive.google.com/open?id=12u5GpbvttWNllMllyl_-UQDlCC3L3NEO (Links to an external site.)
+
+#### Stand-Up Video 2 
+https://drive.google.com/open?id=12ksFGIf5UsKwvJHV6f1mcwoQ9H4J3UrL (Links to an external site.)
+
+#### Stand-Up Video 3 
+https://drive.google.com/open?id=12mhxG76WSOf05Q2rJ0FrV10p8JQlGcTQ (Links to an external site.)
+
+#### Retrospective Video 
+https://drive.google.com/open?id=12k_J5wz56rDIUDhiMJvAUwZ0CxCKuoeT (Links to an external site.)
+
+Link To all Video Folder - https://drive.google.com/open?id=12iP53eC4NGAkhlD-sk4MQSaeHRd4GknN
 ### Task Division
 
 #### Aashay Mokadam
