@@ -12,14 +12,25 @@ public class EndScreenText extends Actor
      * Act - do whatever the EndScreenText wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
-    GreenfootImage vic;  
-    //Scoreboard sb;
-    //EndScreen es;
+     GreenfootImage vic,def;  
+     Scoreboard sb;
+     int health,monsterkill;
+    EndScreen es;
     public EndScreenText()
     {
-        //sb = Scoreboard.getScoreboardInstance();  
-        vic = new GreenfootImage("victoryedited.jpg");
-        setImage(vic);      
+        if(WorldManager.getCurrentWorld() instanceof MonsterWorld){
+         sb = Scoreboard.getScoreboardInstance();  
+         health = sb.gethealth();
+         monsterkill = sb.getmonsterkill();
+         vic = new GreenfootImage("victoryedited.jpg");
+         def = new GreenfootImage("defeat.png"); 
+         if(health<=0)
+         {
+          setImage(def);
+         }else{
+           setImage(vic);      
+         }
+        }
     }
     public void act() 
     {
