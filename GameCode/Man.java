@@ -16,6 +16,7 @@ public class Man extends Subject implements IScoreboardObserver {
     boolean trackMovement = false;
     int speed = 2;
     int length;
+    int counter =0;
     int direction = 0;
     EndScreen es;
     
@@ -147,7 +148,7 @@ public class Man extends Subject implements IScoreboardObserver {
     }
 
     private void attack() {
-
+        
         Boolean attk = this.actionTimer/(int)(((actionDelay/4) + Scoreboard.getCurrentWeapon().getSpeed())*100) > 1;
         if (Greenfoot.isKeyDown("a")) {
             if (animationCounter % 2 == 0 && direction == Direction.LEFT)

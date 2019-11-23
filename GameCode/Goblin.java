@@ -19,6 +19,7 @@ public class Goblin extends Subject
     public Goblin()
     {
         super();
+        setImage(left);
     }
     
     /**
