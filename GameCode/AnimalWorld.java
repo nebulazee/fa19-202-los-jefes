@@ -27,25 +27,15 @@ public class AnimalWorld extends BaseWorld
      */
     private void prepare()
     {
+        worldType = "AnimalWorld";
+        
         tooltipTitle = "A field of goblins! Neither friend, nor foe.\nBest to avoid them and continue on your quest.";
         
         Goblin goblin = new Goblin();
-          
-      
-        
-        //goblin.setLocation(23,60);
         addObject(goblin,20,225);   
         Goblin goblin2 = new Goblin();
         addObject(goblin2,20,450);
-        //goblin2.setLocation(21,173);
-        //Goblin goblin3 = new Goblin();
-        //addObject(goblin3,25,427);
-        //Goblin goblin4 = new Goblin();
-        //addObject(goblin4,25,542);
-
-        // System.out.println("Added scoreboard");
-        //addObject(scoreboard,300,130);
-        
+       
        
     }
 }

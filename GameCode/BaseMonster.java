@@ -6,7 +6,8 @@ import greenfoot.*; // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name)
  * @version (a version number or a date)
  */
-public class BaseMonster extends Subject {
+public class BaseMonster extends Subject 
+{
     /**
      * Act - do whatever the BaseMonster wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
@@ -33,7 +34,16 @@ public class BaseMonster extends Subject {
 
     MotionRenderer im1, im2;
 
-    BaseMonster(String image1, String image2) {
+    BaseMonster(String image1, String image2, String name) 
+    {
+        if (name == null || name == "")
+        {
+            setActorTitle("MONSTER");
+        }
+        else
+        {
+            setActorTitle(name);
+        }
         this.image1 = image1;
         this.image2 = image2;
         GreenfootImage img = new GreenfootImage(this.image1);
@@ -42,10 +52,6 @@ public class BaseMonster extends Subject {
         this.setImage(img);
     }
 
-    /*
-     * public void setImages(GreenfootImage i1,GreenfootImage i2){ this.image1=i1;
-     * this.image2=i2; }
-     */
     public void updateDamage(ISubject s) {
         if (s instanceof Man) {
             if (this.health <= 0) {
@@ -104,23 +110,17 @@ public class BaseMonster extends Subject {
 
     public void act() {
         WorldManager.getCurrentWorld().getScoreboard().setMonsterHealth(health);
-        // if(getObjectsInRange(60, Man.class).size()>0)
-        // man =getObjectsInRange(60, Man.class).get(0);
-        // else
-        // man=null;
 
         man = (Man) getOneIntersectingObject(Man.class);
 
         if (null == man) {
-            // this.setImage(new MotionRenderer("0.png").image);
-
         } else {
             animasi();
 
-            man.updateDamage(this);
-
-            // System.out.println(c);
-
+            if (c==1)
+            {
+                man.damage(5);
+            }
         }
     }
 
@@ -128,5 +128,15 @@ public class BaseMonster extends Subject {
     public int getRandomNumber(int start, int end) {
         int normal = Greenfoot.getRandomNumber(end - start + 1);
         return normal + start;
+    }
+    
+    public void createCommandBindings()
+    {        
+        IPlayerCommandTarget takeDamageCommand = new IPlayerCommandTarget(){
+            public void act(Man player){
+                updateDamage(((ISubject)player));
+            }
+        };
+        newCommandBinding("A", "ATTACK!", takeDamageCommand);
     }
 }

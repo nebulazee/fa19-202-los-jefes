@@ -12,8 +12,8 @@ public class Man extends Subject implements IScoreboardObserver
      * Act - do whatever the Man wants to do. This method is called whenever the
      * 'Act' or 'Run' button gets pressed in the environment.
      */
-    int health = 1000;
-    int gold = 30;
+    int health;
+    int gold;
     int animationCounter = 0;
     int timer = 1;
     boolean manDead = false;
@@ -68,12 +68,6 @@ public class Man extends Subject implements IScoreboardObserver
     }
 
     public void updateDamage(ISubject s) {
-        if(s instanceof BaseMonster) {
-            damage(10);
-        }
-        if (s instanceof banana) {
-            heal(5);
-        }
         if (s instanceof Goblin) {
             damage(50);
         }
@@ -89,14 +83,6 @@ public class Man extends Subject implements IScoreboardObserver
         super.setImage(img.image);
     }
 
-    private void checkGold() {
-        if (this.getOneIntersectingObject(Gold.class) != null) {
-            gold += 15;
-            Scoreboard.setPlayerStats(this);
-            this.removeTouching(Gold.class);
-        }
-    }
-
     public void heal(int hpUp) 
     { 
         health += hpUp; 
@@ -109,6 +95,11 @@ public class Man extends Subject implements IScoreboardObserver
         {
             Greenfoot.setWorld(es);
         }
+        updateScoreboard();
+    }
+    public void restore()
+    {
+        health = WorldManager.getInstance().getInitialHealth();
         updateScoreboard();
     }
     public void addGold(int reward)
@@ -141,7 +132,6 @@ public class Man extends Subject implements IScoreboardObserver
     {
         updateTooltips();
         movement();
-        checkGold();
         trackMovement = Greenfoot.isKeyDown("up") || Greenfoot.isKeyDown("right") || Greenfoot.isKeyDown("left")
                 || Greenfoot.isKeyDown("down");
         if (trackMovement == false) {
@@ -170,32 +160,6 @@ public class Man extends Subject implements IScoreboardObserver
 
         }
 
-        monster = (BaseMonster) getOneIntersectingObject(BaseMonster.class);
-        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
-                || Greenfoot.isKeyDown("s")) {
-            if (null != monster)
-                 monster.updateDamage(this);
-        }
-
-        // }
-        // if (getObjectsInRange(80, Demon.class).size() > 0) {
-        // monster = getObjectsInRange(80, Demon.class).get(0);
-        //monster = (Demon) getOneIntersectingObject(Demon.class);
-        /*if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
-                || Greenfoot.isKeyDown("s")) {
-            if (null != monster)
-                ((Demon) monster).updateDamage(this);
-        }
-
-        monster = (Monster2) getOneIntersectingObject(Monster2.class);
-        if (Greenfoot.isKeyDown("a") || Greenfoot.isKeyDown("d") || Greenfoot.isKeyDown("w")
-                || Greenfoot.isKeyDown("s")) {
-            if (null != monster)
-                ((Monster2) monster).updateDamage(this);
-        }*/
-        // }
-        // if (getObjectsInRange(80, Treasure.class).size() > 0) {
-        // treasure = getObjectsInRange(80, Treasure.class).get(0);
         treasure = (Treasure) getOneIntersectingObject(Treasure.class);
         if (treasure != null)
         {
@@ -269,9 +233,10 @@ public class Man extends Subject implements IScoreboardObserver
         Actor treasure = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Treasure.class);
         Actor score = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Scoreboardmain.class);
         Actor text = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Textboxmain.class);
+        Actor monster = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, BaseMonster.class);
         //Actor gob = getOneObjectAtOffset(adjustedChangeX, adjustedChangeY, Goblin.class);
         
-        if(tavern==null && treasure==null && score==null && text==null){
+        if(tavern==null && treasure==null && score==null && text==null && monster==null){
             setLocation(currentX + changeX,currentY + changeY);
             if (hitGoblin()) {
                 setLocation(currentX - changeX,currentY - changeY);
@@ -291,16 +256,28 @@ public class Man extends Subject implements IScoreboardObserver
             msg.append(title);
             msg.append("\n\n");
             msg.append(obj.getCommandTooltips());
-            Textboxmain.setTextboxMsg(msg.toString());
+            if (title != "" || obj.getCommandTooltips() != "")
+            {
+                Textboxmain.setTextboxMsg(msg.toString());
+            }
+            else
+            {
+                title = WorldManager.getCurrentWorld().getTitle();
+                Textboxmain.setTextboxMsg(title);
+            }
             if (Greenfoot.isKeyDown("q"))
             {
                 obj.checkAndRunCommand("q");
+            }
+            if (Greenfoot.isKeyDown("a"))
+            {
+                obj.checkAndRunCommand("a");
             }
         }
         else
         {
             title = WorldManager.getCurrentWorld().getTitle();
-            Textboxmain.setTextboxMsg(title.toString());
+            Textboxmain.setTextboxMsg(title);
         }
     }
     

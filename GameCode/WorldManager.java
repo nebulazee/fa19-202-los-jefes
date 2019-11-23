@@ -17,6 +17,10 @@ public class WorldManager extends GameActor
     
     int worldHeight = 4;
     int worldWidth = 3;
+
+    final int gameHitPoints = 10000;
+    final int startingGold = 20;
+
     enum WorldType{
         MONSTER,ANIMAL,TREASURE;
     }
@@ -92,17 +96,28 @@ public class WorldManager extends GameActor
                     switch(type)
                     {
                         case MONSTER:
-                            MonsterWorld mw = new MonsterWorld(constructConfigurationCode(i, j));
                             if(monsters == 3) {
-                                mw.setMonster(new BaseMonster("Demon1.png","Demon2.png"));
+                                worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
+                                    public void createMonster() {
+                                        currentMonster = new BaseMonster("Demon1.png","Demon2.png","CEREBRUS");
+                                    }
+                                };
                             }
                             else if(monsters == 2) {
-                                mw.setMonster(new BaseMonster("0.png","1.png"));
+                                worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
+                                    public void createMonster() {
+                                        currentMonster = new BaseMonster("0.png","1.png","EL DIABLO");
+                                    }
+                                };
                             }
                             else {
-                                mw.setMonster(new BaseMonster("ogre1.png","ogre2.png"));
+                                worldMap[i][j] = new MonsterWorld(constructConfigurationCode(i, j)) {
+                                    public void createMonster() {
+                                        currentMonster = new BaseMonster("ogre1.png","ogre2.png","OGRE");
+                                    }
+                                };
                             }
-                            worldMap[i][j] = mw;//new MonsterWorld(constructConfigurationCode(i, j)){
+                            //new MonsterWorld(constructConfigurationCode(i, j)){
                                 /*if(monsters==3){
                                  public void setMonster(new BaseMonster("Demon1.png","Demon2.png"));
                                 }
@@ -157,7 +172,6 @@ public class WorldManager extends GameActor
             case SOUTH: instance.switchWorlds(Signal.DOWN); break;
             default: break;
         }
-        // System.out.println(displayWorldMap());
     }
     
     private void switchWorlds(Signal s)
@@ -245,8 +259,8 @@ public class WorldManager extends GameActor
     private static String getCode(BaseWorld w)
     {
         String code;
-        switch(w.getClass().getName())
-        {
+        switch(w.worldType())
+        {       
             case "MonsterWorld": code = "\u2612"; break;
             case "AnimalWorld": code = "\u25A2"; break;
             case "TreasureWorld": code = "\u272A"; break; //25CE
@@ -260,4 +274,7 @@ public class WorldManager extends GameActor
         }
         return code;
     }
+
+    public int getInitialHealth() { return gameHitPoints; }
+    public int getInitialGold() { return startingGold; }
 }

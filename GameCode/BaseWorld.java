@@ -22,10 +22,12 @@ public class BaseWorld extends World
     final protected int max_height, min_height;
     protected int portalOffset = 30;
     protected String tooltipTitle;
+    protected String worldType;
     
     public BaseWorld(String config)
     {
         super(800, 800, 1); 
+        worldType = "BaseWorld";
         tooltipTitle = "";
         max_width=800;
         max_height=600;
@@ -38,12 +40,6 @@ public class BaseWorld extends World
         addObject(scoreboardmain,400,50);
         textboxmain = new Textboxmain();
         addObject(textboxmain,400,700);
-        //bottomtext = new BottomText();
-        //addObject(bottomtext,400,680);
-        /*
-        System.out.println("Added scoreboard");
-        addObject(scoreboard,300,130);
-        */
 
         populatePortals(config);
     }
@@ -121,4 +117,6 @@ public class BaseWorld extends World
     {
         return scoreboardmain;
     }
+
+    public String worldType() { return worldType; }
 }
