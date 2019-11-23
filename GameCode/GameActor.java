@@ -35,7 +35,6 @@ public abstract class GameActor extends Actor
         if (man != null)
         {
             String command = pressedKey.toUpperCase();
-            System.out.println(command);
             IPlayerCommand currentCommand = commandMap.getOrDefault(command, null);
             if (currentCommand != null)
             {

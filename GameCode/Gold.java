@@ -15,6 +15,7 @@ public class Gold extends Subject
     Gold()
     {
         super();
+        setActorTitle("LOOT (25 GOLD)");
         GreenfootImage img = new GreenfootImage("gold.png");    
         img.scale(60,60);
         this.setImage(img);
@@ -34,5 +35,15 @@ public class Gold extends Subject
       
     public void updateDamage(ISubject s){}
 
-    public void createCommandBindings(){}
+    public void createCommandBindings()
+    {
+        IPlayerCommandTarget getGoldCommand = new IPlayerCommandTarget(){
+            public void act(Man player){
+                player.addGold(25);
+                Greenfoot.getWorld().removeObject(this);
+
+            }
+        };
+        newCommandBinding("Q", "PICK UP LOOT!", getGoldCommand);
+    }
 }

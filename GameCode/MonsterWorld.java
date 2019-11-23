@@ -6,7 +6,7 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class MonsterWorld extends BaseWorld
+public abstract class MonsterWorld extends BaseWorld
 {
 
     /**
@@ -28,6 +28,8 @@ public class MonsterWorld extends BaseWorld
      */
     private void prepare()
     {
+        worldType = "MonsterWorld";
+
         tooltipTitle = "A ravenous monster confronts you!\nSlay it, brave warrior! Slay it to proceed!";
 
         Goblin goblin = new Goblin();
@@ -37,12 +39,10 @@ public class MonsterWorld extends BaseWorld
         scoreboard = Scoreboard.getScoreboardInstance();
         
         int monsterCode = Greenfoot.getRandomNumber(3);
+        createMonster();
+        addObject(currentMonster,400,350);
         
     }
 
-    public void setMonster(BaseMonster m) 
-    {
-        currentMonster=m;
-        addObject(m,400,350);
-    }
+    public abstract void createMonster() ;
 }
