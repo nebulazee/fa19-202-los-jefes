@@ -12,12 +12,15 @@ public class Gold extends Subject
      * Act - do whatever the Gold wants to do. This method is called whenever
      * the 'Act' or 'Run' button gets pressed in the environment.
      */
+    Gold obj;
     Gold()
     {
         super();
+        setActorTitle("LOOT (25 GOLD)");
         GreenfootImage img = new GreenfootImage("gold.png");    
         img.scale(60,60);
         this.setImage(img);
+        obj = this;
     }
     public void act() 
     {
@@ -34,5 +37,15 @@ public class Gold extends Subject
       
     public void updateDamage(ISubject s){}
 
-    public void createCommandBindings(){}
+    public void createCommandBindings()
+    {
+        IPlayerCommandTarget getGoldCommand = new IPlayerCommandTarget(){
+            public void act(Man player){
+                player.addGold(25);
+                obj.getWorld().removeObject(obj);
+
+            }
+        };
+        newCommandBinding("Q", "PICK UP LOOT!", getGoldCommand);
+    }
 }

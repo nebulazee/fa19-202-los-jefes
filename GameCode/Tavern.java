@@ -31,11 +31,20 @@ public class Tavern extends GameActor
                 if (player.chargeGold(20) == true)
                 {
                     player.heal(1000);
-                    System.out.println("Tavern healing man");
                 }
             }
         };
         newCommandBinding("Q", "Drink Ale to Heal (20 Gold)", healCmd);
+
+        IPlayerCommandTarget restoreCmd = new IPlayerCommandTarget(){
+            public void act(Man player){
+                if (player.chargeGold(80) == true)
+                {
+                    player.restore();
+                }
+            }
+        };
+        newCommandBinding("A", "Spend the Night to Restore Vitality (80 Gold)", restoreCmd);
     }
 
 }

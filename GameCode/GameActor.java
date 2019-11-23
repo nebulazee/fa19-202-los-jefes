@@ -14,7 +14,8 @@ public abstract class GameActor extends Actor
     
     GameActor()
     {
-        commandMap = new HashMap();
+        commandMap = new HashMap<String, IPlayerCommand>();
+        actorTitle = "";
         createCommandBindings();
     }
     
@@ -34,7 +35,6 @@ public abstract class GameActor extends Actor
         if (man != null)
         {
             String command = pressedKey.toUpperCase();
-            System.out.println(command);
             IPlayerCommand currentCommand = commandMap.getOrDefault(command, null);
             if (currentCommand != null)
             {
