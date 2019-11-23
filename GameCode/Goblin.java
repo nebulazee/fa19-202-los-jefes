@@ -58,7 +58,7 @@ public class Goblin extends Subject
         } 
         if( !hitknight() )
         {
-        move(direction-1);
+        move((direction-1)/2);
         }
     }
     

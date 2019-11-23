@@ -19,7 +19,7 @@ public class StartScreen extends World
     {    
         // Create a new world with 800x600 cells with a cell size of 1x1 pixels.
         super(800, 800, 1); 
-        backgroundMusic.playLoop();
+        // backgroundMusic.playLoop();
         st = new StartScreenText();
         addObject(st,400,400);
     }

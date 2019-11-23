@@ -34,13 +34,13 @@ public abstract class MonsterWorld extends BaseWorld
 
         Goblin goblin = new Goblin();
         addObject( goblin ,20,225);
-        banana banana = new banana();
-        addObject(banana,50,550);
         scoreboard = Scoreboard.getScoreboardInstance();
         
         int monsterCode = Greenfoot.getRandomNumber(3);
         createMonster();
         addObject(currentMonster,400,350);
+
+        scoreboardmain.setMonsterHealth(currentMonster.getHealth());
         
     }
 

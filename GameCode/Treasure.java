@@ -79,7 +79,7 @@ public abstract class Treasure extends GameActor {
                 GreenfootImage treasureOpenImage = new GreenfootImage(imageOpen);
                 treasureOpenImage.scale(50, 50);
                 setImage(treasureOpenImage);
-            } else if (this.openDelay == 120) {
+            } else if (this.openDelay == 90) {
                 chestOpened();
             }
         }
