@@ -38,13 +38,13 @@ public class Tavern extends GameActor
 
         IPlayerCommandTarget restoreCmd = new IPlayerCommandTarget(){
             public void act(Man player){
-                if (player.chargeGold(80) == true)
+                if (player.chargeGold(70) == true)
                 {
                     player.restore();
                 }
             }
         };
-        newCommandBinding("A", "Spend the Night to Restore Vitality (80 Gold)", restoreCmd);
+        newCommandBinding("A", "Spend the Night to Restore Vitality (70 Gold)", restoreCmd);
     }
 
 }
