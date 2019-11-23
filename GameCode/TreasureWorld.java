@@ -6,9 +6,9 @@ import greenfoot.*;  // (World, Actor, GreenfootImage, Greenfoot and MouseInfo)
  * @author (your name) 
  * @version (a version number or a date)
  */
-public class TreasureWorld extends BaseWorld
+public abstract class TreasureWorld extends BaseWorld
 {
-
+    public Treasure worldTreasure;
     /**
      * Constructor for objects of class TreasureWorld.
      * 
@@ -26,15 +26,13 @@ public class TreasureWorld extends BaseWorld
      */
     private void prepare()
     {
+        tooltipTitle = "You come across a treasure chest.\nWhat rewards could it hold?";   
         worldType = "TreasureWorld";
-        tooltipTitle = "You come across a treasure chest.\nWhat rewards could it hold?";        
-        TreasureFactory tf = new TreasureFactory();
-        Treasure treasure = tf.getTreasure();
-        //treasure1.setLocation(400,400);
-        addObject(treasure, 400, 350);
         
-        
-        //man = new Man();
-        //addObject(man,287,355);
+        createTreasure(); 
+        addObject(worldTreasure,400,350);
     }
+    
+    public abstract void createTreasure(); 
+
 }

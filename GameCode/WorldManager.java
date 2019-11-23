@@ -117,24 +117,39 @@ public class WorldManager extends GameActor
                                     }
                                 };
                             }
-                            //new MonsterWorld(constructConfigurationCode(i, j)){
-                                /*if(monsters==3){
-                                 public void setMonster(new BaseMonster("Demon1.png","Demon2.png"));
-                                }
-                                else if(monsters==2) 
-                                 setMonster(new BaseMonster("0.png","1.png"));
-                                else
-                                 setMonster(new BaseMonster("ogre1.png","ogre2.png"));  
-                                 
-                                
-                            };*/
                             monsters--;
                             break;
                         case ANIMAL:
                             worldMap[i][j] = new AnimalWorld(constructConfigurationCode(i, j));
                             break;
                         case TREASURE:
-                            worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j));
+                             if(treasures == 2) {
+                                 worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j)) {
+                                     public void createTreasure()
+                                     {
+                                         this.worldTreasure = new Treasure("treasure-closed-golden.png", "treasure-open-golden.png") {
+                                             public void createWeapon()
+                                             {
+                                                 associatedWeapon = new Weapon("golden-sword.png", 100, 0.1f);
+                                                }
+                                            };
+                                        }
+                                    };
+
+                            }
+                            else if(treasures == 1) {
+                                 worldMap[i][j] = new TreasureWorld(constructConfigurationCode(i, j)) {
+                                     public void createTreasure()
+                                     {
+                                         this.worldTreasure = new Treasure("treasure-closed-blue.png", "treasure-open-blue.png") {
+                                             public void createWeapon()
+                                             {
+                                                 associatedWeapon = new Weapon("blue-sword.png", 50, 0.2f);
+                                                }
+                                            };
+                                        }
+                                    };
+                            }  
                             treasures--;
                             break;
                         default:
